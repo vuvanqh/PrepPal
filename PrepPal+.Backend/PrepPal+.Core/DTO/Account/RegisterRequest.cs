@@ -9,11 +9,11 @@ namespace PrepPal_.Core.DTO.Account;
 public class RegisterRequest
 {
     [Required] public string UserName { get; set; } = null!;
-    [Required] public string FirstName { get; } = null!;
-    [Required] public string LastName { get; } = null!;
-    [Required] public string Email { get; } = null!;
-    [Required] public string Password { get; } = null!;
-    [Required] public string PhoneNumber { get; } = null!;
+    [Required] public string FirstName { get; set; } = null!;
+    [Required] public string LastName { get; set; } = null!;
+    [Required] public string Email { get; set; } = null!;
+    [Required] public string Password { get; set; } = null!;
+    [Required] public string PhoneNumber { get; set; } = null!;
 
 
     public ApplicationUser ToUser()

@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="PrepPal+.Backend/PrepPal+.UI.csproj" />
     <Project Path="PrepPal+.Core/PrepPal+.Core.csproj" />
     <Project Path="PrepPal+.Infrastructure/PrepPal+.Infrastructure.csproj" />
+    <Project Path="PrepPal+.UI/PrepPal+.UI.csproj" />
   </Folder>
 </Solution>

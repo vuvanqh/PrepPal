@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PrepPal_.Core.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PrepPal_.Core.DTO.Account
+namespace PrepPal_.Core.DTO.Account;
+
+public class LoginResponse
 {
-    internal interface LoginResponse
-    {
-    }
+    public LoginResponse(ApplicationUser user) { }
 }
