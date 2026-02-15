@@ -3,10 +3,12 @@ import Button from "../components/UI/Button"
 import Modal from "../components/Modal";
 import { useNavigate, useLocation } from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
-import { register } from "../api/account";
-import { toast, Bounce, type ToastOptions } from 'react-toastify';
+import { register } from "../api/authentication";
+import { toastError, toastSuccess } from "../toastConfig";
 import { useActionState } from "react";
-import type {registerDTO} from "../api/account";
+import type {registerDTO} from "../api/authentication";
+import ErrorContainer from "../components/ErrorContainer";
+import Error from "../components/Error";
 
 
 type RegisterFormState = {
@@ -14,27 +16,15 @@ type RegisterFormState = {
   oldData?: registerDTO;
 };
 
-const toastConfig = {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-    transition: Bounce,
-} as ToastOptions;
-
 
 export default function Register(){
     const navigate = useNavigate();
     const isRegister = useLocation();
-    const {mutateAsync } = useMutation({
+    const {mutateAsync, isPending } = useMutation({
         mutationFn: register,
         onSuccess: () => {
             navigate("/");
-            toast.success("Registered Successfully!", toastConfig)
+            toastSuccess("Registered Successfully!")
         },
     })
 
@@ -61,7 +51,7 @@ export default function Register(){
 
         if(errors.length>0)
         {
-            toast.error("Try Again :c", toastConfig);
+            toastError("Try Again :c");
             return {errors, oldData: data};
         }
 
@@ -70,16 +60,12 @@ export default function Register(){
             await mutateAsync(data);
             return {};
         } catch (err: any) {
-            toast.error("Registration Failed. Try Again :c", toastConfig);
+            toastError("Registration Failed. Try Again :c");
 
             const raw = err.info?.errors;
-
-            // Case 1: backend sent string[]
             if (Array.isArray(raw)) {
                 return { errors: raw, oldData: data };
             }
-
-            // Case 2: backend sent { field: string[] }
             if (raw && typeof raw === "object") {
                 return {
                 errors: Object.values(raw).flat() as string[],
@@ -87,12 +73,9 @@ export default function Register(){
                 };
             }
 
-            // Case 3: backend sent single message
             if (typeof raw === "string") {
                 return { errors: [raw], oldData: data };
             }
-
-            // Fallback
             return {
                 errors: ["Registration failed"],
                 oldData: data,
@@ -116,18 +99,16 @@ export default function Register(){
             <Input label="Confirm Password" id="ConfirmPassword" type="password"/>
 
             {formState.errors && (
-            <ul>
+            <ErrorContainer>
                 {
                 formState.errors.map(error => (  
-                <li key={error} className="text-red-950 size-1">
-                    {error }
-                </li>
+                <Error key={error} message={error}/>
             ))}
-            </ul>)}
+            </ErrorContainer>)}
 
             <p className="form-actions">
-                <Button text="Cancel" className="px-2 text-stone-500" type="button" onClick={()=> navigate("/")}/>
-                <Button text="Register" className="bg-stone-950 w-20 text-stone-300 mr-0.5 rounded-md"/>
+                <Button text="Cancel" className="px-2 text-stone-500" type="button" onClick={()=> navigate("/")} disabled={isPending}/>
+                <Button text="Register" className="bg-stone-950 w-20 text-stone-300 mr-0.5 rounded-md" disabled={isPending}/>
             </p>
         </form>
     </Modal>

@@ -21,7 +21,7 @@ export default function Modal({children, open, onClose, className=""}:ModalProps
     }, [open]);
 
     return createPortal(
-    <dialog ref={dialog} onClose={onClose} className="modal">
+    <dialog ref={dialog} onClose={onClose} className={"modal" + className}>
         {children}
     </dialog>, document.getElementById("modal")!)
 }
