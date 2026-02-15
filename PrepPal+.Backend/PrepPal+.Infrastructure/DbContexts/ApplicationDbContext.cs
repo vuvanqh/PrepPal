@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PrepPal_.Core.Domain.Entities;
+using PrepPal_.Core.Domain.Entities.RecipeEntities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +12,16 @@ namespace PrepPal_.Infrastructure.DbContexts;
 public class ApplicationDbContext: IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { }
-    public virtual DbSet<ApplicationGroup> ApplicationGroups { get; set; }
-    public virtual DbSet<GroupMembership> GroupMemberships { get; set; }
+    public virtual DbSet<ApplicationGroup> ApplicationGroups => Set<ApplicationGroup>();
+    public virtual DbSet<GroupMembership> GroupMemberships => Set<GroupMembership>();
+
+    //recipe
+    public virtual DbSet<Ingredient> Ingredients => Set<Ingredient>();
+    public virtual DbSet<Recipe> Recipes => Set<Recipe>();
+    public virtual DbSet<RecipeCategory> RecipeCategories => Set<RecipeCategory>();
+    public virtual DbSet<RecipeIngredient> RecipeIngredients => Set<RecipeIngredient>();
+    public virtual DbSet<UserRecipeInteraction> UserRecipeInteractions => Set<UserRecipeInteraction>();
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,5 +43,8 @@ public class ApplicationDbContext: IdentityDbContext<ApplicationUser, Applicatio
             .HasOne<ApplicationGroup>(x => x.ApplicationGroup)
             .WithMany()
             .HasForeignKey(x => x.GroupId);
+
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }
