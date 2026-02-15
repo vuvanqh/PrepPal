@@ -230,6 +230,15 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("TokenExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TokenHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TokenIssuedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
