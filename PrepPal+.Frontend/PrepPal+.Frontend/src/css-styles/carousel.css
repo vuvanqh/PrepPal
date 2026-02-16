@@ -1,0 +1,42 @@
+.carousel { 
+    margin: 3rem; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+ 
+.carousel-item {
+    width: 200px; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 20%; 
+} 
+
+.carousel-viewport{ 
+    display:flex; 
+    overflow: hidden; 
+}
+
+.carousel button { 
+    color: black; 
+}
+
+.carousel button:hover { 
+    color: black; 
+    background: #000; 
+}
+
+.carousel-item img { 
+    width: 200px; 
+    height: 150px; 
+} 
+
+.carousel-track { 
+    display: flex; 
+    gap: 40px; 
+    padding: 0; 
+    margin: 0; 
+    list-style: none; 
+    transition: transform 0.3s ease; 
+    transform: translateX(calc(var(--index) * -220px)); 
+}

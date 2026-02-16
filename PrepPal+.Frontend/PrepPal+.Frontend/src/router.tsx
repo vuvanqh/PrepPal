@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import MainPage from "./pages/MainPage";
 import AppLayoutPage from "./pages/AppLayoutPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MainPageContent from "./components/MainPageContent";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,14 @@ const router = createBrowserRouter([
             },
             {
                 path:"main",
-                element: <ProtectedRoute><MainPage/></ProtectedRoute>
+                element: <ProtectedRoute><MainPage/></ProtectedRoute>,
+                children: [
+                    {
+                        index: true,
+                        element: <MainPageContent/>
+
+                    }
+                ]
             }
         ]
     }

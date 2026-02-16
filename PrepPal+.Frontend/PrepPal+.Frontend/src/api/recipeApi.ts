@@ -1,6 +1,6 @@
-import { apiFetch, HttpError, url } from "./util";
+import { apiFetch, url } from "./util";
 
-const headers = {
+export const headers = {
     "Authorization": "Bearer " + localStorage.getItem("token")
 }
 

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Lato:wght@400;700&display=swap');
 @import "tailwindcss";
-
+@import "./css-styles/carousel.css";
 
 html,body {
   font-family: "Quicksand", sans-serif;
@@ -180,11 +180,73 @@ dialog[open] {
   align-items: center;
   justify-content: center;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.35)
+  );
+
+  z-index: 0;
+}
+
+.hero-content h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  opacity: 0.9;
+
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-content a {
+  display: inline-block;
+
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+
+  background: #f88379;
+  color: #f4f4f5;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.hero-content a:hover {
+  background: #f76a60;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
 
 .hero-content {
-  color: white;
-  text-align: center;
-  z-index: 1;
+  animation: heroFade 600ms ease-out both;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
