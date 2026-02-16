@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Lato:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "./css-styles/carousel.css";
+@import "./css-styles/recipe-modal.css";
 
 html,body {
   font-family: "Quicksand", sans-serif;
@@ -17,6 +18,7 @@ html,body {
   min-height: 80rem;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 dialog {
@@ -24,7 +26,7 @@ dialog {
   border: none;
   padding: 0;
   margin: auto;
-
+ 
   opacity: 0;
   transform: translateY(8px) scale(0.97);
 
@@ -50,6 +52,7 @@ dialog[open]::backdrop {
 dialog[open] {
   opacity: 1;
   transform: scale(1);
+  overscroll-behavior: none;
 }
 
 .navbar {
@@ -63,8 +66,6 @@ dialog[open] {
   height: 5rem;
   align-items: center;
   width: 100%;
-
-  padding: 0 2rem;
   z-index: 1000;
 
   background: transparent;
@@ -179,11 +180,13 @@ dialog[open] {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
+  
 
   background: linear-gradient(
     to bottom,

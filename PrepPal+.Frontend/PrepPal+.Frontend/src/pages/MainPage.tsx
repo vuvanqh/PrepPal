@@ -24,7 +24,6 @@ export default function MainPage(){
                 <button onClick={onLogout}>Logout</button>
             </div>
         </Navbar>
-        
         <Outlet/>  
     </>
 }

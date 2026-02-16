@@ -24,7 +24,6 @@ export default function Login(){
         mutationFn: login,
         onSuccess: (data)=> {
             localStorage.setItem("username", data["userName"]);
-            localStorage.setItem("id", data["id"]);
             localStorage.setItem("token", data["token"]);
             toastSuccess("Successful Login");
             navigate("/main");

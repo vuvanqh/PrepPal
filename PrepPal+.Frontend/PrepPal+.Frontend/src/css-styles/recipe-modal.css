@@ -1,0 +1,150 @@
+.recipe-modal {
+  max-width: 640px;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  max-height: 85vh;
+
+  display: flex;
+  flex-direction: column;
+  
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.recipe-modal-body {
+  flex: 1;                 /* 👈 takes remaining height */
+  overflow-y: auto;        /* 👈 enables scrolling */
+  overscroll-behavior: contain;
+}
+
+.recipe-modal-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.recipe-modal-header {
+  padding: 1.5rem 1.75rem 0.5rem;
+}
+
+.recipe-modal-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.recipe-meta {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1.75rem 1.25rem;
+}
+
+.recipe-actions button {
+  flex: 1;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.recipe-actions .primary {
+  background: #f88379;
+  color: white;
+}
+
+.recipe-actions .primary:hover {
+  background: #f76a60;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.recipe-actions .secondary {
+  background: #f3f3f3;
+  color: #111;
+}
+
+.recipe-actions .secondary:hover {
+  background: #e7e7e7;
+}
+
+.recipe-section {
+  padding: 1.5rem 1.75rem;
+  border-top: 1px solid #eee;
+}
+
+.recipe-section h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.ingredients-list li em {
+  color: #777;
+  font-style: normal;
+}
+
+.instructions {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  white-space: pre-line;
+}
+
+.recipe-modal-body::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Opera */
+}
+
+
+.image-skeleton {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    #eee 25%,
+    #f5f5f5 37%,
+    #eee 63%
+  );
+  background-size: 400% 100%;
+
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

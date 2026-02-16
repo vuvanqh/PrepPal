@@ -1,12 +1,10 @@
 
 import { getRandomRecipes } from "../api/recipeApi";
-import { toastSuccess, toastError } from "../toastConfig";
-import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Carousel from "./Carousel";
 
 export default function MainPageContent(){
-     const {data, isError, isPending, isSuccess, error} = useQuery({
+     const {data, isError, isPending, error} = useQuery({
         queryFn: getRandomRecipes,
         queryKey: ["random-recipes"],
         staleTime: 50000
@@ -14,17 +12,17 @@ export default function MainPageContent(){
 
     console.log(data, isError, isPending, error);
 
-    useEffect(() => {
-    if (isSuccess) {
-        toastSuccess('worked!!');
-    }
-    }, [isSuccess]);
+    // useEffect(() => {
+    // if (isSuccess) {
+    //     toastSuccess('worked!!');
+    // }
+    // }, [isSuccess]);
 
-    useEffect(() => {
-    if (isError) {
-        toastError('failed :c');
-    }
-    }, [isError]);
+    // useEffect(() => {
+    // if (isError) {
+    //     toastError('failed :c');
+    // }
+    // }, [isError]);
 
     let content = isPending? <p className="text-stone-950 text-5xl">Loading...</p>:<Carousel items={data}/>;
 

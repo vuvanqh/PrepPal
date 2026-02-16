@@ -36,13 +36,14 @@ async function refreshToken(){
             });
 
             if(!refreshResponse.ok){
+                console.log(`refresh token err - ${(await refreshResponse.json()).message}`)
                 localStorage.clear();
                 window.location.href = "/login";
                 throw new Error("Session Expired");
             }
 
             const data = await refreshResponse.json();
-            localStorage.setItem("token", data.token);
+            localStorage.setItem("token", data);
         })().finally(() => refreshPromise=null);
     }
 
