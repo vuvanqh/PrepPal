@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace PrepPal_.Core.Domain.Entities.RecipeEntities;
 
 public enum InteractionType
 {
-    View,
-    Like,
-    AddToCart
+    [EnumMember(Value = "view")] View,
+    [EnumMember(Value = "like")] Like,
+    [EnumMember(Value = "add-to-cart")] AddToCart
 }
 
 /// <summary>
@@ -19,6 +20,7 @@ public class UserRecipeInteraction
     public required InteractionType Type { get; set; }
     public required Guid UserId { get; set; }
     public required Guid RecipeId { get; set; }
+    public required int ExternalRecipeId { get; set; }
     public required DateTime TimeStamp { get; set; }
     
     public ApplicationUser? User { get; set; }

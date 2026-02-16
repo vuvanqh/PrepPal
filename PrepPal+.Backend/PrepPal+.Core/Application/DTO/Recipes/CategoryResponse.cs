@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace PrepPal_.Core.Application.DTO.Recipes;
 
@@ -19,8 +20,9 @@ public class CategoryResponse
 
 public class CategoryDTO
 {
-    public int idCategory;
-    public string strCategory = null!;
+    [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+    public int idCategory { get; set; }
+    public string strCategory { get; set; } = null!;
 
     public RecipeCategory ToRecipeCategory()
     {

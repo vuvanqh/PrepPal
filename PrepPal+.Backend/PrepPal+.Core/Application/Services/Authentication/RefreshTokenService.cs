@@ -66,7 +66,7 @@ public class RefreshTokenService: IRefreshTokenService
         user.TokenHash = HashToken(result.RefreshToken);
         user.TokenExpirationDate = result.ExpirationDate;
         await _userManager.UpdateAsync(user);
-
+    
         return result;
     }
 

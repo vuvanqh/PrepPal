@@ -377,10 +377,15 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
+                    b.Property<int>("ExternalRecipeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("datetime2");
 
                     b.HasKey("UserId", "RecipeId", "Type");
+
+                    b.HasIndex("ExternalRecipeId");
 
                     b.HasIndex("RecipeId");
 

@@ -27,8 +27,8 @@ public class JwtService : IJwtService
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), //subject = user identity
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), //unique token id
-            new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()), //issued at
-            new Claim(ClaimTypes.NameIdentifier, user.Email!) //unique value of a user
+           // new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64), //issued at
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()!) //unique value of a user
         };
 
         SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)); //security key
@@ -37,6 +37,7 @@ public class JwtService : IJwtService
             _configuration["Jwt:Issuer"], //from who
             _configuration["Jwt:Audience"], //to who
             claims,
+            notBefore: DateTime.UtcNow,
             expires: expiration,
             signingCredentials: signingCredentials);
 

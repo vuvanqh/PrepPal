@@ -26,6 +26,6 @@ internal class UserRecipeInteractionConfiguration : IEntityTypeConfiguration<Use
         builder.Property(x => x.Type).HasConversion<int>();
 
         builder.HasIndex(x => x.UserId);
-        builder.HasIndex(x => x.RecipeId);
+        builder.HasIndex(x => x.ExternalRecipeId);
     }
 }

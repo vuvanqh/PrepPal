@@ -9,10 +9,10 @@ namespace PrepPal_.Core.ClientContracts;
 public interface IMealDbClient
 {
     Task<RecipeResponse?> GetRecipeById(int externalId);
-    Task<RecipeResponse?> GetRecipeByName(string name);
     Task<RecipeResponse> GetRandomRecipe();
 
     //multiple
+    Task<List<RecipeResponse>?> GetRecipeByName(string name);
     Task<List<RecipeResponse>?> GetRecipesByFirstLetter(char letter);
     Task<List<RecipeResponse>?> GetRecipesByMainIngredient(string ingredient);
     Task<List<RecipeResponse>?> GetRecipesByArea(string area);

@@ -74,12 +74,11 @@ public class MealDbClient : IMealDbClient
         return recipe;
     }
 
-    public async Task<RecipeResponse?> GetRecipeByName(string name)
+    public async Task<List<RecipeResponse>?> GetRecipeByName(string name)
     {
         var data = await FetchHelper($"search.php?s={name}");
 
-        RecipeResponse? recipe = data?.Meals?.Select(m => m.ToRecipeResponse()).FirstOrDefault();
-        return recipe;
+        return data?.Meals?.Select(m => m.ToRecipeResponse()).ToList();
     }
 
     public async Task<List<RecipeResponse>?> GetRecipesByArea(string area)

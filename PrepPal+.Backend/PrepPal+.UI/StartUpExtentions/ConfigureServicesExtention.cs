@@ -19,6 +19,7 @@ using PrepPal_.Infrastructure.DbContexts;
 using PrepPal_.Infrastructure.Repositories;
 using Serilog;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace PrepPal_.Backend;
 
@@ -52,6 +53,11 @@ public static class ConfigureServicesExtention
             options.Filters.Add(new AuthorizeFilter(policy));
             options.Filters.Add(new ProducesAttribute("application/json")); 
             options.Filters.Add(new ConsumesAttribute("application/json"));
+        }).AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(
+                new JsonStringEnumConverter()
+            );
         });
 
         //services
@@ -70,6 +76,7 @@ public static class ConfigureServicesExtention
         //repo
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRecipeCategoryRepository, RecipeCategoryRepository>();
+        services.AddScoped<IRecipeRepository, RecipeRepository>();
 
         //dbContext
         services.AddDbContext<ApplicationDbContext>(options =>
@@ -88,7 +95,7 @@ public static class ConfigureServicesExtention
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(options =>
         {
             options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()

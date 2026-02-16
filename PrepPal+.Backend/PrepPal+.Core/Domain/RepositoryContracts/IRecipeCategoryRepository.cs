@@ -10,4 +10,5 @@ public interface IRecipeCategoryRepository
 {
     Task AddRangeAsync(CategoryResponse recipeCategories);
     Task<bool> AnyAsync();
+    Task<Guid> GetCategoryIdByName(string categoryName);
 }

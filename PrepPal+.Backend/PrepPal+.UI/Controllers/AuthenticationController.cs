@@ -65,7 +65,7 @@ namespace PrepPal_.Backend.Controllers
                     Secure = true, //only sent over https
                     SameSite = SameSiteMode.Lax, //blocks csrf attacks
                     Expires = refreshTokenResult.ExpirationDate,
-                    Path = "/api/auth/login"
+                    Path = "/api/auth"
                 });
                 return Ok(response);
             }
@@ -75,12 +75,14 @@ namespace PrepPal_.Backend.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("refreshToken")]
         [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Description = "Token expired")]
         public async Task<IActionResult> RefreshToken()
         {
             string token  = Request.Cookies["refreshToken"]!;
+            _logger.LogInformation(token);
             try
             {
                 RefreshTokenResponse resp = await _authenticationService.RotateRefreshToken(token);
@@ -91,7 +93,7 @@ namespace PrepPal_.Backend.Controllers
                     Secure = true,
                     SameSite = SameSiteMode.Lax,
                     Expires = resp.ExpirationDate,
-                    Path = "/api/auth/refreshToken"
+                    Path = "/api/auth"
                 });
 
                 return Ok(resp.AccessToken);
