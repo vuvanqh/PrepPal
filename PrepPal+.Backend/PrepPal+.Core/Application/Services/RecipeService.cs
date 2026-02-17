@@ -32,6 +32,10 @@ public class RecipeService : IRecipeService
 
     public async Task Interact(UserRecipeInteractionRequest interaction, Guid userId)
     {
+        if (interaction.Type == InteractionType.Unlike)
+        {
+
+        }
         if(!(await _recipeRepository.RecipeExists(interaction.ExternalRecipeId)))
         {
             RecipeResponse? resp = await _mealDbClient.GetRecipeById(interaction.ExternalRecipeId);

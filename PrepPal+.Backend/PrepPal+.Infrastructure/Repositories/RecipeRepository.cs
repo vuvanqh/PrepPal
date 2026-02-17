@@ -18,10 +18,12 @@ public class RecipeRepository : IRecipeRepository
 
     public async Task AddInteractionAsync(UserRecipeInteraction interaction)
     {
-        if (await _applDbContext.UserRecipeInteractions.AnyAsync(i => i.UserId == interaction.UserId && i.ExternalRecipeId == interaction.ExternalRecipeId && i.Type == interaction.Type))
-            return;
+        UserRecipeInteraction? itr = await _applDbContext.UserRecipeInteractions.FirstOrDefaultAsync(i => i.UserId == interaction.UserId && i.ExternalRecipeId == interaction.ExternalRecipeId && i.Type == interaction.Type);
+        if (itr!=null)
+            _applDbContext.UserRecipeInteractions.Remove(itr);
+        else 
+             await _applDbContext.UserRecipeInteractions.AddAsync(interaction);
 
-        await _applDbContext.UserRecipeInteractions.AddAsync(interaction);
         await _applDbContext.SaveChangesAsync();
     }
 
@@ -38,5 +40,5 @@ public class RecipeRepository : IRecipeRepository
 
     public async Task<Recipe?> GetRecipeAsync(int externalId) => await _applDbContext.Recipes.FirstOrDefaultAsync(r => r.ExternalId == externalId);
 
-
+    public async Task RemoveInteractionAsync(UserRecipeInteraction interaction) { }
 }

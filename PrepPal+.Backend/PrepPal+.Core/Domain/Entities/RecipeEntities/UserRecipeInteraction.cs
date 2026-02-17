@@ -9,7 +9,9 @@ public enum InteractionType
 {
     [EnumMember(Value = "view")] View,
     [EnumMember(Value = "like")] Like,
-    [EnumMember(Value = "add-to-cart")] AddToCart
+    [EnumMember(Value = "add-to-cart")] AddToCart,
+    [EnumMember(Value = "unlike")] Unlike,
+    [EnumMember(Value = "remove-from-cart")] RemoveFromCart
 }
 
 /// <summary>
