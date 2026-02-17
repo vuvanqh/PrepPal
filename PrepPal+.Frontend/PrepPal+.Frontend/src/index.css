@@ -185,7 +185,9 @@ dialog[open] {
   border: none;
   padding: 0;
   overflow: hidden;
+  pointer-events: auto;
 }
+
 
 .hero {
   position: relative;

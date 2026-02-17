@@ -5,7 +5,7 @@ let refreshPromise: Promise<void> | null = null;
 export async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
     const response = await myFetch(input, init);
 
-    if(response.status != 401)
+    if(response.status != 401 || !localStorage.getItem("token"))
         return response
 
     await refreshToken();

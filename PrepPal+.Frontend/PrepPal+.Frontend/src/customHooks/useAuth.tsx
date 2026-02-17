@@ -27,7 +27,7 @@ export default function useAuth(){
 
     return {
         userData,
-        isAuthenticated: localStorage.getItem("token")!=undefined,
+        isAuthenticated: !!localStorage.getItem("token"),
         logout,
         login,
         isPending

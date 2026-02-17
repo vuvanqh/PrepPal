@@ -6,6 +6,7 @@ import MainPage from "./pages/Protected/MainPage";
 import AppLayoutPage from "./pages/AppLayoutPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MainPageContent from "./components/MainPageContent";
+import SearchPage from "./pages/Protected/SearchPage";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
                         index: true,
                         element: <MainPageContent/>
 
+                    },
+                    {
+                        path: "search/:recipeName",
+                        element: <SearchPage/>
                     }
                 ]
             }

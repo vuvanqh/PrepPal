@@ -24,8 +24,8 @@ export const ModalContext = createContext<ContextType>(null!);
 
 function reducer(prev: ModalState, action: Action): ModalState{
     switch(action.type){
-        case "open": return {stack: [action.modal,...prev.stack]};
-        case "close": return {stack: prev.stack.slice(0, -1)}; 
+        case "open": return {stack: [...prev.stack,action.modal]};
+        case "close": return {stack: prev.stack.slice(0,-1)}; 
         default: return prev;
     }
 }

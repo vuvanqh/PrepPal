@@ -4,6 +4,7 @@ import { queryClient } from "../api/authentication";
 import { addInteraction, type interactionType } from "../api/accountApi";
 import type { meal } from "../types/RecipeTypes";
 import { toastSuccess, toastError } from "../toastConfig";
+import useAuth from "./useAuth";
 
 type likeRespType = {
     likedRecipes: meal[],
@@ -13,11 +14,13 @@ type likeRespType = {
 }
 
 export default function useLikes(enabled=true): likeRespType{
-    const {data: likedRecipes, isPending: getPending} = useQuery({
+    const { isAuthenticated } = useAuth();
+
+    const {data: likedRecipes = [], isPending: getPending} = useQuery({
         queryFn: getLikedRecipes,
         queryKey: ["auth", "liked-recipes"],
         staleTime: 5*60*1000,
-        enabled
+        enabled: enabled&&isAuthenticated
     })
 
     const {mutate, isPending} = useMutation({
@@ -29,7 +32,7 @@ export default function useLikes(enabled=true): likeRespType{
 
             queryClient.setQueryData<meal[]>(["auth","liked-recipes"], (old = []) => {
 
-                if(interaction.type==="like")
+                if(/*interaction.type==="like"*/ !(prevLiked?.some(r => r.externalId === interaction.meal.externalId)))
                     return [...old, interaction.meal];
                 return old.filter(r => r.externalId!=interaction.meal.externalId);
             })

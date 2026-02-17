@@ -23,8 +23,8 @@ export default function Carousel({items, label="Our Favourite Recipes", itemsPer
         <div className="carousel-viewport" >
             <ul className="carousel-track" style={{ "--index": index } as React.CSSProperties}>
                 {items.map((meal)=>(
-                     <li key={meal.externalId} className="carousel-item">
-                        <RecipePreviewCard meal={meal} />
+                     <li key={meal.externalId} className="carousel-slot">
+                        <RecipePreviewCard meal={meal} className="recipe-preview-carousel" />
                     </li>
                 ))}
             </ul>

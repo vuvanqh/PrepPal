@@ -28,6 +28,10 @@
       transform 0.2s ease,
       box-shadow 0.2s ease;
 } 
+.carousel-slot {
+  width: 200px;
+  flex-shrink: 0;
+}
 
 .carousel-viewport{ 
     display:flex; 
@@ -124,7 +128,7 @@
 }
 
 .carousel-block {
-    margin: 3rem auto 4rem; /* center the whole thing */
+    margin: 3rem auto 3rem; /* center the whole thing */
     width: 100%;
 }
 
@@ -136,9 +140,7 @@
 
     font-size: 2rem;
     font-weight: 600;
-    color: #111;
-
-    margin-bottom: 1.25rem;
+    color: #111;;
 
     letter-spacing: -0.02em;
     width: 100%;
@@ -151,8 +153,6 @@
                  Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
 
     line-height: 1.25;
-
-    margin: 0 0 1.2rem;
 }
 
 .carousel button {

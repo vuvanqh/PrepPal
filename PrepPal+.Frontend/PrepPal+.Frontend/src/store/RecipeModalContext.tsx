@@ -1,6 +1,6 @@
 import { createContext, useState ,type ReactNode } from "react";
 import type { meal } from "../types/RecipeTypes";
-import RecipeModal from "../components/RecipeModal";
+import RecipeModal from "../components/Modals/RecipeModal";
 
 type recipeContext = {
     openModal: (meal:meal) => void,

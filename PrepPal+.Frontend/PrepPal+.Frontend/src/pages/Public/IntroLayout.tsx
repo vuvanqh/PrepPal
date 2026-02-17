@@ -14,8 +14,6 @@ export default function IntroLayout(){
                     <h1>PrepPal+</h1>
                     <img src={Logo}/>
                 </div>
-                <span className="ml-7 mr-2">Search</span>
-                <input className="bg-stone-200 rounded-2xl px-2 text-stone-500" placeholder={"Find Recipes..."}/>
             </div>
             <div>
                 <button onClick={()=>navigate("/register")}>Register</button>

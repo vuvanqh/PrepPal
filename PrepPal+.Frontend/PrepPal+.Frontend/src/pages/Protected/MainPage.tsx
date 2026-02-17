@@ -5,11 +5,13 @@ import Welcome from "../../assets/welcome.png"
 import useAuth from "../../customHooks/useAuth";
 import { ModalContext } from "../../store/ModalContext";
 import { useContext } from "react";
+import useLikes from "../../customHooks/useLikes";
 
 export default function MainPage(){
     const navigate = useNavigate();
     const {userData, logout, isPending} = useAuth();
     const {open} = useContext(ModalContext);
+    const {likedRecipes} = useLikes();
     
 
     function onLogout(){
@@ -32,7 +34,7 @@ export default function MainPage(){
             </div>
             
             <div>
-                <button id="navbar-likes-button" type="button" onClick={openLikes}>❤️</button>
+                <button id="navbar-likes-button" type="button" onClick={openLikes}>❤️({likedRecipes.length??0})</button>
                 <button id="navbar-likes-button" type="button" onClick={openCart}>🛒</button>
                 <button onClick={onLogout}>Logout</button>
             </div>

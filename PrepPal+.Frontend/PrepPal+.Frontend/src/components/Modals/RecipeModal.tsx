@@ -1,7 +1,8 @@
-import Modal from "./Modals/Modal";
-import type { meal } from "../types/RecipeTypes";
+import Modal from "./Modal";
+import type { meal } from "../../types/RecipeTypes";
 import {useState } from "react";
-import useLikes from "../customHooks/useLikes";
+import useLikes from "../../customHooks/useLikes";
+import useAuth from "../../customHooks/useAuth";
 
 type RecipeModalProps = {
     meal: meal,
@@ -13,6 +14,8 @@ type RecipeModalProps = {
 export default function RecipeModal({meal, open ,onClose}: RecipeModalProps){
     const [imageLoaded, setLoad] = useState(true);
     const {likedRecipes, toggleLike, isPending} = useLikes();
+    const {isAuthenticated} = useAuth();
+
     const liked = likedRecipes?.some(r => r.externalId === meal.externalId);
 
     return <Modal open={open && !imageLoaded} onClose={onClose}>
@@ -26,10 +29,11 @@ export default function RecipeModal({meal, open ,onClose}: RecipeModalProps){
                 <p className="recipe-meta">{meal.category} · {meal.area}</p>
             </div>
 
+            {isAuthenticated &&
             <div className="recipe-actions">
-                <button className="primary" type="button" onClick={()=>toggleLike({meal,type: liked?"unlike":"like"})} disabled={isPending}>❤️ {!liked?"Like":"Unlike"}</button>
+                <button className="primary" type="button" onClick={()=>toggleLike({meal,type: "like" /*liked?"unlike":"like"*/})} disabled={isPending}>❤️ {!liked?"Like":"Unlike"}</button>
                 <button className="secondary">🛒 Add to cart</button>
-            </div>
+            </div>}
 
             <div className="recipe-modal-body">
 
