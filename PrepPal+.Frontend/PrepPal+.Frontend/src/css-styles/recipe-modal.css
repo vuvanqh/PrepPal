@@ -9,8 +9,34 @@
   flex-direction: column;
   
 
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+
+  animation: modal-in 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-backdrop {
+  animation: backdrop-in 200ms ease-out;
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .recipe-modal-body {
@@ -19,9 +45,17 @@
   overscroll-behavior: contain;
 }
 
+.recipe-modal-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 .recipe-modal-image {
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
 }
 

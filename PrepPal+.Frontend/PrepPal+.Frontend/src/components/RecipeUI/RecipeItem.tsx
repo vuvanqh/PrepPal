@@ -1,7 +1,7 @@
-import type { meal } from "../types/RecipeTypes"
+import type { meal } from "../../types/RecipeTypes"
 import type React from "react"
 import { useContext } from "react";
-import { RecipeModalContext } from "../store/RecipeModalContext";
+import { RecipeModalContext } from "../../store/RecipeModalContext";
 
 type RecipeProps = {
     meal: meal,

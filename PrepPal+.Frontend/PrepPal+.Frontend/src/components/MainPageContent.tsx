@@ -7,7 +7,7 @@ export default function MainPageContent(){
      const {data, isError, isPending, error} = useQuery({
         queryFn: getRandomRecipes,
         queryKey: ["random-recipes"],
-        staleTime: 50000
+        staleTime: 50000,
     });
 
     console.log(data, isError, isPending, error);

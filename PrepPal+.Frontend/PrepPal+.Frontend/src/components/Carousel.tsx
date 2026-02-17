@@ -1,6 +1,6 @@
 import { useState } from "react";
-import RecipeItem from "./RecipeItem";
 import type {meal} from "../types/RecipeTypes";
+import RecipePreviewCard from "./RecipePreviewCard";
 
 type CarouselProps = {
   items: meal[];
@@ -22,8 +22,10 @@ export default function Carousel({items, label="Our Favourite Recipes", itemsPer
 
         <div className="carousel-viewport" >
             <ul className="carousel-track" style={{ "--index": index } as React.CSSProperties}>
-                {items.map((item)=>(
-                    <RecipeItem key={item.externalId} meal={item} className="carousel-item"/>
+                {items.map((meal)=>(
+                     <li key={meal.externalId} className="carousel-item">
+                        <RecipePreviewCard meal={meal} />
+                    </li>
                 ))}
             </ul>
         </div>

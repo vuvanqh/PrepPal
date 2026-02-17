@@ -1,8 +1,8 @@
-import Navbar from "../components/UI/Navbar";
+import Navbar from "../../components/UI/Navbar";
 import { Outlet } from "react-router-dom";
-import Logo from '../assets/logo.png';
+import Logo from '../../assets/logo.png';
 import { useNavigate  } from 'react-router-dom';
-import MainPageContent from "../components/MainPageContent";
+import MainPageContent from "../../components/MainPageContent";
 
 export default function IntroLayout(){
     const navigate = useNavigate();

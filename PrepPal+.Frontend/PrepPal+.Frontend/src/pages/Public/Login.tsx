@@ -1,13 +1,13 @@
-import Input from "../components/UI/Input"
-import Button from "../components/UI/Button"
-import Modal from "../components/Modal";
+import Input from "../../components/UI/Input"
+import Button from "../../components/UI/Button"
+import Modal from "../../components/Modals/Modal";
 import { useNavigate, useLocation } from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
-import {login} from "../api/authentication";
-import { toastError, toastSuccess } from "../toastConfig";
+import useAuth from "../../customHooks/useAuth";
+import { toastError, toastSuccess } from "../../toastConfig";
 import { useActionState } from "react";
-import ErrorContainer from "../components/ErrorContainer";
-import Error from "../components/Error";
+import ErrorContainer from "../../components/Errors/ErrorContainer";
+import Error from "../../components/Errors/Error";
 
 type loginFormState = {
   errors?: string[];
@@ -20,14 +20,15 @@ export default function Login(){
     const location = useLocation();
     const isLoginOpen = location.pathname == "/login";
 
+    const {login} = useAuth();
+
     const {mutateAsync, isPending} = useMutation({
         mutationFn: login,
-        onSuccess: (data)=> {
-            localStorage.setItem("username", data["userName"]);
-            localStorage.setItem("token", data["token"]);
+        onSuccess: ()=> {
             toastSuccess("Successful Login");
             navigate("/main");
-        }
+        },
+        onError: () =>{toastError("from login")}
     })
 
     async function submitAction(_: loginFormState, formData: FormData){

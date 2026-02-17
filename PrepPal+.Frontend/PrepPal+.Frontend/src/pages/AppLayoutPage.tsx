@@ -3,24 +3,30 @@ import { ToastContainer, Bounce } from 'react-toastify';
 import { QueryClientProvider } from "@tanstack/react-query";
 import {queryClient} from "../api/authentication";
 import RecipeModalProvider from "../store/RecipeModalContext";
+import ModalContextProvider from "../store/ModalContext";
+import { ModalRoot } from "../components/Modals/ModalRoot";
+
 
 export default function AppLayoutPage(){
     return <QueryClientProvider client={queryClient}>
         <RecipeModalProvider>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce}
-                />
-            <Outlet/>
+            <ModalContextProvider>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                    transition={Bounce}
+                    />
+                <ModalRoot/>
+                <Outlet/>
+            </ModalContextProvider>
         </RecipeModalProvider>
     </QueryClientProvider>
 }

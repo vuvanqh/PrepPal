@@ -1,14 +1,14 @@
-import Input from "../components/UI/Input"
-import Button from "../components/UI/Button"
-import Modal from "../components/Modal";
+import Input from "../../components/UI/Input"
+import Button from "../../components/UI/Button"
+import Modal from "../../components/Modals/Modal";
 import { useNavigate, useLocation } from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
-import { register } from "../api/authentication";
-import { toastError, toastSuccess } from "../toastConfig";
+import { register } from "../../api/authentication";
+import { toastError, toastSuccess } from "../../toastConfig";
 import { useActionState } from "react";
-import type {registerDTO} from "../api/authentication";
-import ErrorContainer from "../components/ErrorContainer";
-import Error from "../components/Error";
+import type {registerDTO} from "../../api/authentication";
+import ErrorContainer from "../../components/Errors/ErrorContainer";
+import Error from "../../components/Errors/Error";
 
 
 type RegisterFormState = {
