@@ -67,6 +67,7 @@ public static class ConfigureServicesExtention
         services.AddScoped<IRefreshTokenService, RefreshTokenService>();
         
         services.AddScoped<IRecipeService, RecipeService>();
+        services.AddScoped<IAccountService, AccountService>();
 
         //http services
         services.AddHttpClient<IMealDbClient, MealDbClient>(client => {

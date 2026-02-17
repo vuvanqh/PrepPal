@@ -1,0 +1,158 @@
+2026-02-16 22:15:53.836 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:53.924 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:53.980 +01:00 [INF] Received HTTP response headers after 50.3974ms - 200
+2026-02-16 22:15:53.983 +01:00 [INF] End processing HTTP request after 147.8589ms - 200
+2026-02-16 22:15:53.988 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:53.990 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.043 +01:00 [INF] Received HTTP response headers after 50.1856ms - 200
+2026-02-16 22:15:54.047 +01:00 [INF] End processing HTTP request after 59.0876ms - 200
+2026-02-16 22:15:54.052 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.055 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.106 +01:00 [INF] Received HTTP response headers after 48.5184ms - 200
+2026-02-16 22:15:54.110 +01:00 [INF] End processing HTTP request after 58.329ms - 200
+2026-02-16 22:15:54.115 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.117 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.171 +01:00 [INF] Received HTTP response headers after 50.0128ms - 200
+2026-02-16 22:15:54.175 +01:00 [INF] End processing HTTP request after 59.704ms - 200
+2026-02-16 22:15:54.178 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.182 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 22:15:54.234 +01:00 [INF] Received HTTP response headers after 49.7638ms - 200
+2026-02-16 22:15:54.237 +01:00 [INF] End processing HTTP request after 58.8296ms - 200
+2026-02-16 22:15:54.244 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PrepPal_.Core.Application.DTO.RecipeResponse, PrepPal+.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 22:15:54.258 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI) in 974.8459ms
+2026-02-16 22:15:54.262 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-16 22:15:54.267 +01:00 [INF] HTTP GET /api/recipe/random responded 200 in 1055.2742 ms
+2026-02-16 22:15:54.273 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/random - 200 null application/json; charset=utf-8 1072.5065ms
+2026-02-16 23:51:46.013 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - null null
+2026-02-16 23:51:46.061 +01:00 [INF] CORS policy execution successful.
+2026-02-16 23:51:46.071 +01:00 [INF] HTTP OPTIONS /api/recipe/random responded 204 in 18.0190 ms
+2026-02-16 23:51:46.084 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - 204 null null 72.4825ms
+2026-02-16 23:51:46.450 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/recipe/random - null null
+2026-02-16 23:51:46.495 +01:00 [INF] CORS policy execution successful.
+2026-02-16 23:51:46.565 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/16/2026 8:05:10 PM', Current time (UTC): '2/16/2026 10:51:46 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 23:51:46.600 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/16/2026 8:05:10 PM', Current time (UTC): '2/16/2026 10:51:46 PM'.
+2026-02-16 23:51:46.608 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-16 23:51:46.627 +01:00 [INF] Route matched with {action = "Get10RandomRecipes", controller = "Recipe"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get10RandomRecipes() on controller PrepPal_.Backend.Controllers.RecipeController (PrepPal+.UI).
+2026-02-16 23:51:46.688 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:46.695 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.048 +01:00 [INF] Received HTTP response headers after 347.1196ms - 200
+2026-02-16 23:51:47.060 +01:00 [INF] End processing HTTP request after 372.9943ms - 200
+2026-02-16 23:51:47.073 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.078 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.136 +01:00 [INF] Received HTTP response headers after 52.5288ms - 200
+2026-02-16 23:51:47.142 +01:00 [INF] End processing HTTP request after 68.2327ms - 200
+2026-02-16 23:51:47.148 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.157 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.216 +01:00 [INF] Received HTTP response headers after 53.9098ms - 200
+2026-02-16 23:51:47.226 +01:00 [INF] End processing HTTP request after 77.1313ms - 200
+2026-02-16 23:51:47.234 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.241 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.298 +01:00 [INF] Received HTTP response headers after 51.6646ms - 200
+2026-02-16 23:51:47.302 +01:00 [INF] End processing HTTP request after 67.8835ms - 200
+2026-02-16 23:51:47.307 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.312 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.369 +01:00 [INF] Received HTTP response headers after 52.317ms - 200
+2026-02-16 23:51:47.374 +01:00 [INF] End processing HTTP request after 66.817ms - 200
+2026-02-16 23:51:47.379 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.384 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.450 +01:00 [INF] Received HTTP response headers after 61.3426ms - 200
+2026-02-16 23:51:47.454 +01:00 [INF] End processing HTTP request after 75.1998ms - 200
+2026-02-16 23:51:47.460 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.465 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.521 +01:00 [INF] Received HTTP response headers after 50.5158ms - 200
+2026-02-16 23:51:47.525 +01:00 [INF] End processing HTTP request after 64.5903ms - 200
+2026-02-16 23:51:47.530 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.536 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.593 +01:00 [INF] Received HTTP response headers after 51.7032ms - 200
+2026-02-16 23:51:47.597 +01:00 [INF] End processing HTTP request after 66.6492ms - 200
+2026-02-16 23:51:47.602 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.607 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.661 +01:00 [INF] Received HTTP response headers after 50.529ms - 200
+2026-02-16 23:51:47.665 +01:00 [INF] End processing HTTP request after 62.6325ms - 200
+2026-02-16 23:51:47.669 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.674 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:51:47.737 +01:00 [INF] Received HTTP response headers after 59.3404ms - 200
+2026-02-16 23:51:47.741 +01:00 [INF] End processing HTTP request after 72.3919ms - 200
+2026-02-16 23:51:47.753 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PrepPal_.Core.Application.DTO.RecipeResponse, PrepPal+.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 23:51:47.795 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI) in 1159.4338ms
+2026-02-16 23:51:47.800 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-16 23:51:47.804 +01:00 [INF] HTTP GET /api/recipe/random responded 200 in 1309.9407 ms
+2026-02-16 23:51:47.810 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/random - 499 null application/json; charset=utf-8 1360.0473ms
+2026-02-16 23:53:09.756 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - null null
+2026-02-16 23:53:09.765 +01:00 [INF] CORS policy execution successful.
+2026-02-16 23:53:09.768 +01:00 [INF] HTTP OPTIONS /api/recipe/random responded 204 in 3.5470 ms
+2026-02-16 23:53:09.775 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - 204 null null 19.526ms
+2026-02-16 23:53:09.780 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/recipe/random - null null
+2026-02-16 23:53:09.803 +01:00 [INF] CORS policy execution successful.
+2026-02-16 23:53:09.812 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/16/2026 8:05:10 PM', Current time (UTC): '2/16/2026 10:53:09 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 23:53:09.818 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/16/2026 8:05:10 PM', Current time (UTC): '2/16/2026 10:53:09 PM'.
+2026-02-16 23:53:09.820 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-16 23:53:09.824 +01:00 [INF] Route matched with {action = "Get10RandomRecipes", controller = "Recipe"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get10RandomRecipes() on controller PrepPal_.Backend.Controllers.RecipeController (PrepPal+.UI).
+2026-02-16 23:53:09.833 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:09.836 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:09.956 +01:00 [INF] Received HTTP response headers after 117.0089ms - 200
+2026-02-16 23:53:09.959 +01:00 [INF] End processing HTTP request after 126.1055ms - 200
+2026-02-16 23:53:09.962 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:09.966 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.016 +01:00 [INF] Received HTTP response headers after 47.6155ms - 200
+2026-02-16 23:53:10.019 +01:00 [INF] End processing HTTP request after 57.148ms - 200
+2026-02-16 23:53:10.022 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.024 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.072 +01:00 [INF] Received HTTP response headers after 45.9813ms - 200
+2026-02-16 23:53:10.076 +01:00 [INF] End processing HTTP request after 54.2757ms - 200
+2026-02-16 23:53:10.079 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.082 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.146 +01:00 [INF] Received HTTP response headers after 61.0508ms - 200
+2026-02-16 23:53:10.151 +01:00 [INF] End processing HTTP request after 72.5216ms - 200
+2026-02-16 23:53:10.157 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.161 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.214 +01:00 [INF] Received HTTP response headers after 47.9883ms - 200
+2026-02-16 23:53:10.218 +01:00 [INF] End processing HTTP request after 60.835ms - 200
+2026-02-16 23:53:10.221 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.224 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.275 +01:00 [INF] Received HTTP response headers after 47.9168ms - 200
+2026-02-16 23:53:10.280 +01:00 [INF] End processing HTTP request after 59.4049ms - 200
+2026-02-16 23:53:10.284 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.288 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.339 +01:00 [INF] Received HTTP response headers after 46.9656ms - 200
+2026-02-16 23:53:10.344 +01:00 [INF] End processing HTTP request after 59.5114ms - 200
+2026-02-16 23:53:10.348 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.350 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.400 +01:00 [INF] Received HTTP response headers after 46.96ms - 200
+2026-02-16 23:53:10.406 +01:00 [INF] End processing HTTP request after 58.6475ms - 200
+2026-02-16 23:53:10.412 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.415 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.467 +01:00 [INF] Received HTTP response headers after 46.9151ms - 200
+2026-02-16 23:53:10.471 +01:00 [INF] End processing HTTP request after 59.003ms - 200
+2026-02-16 23:53:10.473 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.476 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-16 23:53:10.524 +01:00 [INF] Received HTTP response headers after 44.5864ms - 200
+2026-02-16 23:53:10.536 +01:00 [INF] End processing HTTP request after 62.576ms - 200
+2026-02-16 23:53:10.541 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PrepPal_.Core.Application.DTO.RecipeResponse, PrepPal+.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 23:53:10.551 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI) in 722.4993ms
+2026-02-16 23:53:10.557 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-16 23:53:10.565 +01:00 [INF] HTTP GET /api/recipe/random responded 200 in 762.6725 ms
+2026-02-16 23:53:10.572 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/random - 200 null application/json; charset=utf-8 792.2652ms
+2026-02-17 00:06:36.488 +01:00 [INF] User profile is available. Using 'C:\Users\Hoang\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-17 00:06:38.990 +01:00 [INF] Executed DbCommand (83ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecipeCategories] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-02-17 00:06:39.272 +01:00 [INF] Now listening on: https://localhost:7101
+2026-02-17 00:06:39.276 +01:00 [INF] Now listening on: http://localhost:5054
+2026-02-17 00:06:39.368 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-17 00:06:39.374 +01:00 [INF] Hosting environment: Development
+2026-02-17 00:06:39.379 +01:00 [INF] Content root path: C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI

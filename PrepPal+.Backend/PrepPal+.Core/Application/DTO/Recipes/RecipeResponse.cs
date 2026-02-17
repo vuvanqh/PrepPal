@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrepPal_.Core.Domain.Entities.RecipeEntities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -18,4 +19,20 @@ public class RecipeResponse
  
     [Required] public List<IngredientDTO> Ingredients { get; set; } = new List<IngredientDTO>();
 
+}
+
+public static class RecipeResponseExtention
+{
+    public static RecipeResponse ToRecipeResponse(this Recipe recipe)
+    {
+        return new RecipeResponse()
+        {
+            ExternalId = recipe.ExternalId,
+            Name = recipe.RecipeName,
+            Area = recipe.Area,
+            Instructions = recipe.Instructions,
+            ImageUrl = recipe.ImageUrl,
+            //ADD INGREDIENTS IMPORTANT
+        };
+    }
 }

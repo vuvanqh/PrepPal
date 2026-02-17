@@ -43,8 +43,6 @@ public class AuthenticationService : IAuthenticationService
 
         return (new LoginResponse()
         {
-            Id = user.Id,
-            UserName = user.UserName!,
             Token = _jwtService.CreateToken(user)
         }, refreshTokenResult);
     }
