@@ -20,4 +20,4 @@ obj/
 appsettings.Development.json
 appsettings.Local.json
 
-*/logs/*
+/PrepPal+.Backend/PrepPal+.UI/logs/*
