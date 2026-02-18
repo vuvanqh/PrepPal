@@ -1,8 +1,8 @@
 import type { meal } from "../types/RecipeTypes";
 import { useContext } from "react";
 import { ModalContext } from "../store/ModalContext";
-import useAuth from "../customHooks/useAuth";
-import useLikes from "../customHooks/useLikes";
+import useAuth from "../hooks/useAuth";
+import useLikes from "../hooks/useLikes";
 type Variant = "carousel" | "compact";
 
 type RecipePreviewCardProps = {
@@ -16,8 +16,8 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
 {
     const {open} = useContext(ModalContext);
     const {isAuthenticated} = useAuth();
-    const {likedRecipes, toggleLike:useToggleLike} = useLikes();
-    const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
+    const {/*likedRecipes,*/ toggleLike:useToggleLike} = useLikes();
+    //const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
     function openRecipe(){
         open({type: "recipe", meal});
     }

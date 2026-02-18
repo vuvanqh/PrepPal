@@ -5,13 +5,17 @@ import RecipePreviewCard from "./RecipePreviewCard";
 type CarouselProps = {
   items: meal[];
   itemsPerView?: number;
-  label?: string
+  label?: string;
+  isPending: boolean
 };
     
 
-export default function Carousel({items, label="Our Favourite Recipes", itemsPerView=6}:CarouselProps){
+export default function Carousel({items, label="Our Favourite Recipes", itemsPerView=6, isPending}:CarouselProps){
     const [index,setIndex] = useState(0);
     const maxIndex = items.length - itemsPerView;
+
+    if(isPending)
+        return <p className="text-stone-950 text-5xl">Loading...</p>
 
     return <div className="carousel-block" >
     <h2 className="carousel-label">{label}</h2>

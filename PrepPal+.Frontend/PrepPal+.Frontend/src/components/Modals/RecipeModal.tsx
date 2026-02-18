@@ -1,8 +1,8 @@
 import Modal from "./Modal";
 import type { meal } from "../../types/RecipeTypes";
 import {useState } from "react";
-import useLikes from "../../customHooks/useLikes";
-import useAuth from "../../customHooks/useAuth";
+import useLikes from "../../hooks/useLikes";
+import useAuth from "../../hooks/useAuth";
 
 type RecipeModalProps = {
     meal: meal,

@@ -1,15 +1,14 @@
 import Modal from "./Modal"
-import RecipePreviewCard from "../RecipePreviewCard"
-import type { meal } from "../../types/RecipeTypes"
+import type { ReactNode } from "react"
 
 type ContainerModalProps = {
     label: string,
     close?: () => void,
     open: boolean,
-    likedRecipes: meal[]
+    children: ReactNode
 }
 
-export default function ContainerModal({label, close, open, likedRecipes}: ContainerModalProps){
+export default function ContainerModal({label, close, open, children}: ContainerModalProps){
     return <Modal open={open} onClose={close}>
         <div className="container-modal">
             <div className="container-modal-header">
@@ -19,12 +18,7 @@ export default function ContainerModal({label, close, open, likedRecipes}: Conta
                 <hr/>
             </div>
             <div className="container-modal-body">
-                <div className="container-grid">
-                    {likedRecipes.map(recipe => (
-                        <RecipePreviewCard key={recipe.externalId} meal={recipe}
-                            variant="compact" className="recipe-preview-grid" showActions/>
-                    ))}
-                </div>
+                {children}
             </div>
         </div>
     </Modal>

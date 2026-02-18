@@ -1,4 +1,4 @@
-import { apiFetch, url } from "./util";
+import { apiFetch, url, HttpError } from "./util";
 
 export const headers = {
     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -18,10 +18,20 @@ export async function getRandomRecipes(){
 }
 
 export async function getSearchedRecipes(recipeName: string){
-    const searchUrl = url + `/search?name=${recipeName}`;
+    const searchUrl = recipeUrl + `/search?name=${recipeName}`;
+    console.log(searchUrl)
     const response = await apiFetch(searchUrl, {
         method: "GET"
     });
 
-    return await response.json();
+    if(!response.ok)
+    {
+        const error =new HttpError(`Cannot perform the operation - ${(await response.json()).message}. Try again later`, response.status);
+        error.code = response.status;
+        console.log(error, searchUrl)
+        throw error;
+    }   
+    var data = await response.json();
+    console.log(data, searchUrl)
+    return data;
 }

@@ -1,14 +1,9 @@
 
-import { getRandomRecipes } from "../api/recipeApi";
-import { useQuery } from "@tanstack/react-query";
+import useGetRandomRecipe from "../hooks/useGetRandomRecipes";
 import Carousel from "./Carousel";
 
 export default function MainPageContent(){
-     const {data, isPending} = useQuery({
-        queryFn: getRandomRecipes,
-        queryKey: ["random-recipes"],
-        staleTime: 50000,
-    });
+    const {recipes,isPending} = useGetRandomRecipe();
 
     //console.log(data, isError, isPending, error);
 
@@ -24,7 +19,7 @@ export default function MainPageContent(){
     // }
     // }, [isError]);
 
-    let content = isPending? <p className="text-stone-950 text-5xl">Loading...</p>:<Carousel items={data}/>;
+    let content = isPending? <p className="text-stone-950 text-5xl">Loading...</p>:<Carousel items={recipes} isPending={isPending}/>;
 
     return <>
         <header className="hero">

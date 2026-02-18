@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query"
 import { getPersonalDetails } from "../api/accountApi"
 import { queryClient } from "../api/authentication";
 import { login as loginApi, type loginDTO } from "../api/authentication";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function useAuth(){
+    const navigate = useNavigate();
     const {data: userData = [], isPending} = useQuery({
         queryFn: getPersonalDetails,
         queryKey: ["personal-details"],
@@ -21,6 +22,7 @@ export default function useAuth(){
     }
 
     const logout = () => {
+        navigate("/");
         queryClient.removeQueries(),
         localStorage.clear()
     }

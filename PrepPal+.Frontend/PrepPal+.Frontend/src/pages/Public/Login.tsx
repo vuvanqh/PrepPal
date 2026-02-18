@@ -3,7 +3,7 @@ import Button from "../../components/UI/Button"
 import Modal from "../../components/Modals/Modal";
 import { useNavigate, useLocation } from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
-import useAuth from "../../customHooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { toastError, toastSuccess } from "../../toastConfig";
 import { useActionState } from "react";
 import ErrorContainer from "../../components/Errors/ErrorContainer";
