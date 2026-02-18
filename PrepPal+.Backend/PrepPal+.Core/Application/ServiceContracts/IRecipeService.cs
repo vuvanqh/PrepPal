@@ -11,4 +11,7 @@ public interface IRecipeService
     Task<List<RecipeResponse>> Get10RandomRecipes();
 
     Task Interact(UserRecipeInteractionRequest interaction, Guid userId);
+
+
+    Task<List<RecipeResponse>?> SearchRecipesByName(string name);
 }

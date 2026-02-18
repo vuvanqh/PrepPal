@@ -23,4 +23,12 @@ public class RecipeController : ControllerBase
         var response = await _recipeService.Get10RandomRecipes();
         return Ok(response);
     }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> SearchRecipesByName(string name)
+    {
+        List<RecipeResponse> resp = await _recipeService.SearchRecipesByName(name)?? new List<RecipeResponse>();
+
+        return Ok(new {recipes =  resp});
+    }
 }

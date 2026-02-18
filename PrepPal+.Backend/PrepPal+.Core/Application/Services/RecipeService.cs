@@ -30,6 +30,13 @@ public class RecipeService : IRecipeService
         return await _mealDbClient.Get10RandomRecipes();
     }
 
+    public async Task<List<RecipeResponse>?> SearchRecipesByName(string name)
+    {
+        List<RecipeResponse> resp =  await _mealDbClient.GetRecipeByName(name.ToLower())?? new List<RecipeResponse>();
+
+        return resp;
+    }
+
     public async Task Interact(UserRecipeInteractionRequest interaction, Guid userId)
     {
         if (interaction.Type == InteractionType.Unlike)

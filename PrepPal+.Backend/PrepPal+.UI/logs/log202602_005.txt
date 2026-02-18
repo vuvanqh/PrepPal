@@ -1,0 +1,6 @@
+2026-02-18 02:31:47.230 +01:00 [INF] End processing HTTP request after 62.4504ms - 200
+2026-02-18 02:31:47.310 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.Collections.Generic.List`1[[PrepPal_.Core.Application.DTO.RecipeResponse, PrepPal+.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-18 02:31:47.321 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI) in 154.4188ms
+2026-02-18 02:31:47.332 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI)'
+2026-02-18 02:31:47.336 +01:00 [INF] HTTP GET /api/recipe/search responded 200 in 250.6197 ms
+2026-02-18 02:31:47.344 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/search?name=Egg - 200 null application/json; charset=utf-8 291.6573ms
