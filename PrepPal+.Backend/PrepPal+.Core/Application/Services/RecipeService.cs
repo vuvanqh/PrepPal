@@ -1,6 +1,5 @@
 ﻿using PrepPal_.Core.Application.DTO;
-using PrepPal_.Core.Application.DTO.Account;
-using PrepPal_.Core.Application.ServiceContracts;
+using PrepPal_.Core.ServiceContracts;
 using PrepPal_.Core.ClientContracts;
 using PrepPal_.Core.Domain.Entities.RecipeEntities;
 using PrepPal_.Core.Domain.RepositoryContracts;
@@ -8,6 +7,7 @@ using PrepPal_.Core.Application.Errors;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PrepPal_.Core.Application.Services;
 
@@ -16,12 +16,14 @@ public class RecipeService : IRecipeService
     private readonly IMealDbClient _mealDbClient;
     private readonly IRecipeRepository _recipeRepository;
     private readonly IRecipeCategoryRepository _recipeCategoryRepository;
+    private readonly IIngredientRepository _ingredientRepository;
 
-    public RecipeService(IMealDbClient mealDbClient, IRecipeRepository recipeRepository, IRecipeCategoryRepository recipeCategoryRepository)
+    public RecipeService(IMealDbClient mealDbClient, IRecipeRepository recipeRepository, IRecipeCategoryRepository recipeCategoryRepository, IIngredientRepository ingredientRepository)
     {
         _mealDbClient = mealDbClient;
         _recipeRepository = recipeRepository;
         _recipeCategoryRepository = recipeCategoryRepository;
+        _ingredientRepository = ingredientRepository;
         
     }
 
@@ -37,47 +39,56 @@ public class RecipeService : IRecipeService
         return resp;
     }
 
-    public async Task Interact(UserRecipeInteractionRequest interaction, Guid userId)
+    public async Task<Guid> EnsureRecipeExistsAsync(int externalId)
     {
-        if (interaction.Type == InteractionType.Unlike)
-        {
+        Recipe r;
+        List<IngredientDTO>? ingredients = null;
 
-        }
-        if(!(await _recipeRepository.RecipeExists(interaction.ExternalRecipeId)))
-        {
-            RecipeResponse? resp = await _mealDbClient.GetRecipeById(interaction.ExternalRecipeId);
-            if (resp == null) 
-                throw new ExternalServiceException($"Recipe {interaction.ExternalRecipeId} does not exist");
-            else
+        if(await _recipeRepository.RecipeExists(externalId))
+            r = (await _recipeRepository.GetRecipeAsync(externalId))!;
+        else {
+            RecipeResponse resp = await _mealDbClient.GetRecipeById(externalId)??throw new InvalidOperationException("Recipe does not exist");
+            ingredients = resp.Ingredients;
+            r = new Recipe()
             {
-                var categoryId = await _recipeCategoryRepository.GetCategoryIdByName(resp.Category);
-                if (categoryId == Guid.Empty)
-                    throw new Exception("category id null");
-                await _recipeRepository.AddRecipeAsync(new Recipe()
-                {
-                    Id = Guid.NewGuid(),
-                    ExternalId = resp.ExternalId,
-                    RecipeName = resp.Name,
-                    Area = resp.Area,
-                    CategoryId = categoryId,
-                    Instructions = resp.Instructions,
-                    ImageUrl = resp.ImageUrl
-                });
+                Id = Guid.NewGuid(),
+                ExternalId = externalId,
+                RecipeName = resp.Name,
+                Area = resp.Area,
+                CategoryId = (await _recipeCategoryRepository.GetCategoryIdByName(resp.Category)),
+                ImageUrl = resp.ImageUrl,
+                Instructions = resp.Instructions
+            };
+            await _recipeRepository.AddRecipeAsync(r);
+        }
+        if(ingredients!=null)
+        {
+            foreach(var i in ingredients)
+            {
+                string normalizedName = NormalizeBasic(i.IngredientName); 
+                await _ingredientRepository.AddIngredientAsync(normalizedName, i.IngredientName);
+                Guid ingredientId = (await _ingredientRepository.GetIngredientByName(normalizedName))!.Id;
+                await _ingredientRepository.AddIngredientRepoMapping(r.Id, ingredientId , i.IngredientMeasure);
             }
         }
 
-        Recipe? r = (await _recipeRepository.GetRecipeAsync(interaction.ExternalRecipeId));
+        return r.Id;
+    }
 
-        if (r == null)
-            throw new InvalidOperationException("recipe does not exist");
 
-        await _recipeRepository.AddInteractionAsync(new UserRecipeInteraction()
-        {
-            Type = interaction.Type,
-            UserId = userId,
-            RecipeId = r.Id,
-            ExternalRecipeId = interaction.ExternalRecipeId,
-            TimeStamp = DateTime.UtcNow
-        });
+    private string NormalizeBasic(string input)
+    {
+        input = input.ToLowerInvariant();
+
+        input = Regex.Replace(input, @"\b\d+\b", ""); 
+        input = Regex.Replace(input, @"\b(large|small|fresh|chopped|minced|dried)\b", "");
+        input = Regex.Replace(input, @"[^a-z\s]", "");
+        input = Regex.Replace(input, @"\s+", " ").Trim();
+
+
+        if (input.EndsWith("s") && input.Length > 3)
+            input = input[..^1];
+
+        return input;
     }
 }

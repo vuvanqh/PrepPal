@@ -9,5 +9,4 @@ namespace PrepPal_.Core.ServiceContracts;
 public interface IAccountService
 {
     Task<PersonalDetailsResponse> GetPersonalDetails(Guid userId);
-    Task<List<RecipeResponse>?> GetLikedRecipes(Guid userId);
 }

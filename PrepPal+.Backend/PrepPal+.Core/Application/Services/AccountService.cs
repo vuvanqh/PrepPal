@@ -33,10 +33,4 @@ public class AccountService : IAccountService
             LastName = user.LastName,
         };
     }
-
-    public async Task<List<RecipeResponse>?> GetLikedRecipes(Guid userId)
-    {
-        List<Recipe>? recipes =  await _userRepository.GetLikedRecipes(userId);
-        return recipes?.Select(r=>r.ToRecipeResponse()).ToList();
-    }
 }

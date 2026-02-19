@@ -4,6 +4,7 @@ using PrepPal_.Core.Domain.Entities;
 using PrepPal_.Core.Domain.Entities.RecipeEntities;
 using PrepPal_.Core.Domain.RepositoryContracts;
 using PrepPal_.Infrastructure.DbContexts;
+using PrepPal_.Core;
 
 namespace PrepPal_.Infrastructure;
 

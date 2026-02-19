@@ -4,14 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PrepPal_.Core.Application.ServiceContracts;
+namespace PrepPal_.Core.ServiceContracts;
 
 public interface IRecipeService
 {
     Task<List<RecipeResponse>> Get10RandomRecipes();
-
-    Task Interact(UserRecipeInteractionRequest interaction, Guid userId);
-
-
     Task<List<RecipeResponse>?> SearchRecipesByName(string name);
+    Task<Guid> EnsureRecipeExistsAsync(int externalId);
 }

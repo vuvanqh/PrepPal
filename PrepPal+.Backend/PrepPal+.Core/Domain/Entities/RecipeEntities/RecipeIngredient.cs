@@ -10,6 +10,6 @@ public class RecipeIngredient
     public required Guid IngredientId { get; set; }
     public required string Measurement { get; set; }
 
-    public Recipe? Recipe { get; set; }
-    public Ingredient? Ingredient { get; set; }
+    public Recipe Recipe { get; set; } = null!;
+    public Ingredient Ingredient { get; set; } = null!;
 }

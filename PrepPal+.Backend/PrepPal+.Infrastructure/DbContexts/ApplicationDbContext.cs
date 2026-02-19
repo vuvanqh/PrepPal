@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using PrepPal_.Core;
 using PrepPal_.Core.Domain.Entities;
 using PrepPal_.Core.Domain.Entities.RecipeEntities;
 using System;
@@ -21,7 +22,9 @@ public class ApplicationDbContext: IdentityDbContext<ApplicationUser, Applicatio
     public virtual DbSet<RecipeCategory> RecipeCategories => Set<RecipeCategory>();
     public virtual DbSet<RecipeIngredient> RecipeIngredients => Set<RecipeIngredient>();
     public virtual DbSet<UserRecipeInteraction> UserRecipeInteractions => Set<UserRecipeInteraction>();
-
+    public virtual DbSet<Cart> Carts => Set<Cart>();
+    public virtual DbSet<CartAccess> CartAccesses => Set<CartAccess>();
+    public virtual DbSet<CartRecipe> CartRecipeMappings => Set<CartRecipe>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,7 +46,6 @@ public class ApplicationDbContext: IdentityDbContext<ApplicationUser, Applicatio
             .HasOne<ApplicationGroup>(x => x.ApplicationGroup)
             .WithMany()
             .HasForeignKey(x => x.GroupId);
-
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }

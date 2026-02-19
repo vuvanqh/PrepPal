@@ -14,12 +14,12 @@ public class RecipeIngredientConfiguration : IEntityTypeConfiguration<RecipeIngr
         builder.HasKey(x => new { x.RecipeId, x.IngredientId });
 
         builder.HasOne(x => x.Ingredient)
-            .WithMany()
+            .WithMany(i=>i.Recipes)
             .HasForeignKey(x => x.IngredientId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(x => x.Recipe)
-            .WithMany()
+            .WithMany(r=>r.RecipeIngredients)
             .HasForeignKey(x => x.RecipeId)
             .OnDelete(DeleteBehavior.Cascade);
 

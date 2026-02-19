@@ -19,15 +19,17 @@ public class AuthenticationService : IAuthenticationService
     private readonly IJwtService _jwtService;
     private readonly IUserRepository _userRepository;
     private readonly IRefreshTokenService _refreshTokenService;
+    private readonly ICartService _cartService;
 
     public AuthenticationService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IJwtService jwtService,
-        IUserRepository userRepository, IRefreshTokenService refreshTokenService)
+        IUserRepository userRepository, IRefreshTokenService refreshTokenService, ICartService cartService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _jwtService = jwtService;
         _userRepository = userRepository;
         _refreshTokenService = refreshTokenService;
+        _cartService = cartService;
     }
 
     public async Task<(LoginResponse, RefreshTokenResult)> Login(LoginRequest? loginRequest) //NOT HERE
@@ -56,6 +58,8 @@ public class AuthenticationService : IAuthenticationService
         {
             throw new IdentityOperationException(result.Errors.Select(e => e.Description));
         }
+
+        await _cartService.CreateCart(user.Id);
         //await _userManager.AddToRoleAsync(user, UserRoles.User);
         return user;
     }

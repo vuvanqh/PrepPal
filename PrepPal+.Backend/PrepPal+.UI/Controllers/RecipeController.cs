@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrepPal_.Core.Application.DTO;
-using PrepPal_.Core.Application.ServiceContracts;
+using PrepPal_.Core.ServiceContracts;
 
 namespace PrepPal_.Backend.Controllers;
 

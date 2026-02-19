@@ -1008,3 +1008,786 @@ WHERE [r].[ExternalId] = @externalId
 2026-02-18 02:37:28.548 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.AccountController.GetLikedRecipes (PrepPal+.UI)'
 2026-02-18 02:37:28.550 +01:00 [INF] HTTP GET /api/account/liked-recipes responded 200 in 96.6461 ms
 2026-02-18 02:37:28.553 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/account/liked-recipes - 200 null application/json; charset=utf-8 111.384ms
+2026-02-18 04:26:09.760 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/account/my-info - null null
+2026-02-18 04:26:09.760 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/recipe/search?name=Egg - null null
+2026-02-18 04:26:09.760 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/account/liked-recipes - null null
+2026-02-18 04:26:09.760 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - null null
+2026-02-18 04:26:09.798 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.798 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.805 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.813 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.821 +01:00 [INF] HTTP OPTIONS /api/recipe/search responded 204 in 24.7450 ms
+2026-02-18 04:26:09.821 +01:00 [INF] HTTP OPTIONS /api/account/my-info responded 204 in 27.8437 ms
+2026-02-18 04:26:09.825 +01:00 [INF] HTTP OPTIONS /api/account/liked-recipes responded 204 in 20.7897 ms
+2026-02-18 04:26:09.836 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/recipe/search?name=Egg - 204 null null 77.8429ms
+2026-02-18 04:26:09.829 +01:00 [INF] HTTP OPTIONS /api/recipe/random responded 204 in 15.5418 ms
+2026-02-18 04:26:09.846 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/account/my-info - 204 null null 87.8311ms
+2026-02-18 04:26:09.855 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/recipe/search?name=Egg - null null
+2026-02-18 04:26:09.856 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/account/my-info - null null
+2026-02-18 04:26:09.858 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/account/liked-recipes - 204 null null 99.8269ms
+2026-02-18 04:26:09.862 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/account/liked-recipes - null null
+2026-02-18 04:26:09.877 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - 204 null null 118.9399ms
+2026-02-18 04:26:09.882 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/recipe/random - null null
+2026-02-18 04:26:09.898 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.906 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.934 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.958 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:09.993 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-18 04:26:09.993 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-18 04:26:09.993 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-18 04:26:09.993 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-18 04:26:10.022 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+2026-02-18 04:26:10.027 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+2026-02-18 04:26:10.032 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+2026-02-18 04:26:10.043 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/18/2026 3:26:09 AM'.
+2026-02-18 04:26:10.047 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.AccountController.GetPersonalInfo (PrepPal+.UI)'
+2026-02-18 04:26:10.050 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI)'
+2026-02-18 04:26:10.054 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-18 04:26:10.058 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.AccountController.GetLikedRecipes (PrepPal+.UI)'
+2026-02-18 04:26:10.066 +01:00 [INF] Route matched with {action = "GetPersonalInfo", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPersonalInfo() on controller PrepPal_.Backend.Controllers.AccountController (PrepPal+.UI).
+2026-02-18 04:26:10.066 +01:00 [INF] Route matched with {action = "SearchRecipesByName", controller = "Recipe"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchRecipesByName(System.String) on controller PrepPal_.Backend.Controllers.RecipeController (PrepPal+.UI).
+2026-02-18 04:26:10.070 +01:00 [INF] Route matched with {action = "Get10RandomRecipes", controller = "Recipe"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get10RandomRecipes() on controller PrepPal_.Backend.Controllers.RecipeController (PrepPal+.UI).
+2026-02-18 04:26:10.073 +01:00 [INF] Route matched with {action = "GetLikedRecipes", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLikedRecipes() on controller PrepPal_.Backend.Controllers.AccountController (PrepPal+.UI).
+2026-02-18 04:26:10.087 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-02-18 04:26:10.087 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-02-18 04:26:10.099 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-02-18 04:26:10.117 +01:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2026-02-18 04:26:10.119 +01:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2026-02-18 04:26:10.122 +01:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2026-02-18 04:26:10.122 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.128 +01:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2026-02-18 04:26:10.129 +01:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2026-02-18 04:26:10.135 +01:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2026-02-18 04:26:10.138 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.150 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-02-18 04:26:10.150 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-02-18 04:26:10.152 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-02-18 04:26:10.162 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.AccountController.GetPersonalInfo (PrepPal+.UI) in 83.3497ms
+2026-02-18 04:26:10.167 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI) in 79.4911ms
+2026-02-18 04:26:10.170 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.AccountController.GetLikedRecipes (PrepPal+.UI) in 71.2996ms
+2026-02-18 04:26:10.175 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.AccountController.GetPersonalInfo (PrepPal+.UI)'
+2026-02-18 04:26:10.178 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI)'
+2026-02-18 04:26:10.192 +01:00 [INF] HTTP GET /api/recipe/search responded 401 in 294.0218 ms
+2026-02-18 04:26:10.188 +01:00 [INF] HTTP GET /api/account/my-info responded 401 in 282.5229 ms
+2026-02-18 04:26:10.185 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.AccountController.GetLikedRecipes (PrepPal+.UI)'
+2026-02-18 04:26:10.203 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/search?name=Egg - 401 0 null 347.3226ms
+2026-02-18 04:26:10.208 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/account/my-info - 401 0 null 352.1873ms
+2026-02-18 04:26:10.212 +01:00 [INF] HTTP GET /api/account/liked-recipes responded 401 in 277.9961 ms
+2026-02-18 04:26:10.219 +01:00 [INF] Request starting HTTP/2 POST https://localhost:7101/api/auth/refreshToken - null 0
+2026-02-18 04:26:10.236 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/account/liked-recipes - 401 0 null 374.2579ms
+2026-02-18 04:26:10.246 +01:00 [INF] CORS policy execution successful.
+2026-02-18 04:26:10.264 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken (PrepPal+.UI)'
+2026-02-18 04:26:10.269 +01:00 [INF] Route matched with {action = "RefreshToken", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken() on controller PrepPal_.Backend.Controllers.AuthenticationController (PrepPal+.UI).
+2026-02-18 04:26:10.297 +01:00 [INF] [null]
+2026-02-18 04:26:10.316 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken (PrepPal+.UI) in 41.0597ms
+2026-02-18 04:26:10.320 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken (PrepPal+.UI)'
+2026-02-18 04:26:10.325 +01:00 [ERR] HTTP POST /api/auth/refreshToken responded 500 in 78.0280 ms
+System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Text.UTF8Encoding.UTF8EncodingSealed.GetBytes(String s)
+   at PrepPal_.Core.Services.RefreshTokenService.HashToken(String token) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 78
+   at PrepPal_.Core.Services.RefreshTokenService.RotateTokenAsync(String currentToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 29
+   at PrepPal_.Core.Services.AuthenticationService.RotateRefreshToken(String refreshToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\AuthenticationService.cs:line 66
+   at PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken() in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI\Controllers\AuthenticationController.cs:line 88
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-02-18 04:26:10.383 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Text.UTF8Encoding.UTF8EncodingSealed.GetBytes(String s)
+   at PrepPal_.Core.Services.RefreshTokenService.HashToken(String token) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 78
+   at PrepPal_.Core.Services.RefreshTokenService.RotateTokenAsync(String currentToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 29
+   at PrepPal_.Core.Services.AuthenticationService.RotateRefreshToken(String refreshToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\AuthenticationService.cs:line 66
+   at PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken() in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI\Controllers\AuthenticationController.cs:line 88
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-02-18 04:26:10.404 +01:00 [INF] Received HTTP response headers after 247.1997ms - 200
+2026-02-18 04:26:10.414 +01:00 [INF] End processing HTTP request after 292.7123ms - 200
+2026-02-18 04:26:10.422 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.428 +01:00 [INF] Request finished HTTP/2 POST https://localhost:7101/api/auth/refreshToken - 500 null text/plain; charset=utf-8 208.236ms
+2026-02-18 04:26:10.435 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.498 +01:00 [INF] Received HTTP response headers after 47.9249ms - 200
+2026-02-18 04:26:10.505 +01:00 [INF] End processing HTTP request after 82.2329ms - 200
+2026-02-18 04:26:10.509 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.513 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.577 +01:00 [INF] Received HTTP response headers after 54.0043ms - 200
+2026-02-18 04:26:10.584 +01:00 [INF] End processing HTTP request after 74.385ms - 200
+2026-02-18 04:26:10.588 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.593 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.648 +01:00 [INF] Received HTTP response headers after 50.5403ms - 200
+2026-02-18 04:26:10.652 +01:00 [INF] End processing HTTP request after 63.6171ms - 200
+2026-02-18 04:26:10.657 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.661 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.714 +01:00 [INF] Received HTTP response headers after 50.0766ms - 200
+2026-02-18 04:26:10.718 +01:00 [INF] End processing HTTP request after 62.3786ms - 200
+2026-02-18 04:26:10.723 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.727 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.780 +01:00 [INF] Received HTTP response headers after 49.6609ms - 200
+2026-02-18 04:26:10.784 +01:00 [INF] End processing HTTP request after 61.1344ms - 200
+2026-02-18 04:26:10.789 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.793 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.848 +01:00 [INF] Received HTTP response headers after 51.3122ms - 200
+2026-02-18 04:26:10.852 +01:00 [INF] End processing HTTP request after 63.0349ms - 200
+2026-02-18 04:26:10.856 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.859 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.916 +01:00 [INF] Received HTTP response headers after 53.2703ms - 200
+2026-02-18 04:26:10.920 +01:00 [INF] End processing HTTP request after 64.7941ms - 200
+2026-02-18 04:26:10.935 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.940 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:10.994 +01:00 [INF] Received HTTP response headers after 49.8261ms - 200
+2026-02-18 04:26:10.998 +01:00 [INF] End processing HTTP request after 62.7519ms - 200
+2026-02-18 04:26:11.002 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:11.007 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-18 04:26:11.062 +01:00 [INF] Received HTTP response headers after 51.1557ms - 200
+2026-02-18 04:26:11.067 +01:00 [INF] End processing HTTP request after 64.5246ms - 200
+2026-02-18 04:26:11.075 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PrepPal_.Core.Application.DTO.RecipeResponse, PrepPal+.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-18 04:26:11.084 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI) in 991.3511ms
+2026-02-18 04:26:11.088 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-18 04:26:11.090 +01:00 [INF] HTTP GET /api/recipe/random responded 200 in 1132.4964 ms
+2026-02-18 04:26:11.096 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/random - 200 null application/json; charset=utf-8 1213.7819ms
+2026-02-18 18:58:34.092 +01:00 [INF] User profile is available. Using 'C:\Users\Hoang\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-18 18:58:35.885 +01:00 [INF] Executed DbCommand (208ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecipeCategories] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-02-18 18:58:36.126 +01:00 [INF] Now listening on: https://localhost:7101
+2026-02-18 18:58:36.129 +01:00 [INF] Now listening on: http://localhost:5054
+2026-02-18 18:58:36.209 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-18 18:58:36.220 +01:00 [INF] Hosting environment: Development
+2026-02-18 18:58:36.222 +01:00 [INF] Content root path: C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI
+2026-02-18 19:00:01.393 +01:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:00:01.428 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-18 19:00:01.490 +01:00 [INF] Executed DbCommand (60ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-02-18 19:00:01.551 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-02-18 19:00:01.558 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:00:01.560 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:00:01.570 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:00:01.577 +01:00 [INF] Applying migration '20260218175914_Cart'.
+2026-02-18 19:00:01.732 +01:00 [INF] Executed DbCommand (135ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var nvarchar(max);
+SELECT @var = QUOTENAME([d].[name])
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Ingredients]') AND [c].[name] = N'ExternalId');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [Ingredients] DROP CONSTRAINT ' + @var + ';');
+ALTER TABLE [Ingredients] DROP COLUMN [ExternalId];
+2026-02-18 19:00:01.742 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Ingredients] ADD [AliasName] nvarchar(max) NOT NULL DEFAULT N'';
+2026-02-18 19:00:01.752 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Cart] (
+    [Id] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Cart] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Cart_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE NO ACTION
+);
+2026-02-18 19:00:01.786 +01:00 [ERR] Failed executing DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartAccess] (
+    [CartId] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_CartAccess] PRIMARY KEY ([CartId], [OwnerId], [UserId]),
+    CONSTRAINT [FK_CartAccess_Cart_CartId] FOREIGN KEY ([CartId]) REFERENCES [Cart] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-02-18 19:13:45.809 +01:00 [INF] Executed DbCommand (58ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:13:45.877 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-18 19:13:45.967 +01:00 [INF] Executed DbCommand (85ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-02-18 19:13:46.140 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-02-18 19:13:46.155 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:13:46.156 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:13:46.211 +01:00 [INF] Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:13:46.222 +01:00 [INF] Applying migration '20260218175914_Cart'.
+2026-02-18 19:13:46.406 +01:00 [INF] Executed DbCommand (157ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var nvarchar(max);
+SELECT @var = QUOTENAME([d].[name])
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Ingredients]') AND [c].[name] = N'ExternalId');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [Ingredients] DROP CONSTRAINT ' + @var + ';');
+ALTER TABLE [Ingredients] DROP COLUMN [ExternalId];
+2026-02-18 19:13:46.426 +01:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Ingredients] ADD [AliasName] nvarchar(max) NOT NULL DEFAULT N'';
+2026-02-18 19:13:46.440 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Cart] (
+    [Id] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Cart] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Cart_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE NO ACTION
+);
+2026-02-18 19:13:46.508 +01:00 [ERR] Failed executing DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartAccess] (
+    [CartId] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_CartAccess] PRIMARY KEY ([CartId], [OwnerId], [UserId]),
+    CONSTRAINT [FK_CartAccess_Cart_CartId] FOREIGN KEY ([CartId]) REFERENCES [Cart] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-02-18 19:27:32.392 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:27:32.440 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-18 19:27:32.461 +01:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-02-18 19:27:32.529 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-02-18 19:27:32.537 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:27:32.539 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:27:32.547 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:27:32.556 +01:00 [INF] Applying migration '20260218175914_Cart'.
+2026-02-18 19:27:32.656 +01:00 [INF] Executed DbCommand (71ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var nvarchar(max);
+SELECT @var = QUOTENAME([d].[name])
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Ingredients]') AND [c].[name] = N'ExternalId');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [Ingredients] DROP CONSTRAINT ' + @var + ';');
+ALTER TABLE [Ingredients] DROP COLUMN [ExternalId];
+2026-02-18 19:27:32.658 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Ingredients] ADD [AliasName] nvarchar(max) NOT NULL DEFAULT N'';
+2026-02-18 19:27:32.667 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Cart] (
+    [Id] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Cart] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Cart_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE NO ACTION
+);
+2026-02-18 19:27:32.685 +01:00 [ERR] Failed executing DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartAccess] (
+    [CartId] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_CartAccess] PRIMARY KEY ([CartId], [OwnerId], [UserId]),
+    CONSTRAINT [FK_CartAccess_Cart_CartId] FOREIGN KEY ([CartId]) REFERENCES [Cart] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-02-18 19:33:40.359 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 19:33:41.236 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:33:41.257 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:33:41.282 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:33:56.586 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 19:33:57.417 +01:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:33:57.438 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:33:57.450 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:34:05.516 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 19:34:06.058 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:34:06.075 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:34:06.083 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:34:34.255 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 19:34:43.446 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 19:34:44.018 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:34:44.029 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-18 19:34:44.093 +01:00 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-02-18 19:34:44.165 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-02-18 19:34:44.172 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 19:34:44.173 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 19:34:44.176 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 19:34:44.184 +01:00 [INF] Applying migration '20260218183434_Cart'.
+2026-02-18 19:34:44.384 +01:00 [INF] Executed DbCommand (173ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var nvarchar(max);
+SELECT @var = QUOTENAME([d].[name])
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Ingredients]') AND [c].[name] = N'ExternalId');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [Ingredients] DROP CONSTRAINT ' + @var + ';');
+ALTER TABLE [Ingredients] DROP COLUMN [ExternalId];
+2026-02-18 19:34:44.401 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Ingredients] ADD [AliasName] nvarchar(max) NOT NULL DEFAULT N'';
+2026-02-18 19:34:44.420 +01:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] uniqueidentifier NOT NULL,
+    [OwnerId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Carts_Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-02-18 19:34:44.425 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Cart Recipe Mappings] (
+    [CartId] uniqueidentifier NOT NULL,
+    [RecipeId] uniqueidentifier NOT NULL,
+    [Quantity] int NOT NULL,
+    CONSTRAINT [PK_Cart Recipe Mappings] PRIMARY KEY ([CartId], [RecipeId]),
+    CONSTRAINT [FK_Cart Recipe Mappings_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Cart Recipe Mappings_Recipes_RecipeId] FOREIGN KEY ([RecipeId]) REFERENCES [Recipes] ([Id]) ON DELETE CASCADE
+);
+2026-02-18 19:34:44.438 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartAccess] (
+    [CartId] uniqueidentifier NOT NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    [AccessType] int NOT NULL,
+    [ApplicationUserId] uniqueidentifier NULL,
+    [CartId1] uniqueidentifier NULL,
+    CONSTRAINT [PK_CartAccess] PRIMARY KEY ([CartId], [UserId]),
+    CONSTRAINT [FK_CartAccess_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_CartAccess_Carts_CartId1] FOREIGN KEY ([CartId1]) REFERENCES [Carts] ([Id]),
+    CONSTRAINT [FK_CartAccess_Users_ApplicationUserId] FOREIGN KEY ([ApplicationUserId]) REFERENCES [Users] ([Id]),
+    CONSTRAINT [FK_CartAccess_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id])
+);
+2026-02-18 19:34:44.449 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Cart Recipe Mappings_CartId] ON [Cart Recipe Mappings] ([CartId]);
+2026-02-18 19:34:44.451 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Cart Recipe Mappings_RecipeId] ON [Cart Recipe Mappings] ([RecipeId]);
+2026-02-18 19:34:44.453 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartAccess_ApplicationUserId] ON [CartAccess] ([ApplicationUserId]);
+2026-02-18 19:34:44.454 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartAccess_CartId] ON [CartAccess] ([CartId]);
+2026-02-18 19:34:44.455 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartAccess_CartId1] ON [CartAccess] ([CartId1]);
+2026-02-18 19:34:44.456 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartAccess_UserId] ON [CartAccess] ([UserId]);
+2026-02-18 19:34:44.458 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Carts_OwnerId] ON [Carts] ([OwnerId]);
+2026-02-18 19:34:44.468 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260218183434_Cart', N'10.0.3');
+2026-02-18 19:34:44.473 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2026-02-18 22:21:58.543 +01:00 [INF] User profile is available. Using 'C:\Users\Hoang\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-18 22:22:00.027 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:00.325 +01:00 [WRN] The foreign key property 'CartRecipe.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:00.334 +01:00 [WRN] The foreign key property 'CartRecipe.RecipeId1' was created in shadow state because a conflicting property with the simple name 'RecipeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:00.343 +01:00 [WRN] The foreign key property 'RecipeIngredient.IngredientId1' was created in shadow state because a conflicting property with the simple name 'IngredientId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:00.349 +01:00 [WRN] The foreign key property 'RecipeIngredient.RecipeId1' was created in shadow state because a conflicting property with the simple name 'RecipeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:01.165 +01:00 [INF] Executed DbCommand (132ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecipeCategories] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-02-18 22:22:01.664 +01:00 [INF] Now listening on: https://localhost:7101
+2026-02-18 22:22:01.669 +01:00 [INF] Now listening on: http://localhost:5054
+2026-02-18 22:22:01.730 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-18 22:22:01.734 +01:00 [INF] Hosting environment: Development
+2026-02-18 22:22:01.737 +01:00 [INF] Content root path: C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI
+2026-02-18 22:22:30.257 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:30.286 +01:00 [WRN] The foreign key property 'CartRecipe.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:30.287 +01:00 [WRN] The foreign key property 'CartRecipe.RecipeId1' was created in shadow state because a conflicting property with the simple name 'RecipeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:30.287 +01:00 [WRN] The foreign key property 'RecipeIngredient.IngredientId1' was created in shadow state because a conflicting property with the simple name 'IngredientId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 22:22:30.287 +01:00 [WRN] The foreign key property 'RecipeIngredient.RecipeId1' was created in shadow state because a conflicting property with the simple name 'RecipeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 23:01:54.985 +01:00 [WRN] The foreign key property 'CartAccess.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-18 23:01:56.504 +01:00 [INF] Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 23:01:56.617 +01:00 [INF] Executed DbCommand (95ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 23:01:56.695 +01:00 [INF] Executed DbCommand (66ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 23:04:39.760 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 23:04:39.801 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 23:04:39.809 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 23:05:03.440 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 23:05:03.483 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-18 23:05:03.552 +01:00 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-02-18 23:05:03.616 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-02-18 23:05:03.623 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-02-18 23:05:03.624 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-02-18 23:05:03.626 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-02-18 23:05:03.635 +01:00 [INF] Applying migration '20260218220449_Overall-Changes'.
+2026-02-18 23:05:03.742 +01:00 [INF] Executed DbCommand (85ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Cart Recipe Mappings] DROP CONSTRAINT [FK_Cart Recipe Mappings_Carts_CartId];
+2026-02-18 23:05:03.749 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Cart Recipe Mappings] DROP CONSTRAINT [FK_Cart Recipe Mappings_Recipes_RecipeId];
+2026-02-18 23:05:03.752 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [CartAccess] DROP CONSTRAINT [FK_CartAccess_Carts_CartId1];
+2026-02-18 23:05:03.761 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_CartAccess_CartId1] ON [CartAccess];
+2026-02-18 23:05:03.783 +01:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Cart Recipe Mappings] DROP CONSTRAINT [PK_Cart Recipe Mappings];
+2026-02-18 23:05:03.982 +01:00 [INF] Executed DbCommand (198ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var nvarchar(max);
+SELECT @var = QUOTENAME([d].[name])
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CartAccess]') AND [c].[name] = N'CartId1');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [CartAccess] DROP CONSTRAINT ' + @var + ';');
+ALTER TABLE [CartAccess] DROP COLUMN [CartId1];
+2026-02-18 23:05:04.750 +01:00 [INF] Executed DbCommand (768ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Cart Recipe Mappings]', N'CartRecipeMappings', 'OBJECT';
+2026-02-18 23:05:04.753 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CartRecipeMappings].[IX_Cart Recipe Mappings_RecipeId]', N'IX_CartRecipeMappings_RecipeId', 'INDEX';
+2026-02-18 23:05:04.754 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CartRecipeMappings].[IX_Cart Recipe Mappings_CartId]', N'IX_CartRecipeMappings_CartId', 'INDEX';
+2026-02-18 23:05:04.758 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [CartRecipeMappings] ADD CONSTRAINT [PK_CartRecipeMappings] PRIMARY KEY ([CartId], [RecipeId]);
+2026-02-18 23:05:04.763 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [CartRecipeMappings] ADD CONSTRAINT [FK_CartRecipeMappings_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id]) ON DELETE CASCADE;
+2026-02-18 23:05:04.766 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [CartRecipeMappings] ADD CONSTRAINT [FK_CartRecipeMappings_Recipes_RecipeId] FOREIGN KEY ([RecipeId]) REFERENCES [Recipes] ([Id]) ON DELETE CASCADE;
+2026-02-18 23:05:04.769 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260218220449_Overall-Changes', N'10.0.3');
+2026-02-18 23:05:04.772 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2026-02-18 23:05:07.577 +01:00 [INF] User profile is available. Using 'C:\Users\Hoang\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-18 23:05:08.580 +01:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecipeCategories] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-02-18 23:05:08.731 +01:00 [INF] Now listening on: https://localhost:7101
+2026-02-18 23:05:08.733 +01:00 [INF] Now listening on: http://localhost:5054
+2026-02-18 23:05:08.778 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-18 23:05:08.781 +01:00 [INF] Hosting environment: Development
+2026-02-18 23:05:08.784 +01:00 [INF] Content root path: C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI
+2026-02-19 01:12:21.758 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/account/liked-recipes - null null
+2026-02-19 01:12:21.758 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/account/my-info - null null
+2026-02-19 01:12:21.758 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/recipe/search?name=Egg - null null
+2026-02-19 01:12:21.758 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - null null
+2026-02-19 01:12:22.662 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:22.662 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:22.662 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:22.662 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:22.693 +01:00 [INF] HTTP OPTIONS /api/recipe/random responded 204 in 76.3378 ms
+2026-02-19 01:12:22.693 +01:00 [INF] HTTP OPTIONS /api/account/liked-recipes responded 204 in 55.7767 ms
+2026-02-19 01:12:22.693 +01:00 [INF] HTTP OPTIONS /api/recipe/search responded 204 in 67.4241 ms
+2026-02-19 01:12:22.809 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/recipe/random - 204 null null 1090.9101ms
+2026-02-19 01:12:22.830 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/account/liked-recipes - 204 null null 1113.9151ms
+2026-02-19 01:12:22.697 +01:00 [INF] HTTP OPTIONS /api/account/my-info responded 204 in 82.1696 ms
+2026-02-19 01:12:22.926 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/recipe/random - null null
+2026-02-19 01:12:22.926 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/account/liked-recipes - null null
+2026-02-19 01:12:22.943 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/recipe/search?name=Egg - 204 null null 1227.4398ms
+2026-02-19 01:12:22.956 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/recipe/search?name=Egg - null null
+2026-02-19 01:12:23.030 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7101/api/account/my-info - 204 null null 1315.68ms
+2026-02-19 01:12:23.050 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7101/api/account/my-info - null null
+2026-02-19 01:12:23.075 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:23.077 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:23.108 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:23.162 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:23.703 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-19 01:12:23.704 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-19 01:12:23.704 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-19 01:12:23.705 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-19 01:12:23.994 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+2026-02-19 01:12:24.019 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+2026-02-19 01:12:24.030 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+2026-02-19 01:12:24.043 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '2/18/2026 1:38:43 AM', Current time (UTC): '2/19/2026 12:12:23 AM'.
+2026-02-19 01:12:24.109 +01:00 [INF] HTTP GET /api/account/liked-recipes responded 404 in 1037.4801 ms
+2026-02-19 01:12:24.096 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.AccountController.GetPersonalInfo (PrepPal+.UI)'
+2026-02-19 01:12:24.097 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI)'
+2026-02-19 01:12:24.096 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-19 01:12:24.155 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/account/liked-recipes - 404 0 null 1229.0366ms
+2026-02-19 01:12:24.223 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7101/api/account/liked-recipes, Response status code: 404
+2026-02-19 01:12:24.397 +01:00 [INF] Route matched with {action = "GetPersonalInfo", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPersonalInfo() on controller PrepPal_.Backend.Controllers.AccountController (PrepPal+.UI).
+2026-02-19 01:12:24.398 +01:00 [INF] Route matched with {action = "Get10RandomRecipes", controller = "Recipe"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get10RandomRecipes() on controller PrepPal_.Backend.Controllers.RecipeController (PrepPal+.UI).
+2026-02-19 01:12:24.430 +01:00 [INF] Route matched with {action = "SearchRecipesByName", controller = "Recipe"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchRecipesByName(System.String) on controller PrepPal_.Backend.Controllers.RecipeController (PrepPal+.UI).
+2026-02-19 01:12:24.463 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-02-19 01:12:24.474 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-02-19 01:12:24.478 +01:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2026-02-19 01:12:24.485 +01:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2026-02-19 01:12:24.498 +01:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2026-02-19 01:12:24.502 +01:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2026-02-19 01:12:24.540 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-02-19 01:12:24.540 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-02-19 01:12:24.559 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI) in 94.1313ms
+2026-02-19 01:12:24.559 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.AccountController.GetPersonalInfo (PrepPal+.UI) in 127.8313ms
+2026-02-19 01:12:24.577 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.SearchRecipesByName (PrepPal+.UI)'
+2026-02-19 01:12:24.585 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.AccountController.GetPersonalInfo (PrepPal+.UI)'
+2026-02-19 01:12:24.587 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:24.591 +01:00 [INF] HTTP GET /api/recipe/search responded 401 in 1483.5456 ms
+2026-02-19 01:12:24.596 +01:00 [INF] HTTP GET /api/account/my-info responded 401 in 1433.6201 ms
+2026-02-19 01:12:24.605 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:24.613 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/search?name=Egg - 401 0 null 1656.7641ms
+2026-02-19 01:12:24.631 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/account/my-info - 401 0 null 1580.7098ms
+2026-02-19 01:12:25.617 +01:00 [INF] Received HTTP response headers after 964.3508ms - 200
+2026-02-19 01:12:25.629 +01:00 [INF] End processing HTTP request after 1049.4471ms - 200
+2026-02-19 01:12:26.005 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:26.015 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:26.094 +01:00 [INF] Received HTTP response headers after 69.7781ms - 200
+2026-02-19 01:12:26.208 +01:00 [INF] End processing HTTP request after 202.8444ms - 200
+2026-02-19 01:12:26.786 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:26.838 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.041 +01:00 [INF] Received HTTP response headers after 116.7396ms - 200
+2026-02-19 01:12:27.167 +01:00 [INF] End processing HTTP request after 382.7398ms - 200
+2026-02-19 01:12:27.262 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.269 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.329 +01:00 [INF] Received HTTP response headers after 49.3554ms - 200
+2026-02-19 01:12:27.336 +01:00 [INF] End processing HTTP request after 73.7536ms - 200
+2026-02-19 01:12:27.343 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.348 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.400 +01:00 [INF] Received HTTP response headers after 46.3034ms - 200
+2026-02-19 01:12:27.407 +01:00 [INF] End processing HTTP request after 64.8504ms - 200
+2026-02-19 01:12:27.417 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.422 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.449 +01:00 [INF] Request starting HTTP/2 POST https://localhost:7101/api/auth/refreshToken - null 0
+2026-02-19 01:12:27.463 +01:00 [INF] CORS policy execution successful.
+2026-02-19 01:12:27.474 +01:00 [INF] Executing endpoint 'PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken (PrepPal+.UI)'
+2026-02-19 01:12:27.482 +01:00 [INF] Received HTTP response headers after 48.9982ms - 200
+2026-02-19 01:12:27.489 +01:00 [INF] End processing HTTP request after 72.2189ms - 200
+2026-02-19 01:12:27.504 +01:00 [INF] Route matched with {action = "RefreshToken", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken() on controller PrepPal_.Backend.Controllers.AuthenticationController (PrepPal+.UI).
+2026-02-19 01:12:27.504 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.517 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.577 +01:00 [INF] Received HTTP response headers after 54.4611ms - 200
+2026-02-19 01:12:27.584 +01:00 [INF] End processing HTTP request after 79.9823ms - 200
+2026-02-19 01:12:27.591 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.597 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.618 +01:00 [INF] [null]
+2026-02-19 01:12:27.637 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken (PrepPal+.UI) in 124.751ms
+2026-02-19 01:12:27.647 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken (PrepPal+.UI)'
+2026-02-19 01:12:27.654 +01:00 [INF] Received HTTP response headers after 49.5109ms - 200
+2026-02-19 01:12:27.665 +01:00 [ERR] HTTP POST /api/auth/refreshToken responded 500 in 201.4375 ms
+System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Text.Encoding.GetBytes(String s)
+   at PrepPal_.Core.Services.RefreshTokenService.HashToken(String token) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 78
+   at PrepPal_.Core.Services.RefreshTokenService.RotateTokenAsync(String currentToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 29
+   at PrepPal_.Core.Services.AuthenticationService.RotateRefreshToken(String refreshToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\AuthenticationService.cs:line 70
+   at PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken() in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI\Controllers\AuthenticationController.cs:line 88
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-02-19 01:12:27.669 +01:00 [INF] End processing HTTP request after 78.422ms - 200
+2026-02-19 01:12:27.830 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Text.Encoding.GetBytes(String s)
+   at PrepPal_.Core.Services.RefreshTokenService.HashToken(String token) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 78
+   at PrepPal_.Core.Services.RefreshTokenService.RotateTokenAsync(String currentToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\RefreshTokenService.cs:line 29
+   at PrepPal_.Core.Services.AuthenticationService.RotateRefreshToken(String refreshToken) in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.Core\Application\Services\Authentication\AuthenticationService.cs:line 70
+   at PrepPal_.Backend.Controllers.AuthenticationController.RefreshToken() in C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI\Controllers\AuthenticationController.cs:line 88
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-02-19 01:12:27.832 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.884 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.936 +01:00 [INF] Received HTTP response headers after 47.8392ms - 200
+2026-02-19 01:12:27.943 +01:00 [INF] End processing HTTP request after 111.1212ms - 200
+2026-02-19 01:12:27.950 +01:00 [INF] Request finished HTTP/2 POST https://localhost:7101/api/auth/refreshToken - 500 null text/plain; charset=utf-8 500.928ms
+2026-02-19 01:12:27.951 +01:00 [INF] Start processing HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:27.970 +01:00 [INF] Sending HTTP request GET https://www.themealdb.com/api/json/v1/1/random.php
+2026-02-19 01:12:28.025 +01:00 [INF] Received HTTP response headers after 50.0069ms - 200
+2026-02-19 01:12:28.031 +01:00 [INF] End processing HTTP request after 80.2473ms - 200
+2026-02-19 01:12:28.055 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PrepPal_.Core.Application.DTO.RecipeResponse, PrepPal+.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-19 01:12:28.108 +01:00 [INF] Executed action PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI) in 3671.7709ms
+2026-02-19 01:12:28.116 +01:00 [INF] Executed endpoint 'PrepPal_.Backend.Controllers.RecipeController.Get10RandomRecipes (PrepPal+.UI)'
+2026-02-19 01:12:28.131 +01:00 [INF] HTTP GET /api/recipe/random responded 200 in 5054.4609 ms
+2026-02-19 01:12:28.172 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7101/api/recipe/random - 200 null application/json; charset=utf-8 5245.9412ms
+2026-02-19 02:20:28.704 +01:00 [INF] User profile is available. Using 'C:\Users\Hoang\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-19 02:20:30.179 +01:00 [INF] Executed DbCommand (128ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [RecipeCategories] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-02-19 02:20:30.312 +01:00 [INF] Now listening on: https://localhost:7101
+2026-02-19 02:20:30.315 +01:00 [INF] Now listening on: http://localhost:5054
+2026-02-19 02:20:30.359 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-19 02:20:30.361 +01:00 [INF] Hosting environment: Development
+2026-02-19 02:20:30.363 +01:00 [INF] Content root path: C:\Users\Hoang\Desktop\Projects\PrepPal+\PrepPal+.Backend\PrepPal+.UI

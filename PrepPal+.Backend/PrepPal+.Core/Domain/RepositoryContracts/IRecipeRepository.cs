@@ -7,8 +7,6 @@ namespace PrepPal_.Core.Domain.RepositoryContracts;
 
 public interface IRecipeRepository
 {
-    Task AddInteractionAsync(UserRecipeInteraction interaction);
-    Task RemoveInteractionAsync(UserRecipeInteraction interaction);
     Task<bool> RecipeExists(int externalId);
     Task AddRecipeAsync(Recipe recipe);
     Task<Recipe?> GetRecipeAsync(int externalId);

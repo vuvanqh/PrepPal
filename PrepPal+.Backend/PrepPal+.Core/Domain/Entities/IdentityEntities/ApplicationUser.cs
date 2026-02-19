@@ -16,4 +16,8 @@ public class ApplicationUser: IdentityUser<Guid>
     public DateTime TokenExpirationDate {  get; set; }
     public DateTime TokenIssuedAt { get; set; }
     public bool? IsVegan { get; set; } = false;
+
+
+    public ICollection<Cart> Carts {get;set;} = new List<Cart>();
+    public ICollection<CartAccess> Accesses { get; set; } = new List<CartAccess>();
 }

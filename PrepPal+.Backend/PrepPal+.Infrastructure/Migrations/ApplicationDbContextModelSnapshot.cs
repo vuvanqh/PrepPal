@@ -125,6 +125,67 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.Cart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Carts", (string)null);
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.CartAccess", b =>
+                {
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessType")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ApplicationUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CartId", "UserId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CartAccess", (string)null);
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.CartRecipe", b =>
+                {
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RecipeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "RecipeId");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("CartRecipeMappings", (string)null);
+                });
+
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.ApplicationGroup", b =>
                 {
                     b.Property<Guid>("GroupId")
@@ -280,8 +341,9 @@ namespace PrepPal_.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ExternalId")
-                        .HasColumnType("int");
+                    b.Property<string>("AliasName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -445,6 +507,59 @@ namespace PrepPal_.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.Cart", b =>
+                {
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", "Owner")
+                        .WithMany("Carts")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.CartAccess", b =>
+                {
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", null)
+                        .WithMany("Accesses")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("PrepPal_.Core.Cart", "Cart")
+                        .WithMany("Accesses")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.CartRecipe", b =>
+                {
+                    b.HasOne("PrepPal_.Core.Cart", "Cart")
+                        .WithMany("Recipes")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PrepPal_.Core.Domain.Entities.RecipeEntities.Recipe", "Recipe")
+                        .WithMany("CartRecipes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Recipe");
+                });
+
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.GroupMembership", b =>
                 {
                     b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationGroup", "ApplicationGroup")
@@ -478,13 +593,13 @@ namespace PrepPal_.Infrastructure.Migrations
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.RecipeEntities.RecipeIngredient", b =>
                 {
                     b.HasOne("PrepPal_.Core.Domain.Entities.RecipeEntities.Ingredient", "Ingredient")
-                        .WithMany()
+                        .WithMany("Recipes")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PrepPal_.Core.Domain.Entities.RecipeEntities.Recipe", "Recipe")
-                        .WithMany()
+                        .WithMany("RecipeIngredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -511,6 +626,32 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.Navigation("Recipe");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.Cart", b =>
+                {
+                    b.Navigation("Accesses");
+
+                    b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.Domain.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("Accesses");
+
+                    b.Navigation("Carts");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.Domain.Entities.RecipeEntities.Ingredient", b =>
+                {
+                    b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.Domain.Entities.RecipeEntities.Recipe", b =>
+                {
+                    b.Navigation("CartRecipes");
+
+                    b.Navigation("RecipeIngredients");
                 });
 
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.RecipeEntities.RecipeCategory", b =>

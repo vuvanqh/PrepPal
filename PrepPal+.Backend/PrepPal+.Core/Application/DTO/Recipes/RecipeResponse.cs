@@ -18,10 +18,10 @@ public class RecipeResponse
     [Required] public string ImageUrl { get; set; } = null!;
  
     [Required] public List<IngredientDTO> Ingredients { get; set; } = new List<IngredientDTO>();
-
 }
 
-public static class RecipeResponseExtention
+
+public static partial class RecipeExtention
 {
     public static RecipeResponse ToRecipeResponse(this Recipe recipe)
     {
@@ -29,10 +29,15 @@ public static class RecipeResponseExtention
         {
             ExternalId = recipe.ExternalId,
             Name = recipe.RecipeName,
+            Category = recipe.Category.CategoryName,
             Area = recipe.Area,
             Instructions = recipe.Instructions,
             ImageUrl = recipe.ImageUrl,
-            //ADD INGREDIENTS IMPORTANT
+            Ingredients = recipe.RecipeIngredients.Select(i => new IngredientDTO()
+            {
+                IngredientMeasure = i.Measurement,
+                IngredientName = i.Ingredient.Name
+            }).ToList()
         };
     }
 }

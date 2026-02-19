@@ -5,19 +5,11 @@ using System.Text;
 
 namespace PrepPal_.Core.Domain.Entities.RecipeEntities;
 
-public enum InteractionType
-{
-    [EnumMember(Value = "view")] View,
-    [EnumMember(Value = "like")] Like,
-    [EnumMember(Value = "add-to-cart")] AddToCart,
-    [EnumMember(Value = "unlike")] Unlike,
-    [EnumMember(Value = "remove-from-cart")] RemoveFromCart
-}
 
 /// <summary>
 /// for recommendation system
 /// </summary>
-public class UserRecipeInteraction
+public class UserRecipeInteraction: IEquatable<UserRecipeInteraction>
 {
     public required InteractionType Type { get; set; }
     public required Guid UserId { get; set; }
@@ -25,6 +17,11 @@ public class UserRecipeInteraction
     public required int ExternalRecipeId { get; set; }
     public required DateTime TimeStamp { get; set; }
     
-    public ApplicationUser? User { get; set; }
-    public Recipe? Recipe { get; set; } 
+    public ApplicationUser User { get; set; } = null!;
+    public Recipe Recipe { get; set; } = null!;
+
+    public bool Equals(UserRecipeInteraction? other)
+    {
+        return other?.UserId == UserId && other?.RecipeId == RecipeId && other?.Type == Type;
+    }
 }

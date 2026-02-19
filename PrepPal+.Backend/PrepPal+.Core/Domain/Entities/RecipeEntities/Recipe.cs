@@ -21,5 +21,7 @@ public class Recipe
 
     //rel
     public required Guid CategoryId { get; set; }
-    public RecipeCategory? Category { get; set; }
+    public RecipeCategory Category { get; set; } = null!;
+    public ICollection<CartRecipe> CartRecipes { get; set; } = new List<CartRecipe>();
+    public ICollection<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
 }

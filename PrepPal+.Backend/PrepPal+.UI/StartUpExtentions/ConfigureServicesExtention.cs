@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using PrepPal_.Core.Application.ServiceContracts;
+using PrepPal_.Core;
 using PrepPal_.Core.Application.Services;
 using PrepPal_.Core.ClientContracts;
 using PrepPal_.Core.Domain.Entities;
@@ -68,6 +68,13 @@ public static class ConfigureServicesExtention
         
         services.AddScoped<IRecipeService, RecipeService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ICartService, CartService>();
+
+        services.AddScoped<InteractionDispatcher>();
+
+        //handler services
+        services.AddScoped<IInteractionHandler, LikeInteractionHandler>();
+        //services.AddScoped<IInteractionHandler, CartInteractionHandler>();
 
         //http services
         services.AddHttpClient<IMealDbClient, MealDbClient>(client => {
@@ -78,7 +85,9 @@ public static class ConfigureServicesExtention
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRecipeCategoryRepository, RecipeCategoryRepository>();
         services.AddScoped<IRecipeRepository, RecipeRepository>();
-
+        services.AddScoped<IIngredientRepository, IngredientRepository>();
+        services.AddScoped<IRecipeInteractionRepository, RecipeInteractionRepository>();
+        services.AddScoped<ICartRepository, CartRepository>();
         //dbContext
         services.AddDbContext<ApplicationDbContext>(options =>
         {
