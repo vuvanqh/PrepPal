@@ -61,3 +61,26 @@ export class HttpError extends Error {
     this.info = info;
   }
 }
+
+type MakeRequestOptions = {
+  urlSuffix: string;
+  body?: object | null;
+  requestMethod?: string;
+  errMessage?: string;
+};
+
+export async function makeRequest({urlSuffix ,body = null, requestMethod = "GET", errMessage = "Cannot perform the operation"}: MakeRequestOptions ){
+    var response = await apiFetch(url+urlSuffix,{
+        method: requestMethod,
+        ...(body !== null && { body: JSON.stringify(body) })
+    } );
+
+    if(!response.ok)
+    {
+        const error =new HttpError(`${errMessage} - ${(await response.json()).message}. Try again later`, response.status);
+        error.code = response.status;
+        throw error;
+    } 
+
+    return await response.json();
+}

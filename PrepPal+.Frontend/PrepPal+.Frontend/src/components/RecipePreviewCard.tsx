@@ -16,15 +16,15 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
 {
     const {open} = useContext(ModalContext);
     const {isAuthenticated} = useAuth();
-    const {/*likedRecipes,*/ toggleLike:useToggleLike} = useLikes();
-    //const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
+    const {likedRecipes, toggleLike:useToggleLike} = useLikes();
+    const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
     function openRecipe(){
         open({type: "recipe", meal});
     }
 
     function toggleLike(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation();
-        useToggleLike({meal, type: "like"/*liked?"unlike":"like"*/});
+        useToggleLike({meal, type: "like",action:liked?"remove":"add"});
     }
 
     return <article className={`recipe-preview recipe-preview-${variant} ${className}`} role="button" onClick={openRecipe} {...props}>        

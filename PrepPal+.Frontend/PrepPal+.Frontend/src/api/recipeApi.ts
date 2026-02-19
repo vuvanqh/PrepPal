@@ -1,10 +1,5 @@
 import { apiFetch, url, HttpError } from "./util";
 
-export const headers = {
-    "Authorization": "Bearer " + localStorage.getItem("token")
-}
-
-
 const recipeUrl = url + "/recipe"
 
 
@@ -19,7 +14,6 @@ export async function getRandomRecipes(){
 
 export async function getSearchedRecipes(recipeName: string){
     const searchUrl = recipeUrl + `/search?name=${recipeName}`;
-    console.log(searchUrl)
     const response = await apiFetch(searchUrl, {
         method: "GET"
     });

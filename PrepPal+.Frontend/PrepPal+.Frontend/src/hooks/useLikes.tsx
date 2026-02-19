@@ -1,7 +1,6 @@
-import { getLikedRecipes } from "../api/accountApi";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "../api/authentication";
-import { addInteraction, type interactionType } from "../api/accountApi";
+import { addInteraction, getLikedRecipes, type interactionType } from "../api/recipe-interaction";
 import type { meal } from "../types/RecipeTypes";
 import { toastSuccess, toastError } from "../toastConfig";
 import useAuth from "./useAuth";
@@ -12,6 +11,7 @@ type likeRespType = {
     isPending: boolean,
     getPending: boolean
 }
+
 
 export default function useLikes(enabled=true): likeRespType{
     const { isAuthenticated } = useAuth();
@@ -32,7 +32,7 @@ export default function useLikes(enabled=true): likeRespType{
 
             queryClient.setQueryData<meal[]>(["auth","liked-recipes"], (old = []) => {
 
-                if(/*interaction.type==="like"*/ !(prevLiked?.some(r => r.externalId === interaction.meal.externalId)))
+                if(interaction.action==="add")
                     return [...old, interaction.meal];
                 return old.filter(r => r.externalId!=interaction.meal.externalId);
             })

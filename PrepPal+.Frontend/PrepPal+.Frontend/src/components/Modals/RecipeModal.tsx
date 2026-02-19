@@ -31,7 +31,7 @@ export default function RecipeModal({meal, open ,onClose}: RecipeModalProps){
 
             {isAuthenticated &&
             <div className="recipe-actions">
-                <button className="primary" type="button" onClick={()=>toggleLike({meal,type: "like" /*liked?"unlike":"like"*/})} disabled={isPending}>❤️ {!liked?"Like":"Unlike"}</button>
+                <button className="primary" type="button" onClick={()=>toggleLike({meal,type: "like",action:liked?"remove":"add"})} disabled={isPending}>❤️ {!liked?"Like":"Unlike"}</button>
                 <button className="secondary">🛒 Add to cart</button>
             </div>}
 
