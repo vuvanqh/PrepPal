@@ -20,4 +20,5 @@ public class ApplicationUser: IdentityUser<Guid>
 
     public ICollection<Cart> Carts {get;set;} = new List<Cart>();
     public ICollection<CartAccess> Accesses { get; set; } = new List<CartAccess>();
+
 }

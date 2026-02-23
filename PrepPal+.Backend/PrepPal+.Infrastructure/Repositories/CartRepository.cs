@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.Extensions.Logging;
 using PrepPal_.Core;
+using PrepPal_.Core.Application.DTO;
+using PrepPal_.Core.Application.DTO.Recipes;
 using PrepPal_.Core.Domain.Entities.RecipeEntities;
 using PrepPal_.Core.Domain.RepositoryContracts;
 using PrepPal_.Infrastructure.DbContexts;
@@ -13,13 +16,17 @@ namespace PrepPal_.Infrastructure.Repositories;
 public class CartRepository : ICartRepository
 {
     private readonly ApplicationDbContext _applicationDbContext;
+    private readonly ILogger<CartRepository> _logger;
 
-    public CartRepository(ApplicationDbContext applicationDbContext)
+    public CartRepository(ApplicationDbContext applicationDbContext, ILogger<CartRepository> logger)
     {
         _applicationDbContext = applicationDbContext;
+        _logger = logger;
     }
     public async Task AddToCartAsync(Guid cartId, Guid userId, Guid recipeId)
-    {  
+    {
+        Console.WriteLine("CartId being inserted: " + cartId);
+        Console.WriteLine("RecipeId being inserted: " + recipeId);
         CartRecipe? cartRecipe = await _applicationDbContext.CartRecipeMappings.FirstOrDefaultAsync(cr => cr.CartId == cartId && cr.RecipeId == recipeId);
 
         if (cartRecipe==null)
@@ -68,7 +75,54 @@ public class CartRepository : ICartRepository
 
     public async Task<Cart?> GetCartByIdAsync(Guid userId, Guid cartId)
     {
-        return await _applicationDbContext.Carts.FirstOrDefaultAsync(c => c.Id == cartId && c.OwnerId == userId);
+        return await _applicationDbContext.Carts.AsSplitQuery()
+            .Include(c=>c.Recipes)
+                .ThenInclude(cr=>cr.Recipe)
+            .Include(c=>c.Accesses)
+                .ThenInclude(ca => ca.User)
+            .Include(c=>c.Owner).FirstOrDefaultAsync(c => c.Id == cartId && c.OwnerId == userId);
+    }
+
+
+    /// <summary>
+    /// Though this violates the clean architecture it allows to avoid the include explosion, hence the decision to loosen up the clean arch. constraints
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="cartId"></param>
+    /// <returns></returns>
+    public async Task<CartResponse?> GetCartDetailsAsync(Guid userId, Guid cartId)
+    {
+        return await _applicationDbContext.Carts
+            .Where(c => c.Id == cartId && c.OwnerId == userId)
+            .Select(c => new CartResponse
+            {
+                CartId = c.Id,
+                OwnerUserName = c.Owner.UserName!,
+                Members = c.Accesses.Select(a => new CartAccessDTO
+                {
+                    UserName = a.User.UserName!,
+                    AccessType = a.AccessType
+                }).ToList(),
+                CartRecipes = c.Recipes.Select(r => new CartRecipeResponse
+                {
+                    Quantity = r.Quantity,
+                    Recipe = new RecipeResponse
+                    {
+                        ExternalId = r.Recipe.ExternalId,
+                        Name = r.Recipe.RecipeName,
+                        Category = r.Recipe.Category.CategoryName,
+                        Area = r.Recipe.Area,
+                        Instructions = r.Recipe.Instructions,
+                        ImageUrl = r.Recipe.ImageUrl,
+                        Ingredients = r.Recipe.RecipeIngredients.Select(i => new IngredientDTO()
+                        {
+                            IngredientMeasure = i.Measurement,
+                            IngredientName = i.Ingredient.Name,
+                        }).ToList()
+                    }
+                }).ToList()
+            })
+            .FirstOrDefaultAsync();
     }
 
     public async Task<List<CartRecipe>?> GetCartRecipes(Guid userId, Guid cartId)
@@ -91,23 +145,47 @@ public class CartRepository : ICartRepository
 
     public async Task<List<Cart>?> GetOwnedCartsAsync(Guid userId)
     {
-        List<CartAccess>? accesses = await _applicationDbContext.CartAccesses.Where(c => c.UserId == userId && c.AccessType==CartAccessType.Owner)
-                                                                            .DistinctBy(c => c.CartId).ToListAsync();
-        List<Cart>? carts = new List<Cart>();
+        //List<CartAccess>? accesses = await _applicationDbContext.CartAccesses.Where(c => c.UserId == userId && c.AccessType==CartAccessType.Owner)
+        //                                                                     .GroupBy(c => c.CartId)
+        //                                                                     .Select(g => g.First())
+        //                                                                     .Distinct().ToListAsync();
+        //List<Cart>? carts = new List<Cart>();
 
-        foreach (var c in accesses)
-        {
-            carts.Add(c.Cart);
-        }
-        return carts;
+        //foreach (var c in accesses)
+        //{
+        //    carts.Add(c.Cart);
+        //}
+        //return carts;
+        Console.WriteLine("Cart created for: " + userId);
+
+        return await _applicationDbContext.Carts
+        .Where(c => c.OwnerId == userId)
+        .ToListAsync();
     }
 
-    public async Task RemoveFromCartAsync(Guid cartId, Guid userId, Guid recipeId)
+    public async Task RemoveFromCartAsync(Guid userId, Guid cartId, Guid recipeId)
     {
         Cart? c = await GetCartByIdAsync(userId, cartId);
-        if (c == null) return;
-
-        _applicationDbContext.Carts.Remove(c);
+        if (c == null)
+        {
+            _logger.LogWarning($"null cart {cartId}, {userId}");
+            return;
+        }
+        CartRecipe? r = c?.Recipes?.FirstOrDefault(r => r.RecipeId == recipeId);
+        if (r == null)
+        {
+            _logger.LogWarning("null recipe");
+            return;
+        }
+        if (r.Quantity == 1)
+            _applicationDbContext.CartRecipeMappings.Remove(r);
+        else
+        {
+            _logger.LogWarning("Reducing quantity");
+            r.Quantity--;
+            _applicationDbContext.Update(r);
+        }    
+            //_applicationDbContext.Carts.Remove(c);
         await _applicationDbContext.SaveChangesAsync();
     }
 

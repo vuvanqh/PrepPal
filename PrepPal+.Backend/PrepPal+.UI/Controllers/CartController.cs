@@ -15,25 +15,32 @@ public class CartController : ControllerBase
         _cartService = cartService;
     }
 
-    [HttpPost("add-recipe")]
-    public async Task<IActionResult> AddToCart(Guid cartId, int externalId)
+    public class CartRecipeRequest
     {
+        public Guid CartId { get; set; }
+        public int ExternalId { get; set; }
+    }
+
+    [HttpPost("add-recipe")]
+    public async Task<IActionResult> AddToCart(CartRecipeRequest request)
+    {
+        Console.WriteLine(request.CartId);
         var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (id == null)
             return NotFound();
 
-        await _cartService.AddToCart(Guid.Parse(id), cartId, externalId);
+        await _cartService.AddToCart(Guid.Parse(id), request.CartId, request.ExternalId);
         return Ok();
     }
 
     [HttpPost("remove-recipe")]
-    public async Task<IActionResult> RemoveFromCart(Guid cartId, int externalId)
+    public async Task<IActionResult> RemoveFromCart(CartRecipeRequest request)
     {
         var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (id == null)
             return NotFound();
-
-        await _cartService.RemoveFromCart(Guid.Parse(id), cartId, externalId);
+        Console.WriteLine("hey");
+        await _cartService.RemoveFromCart(Guid.Parse(id), request.CartId, request.ExternalId);
         return Ok();
     }
 
@@ -52,10 +59,12 @@ public class CartController : ControllerBase
     public async Task<IActionResult> GetOwned()
     {
         var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        Console.WriteLine("JWT UserId: " + id);
         if (id == null)
             return NotFound();
-
+       
         CartIdListResponse resp = await _cartService.GetOwnedCartsAsync(Guid.Parse(id));
+        Console.WriteLine(resp.CartIdList[0]);
         return Ok(resp);
     }
 

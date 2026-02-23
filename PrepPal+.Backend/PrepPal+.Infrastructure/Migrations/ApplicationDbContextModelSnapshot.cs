@@ -186,6 +186,38 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.ToTable("CartRecipeMappings", (string)null);
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.Connection", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RequestedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId2")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("UserId1");
+
+                    b.HasIndex("UserId2");
+
+                    b.HasIndex("UserId1", "UserId2")
+                        .IsUnique();
+
+                    b.ToTable("Connections");
+                });
+
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.ApplicationGroup", b =>
                 {
                     b.Property<Guid>("GroupId")
@@ -456,6 +488,35 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.ToTable("UserRecipeInteractions");
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.Message", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ConnectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConnectionId");
+
+                    b.HasIndex("SenderUsername");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationRole", null)
@@ -560,6 +621,25 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.Connection", b =>
+                {
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", "User1")
+                        .WithMany()
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", "User2")
+                        .WithMany()
+                        .HasForeignKey("UserId2")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User1");
+
+                    b.Navigation("User2");
+                });
+
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.GroupMembership", b =>
                 {
                     b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationGroup", "ApplicationGroup")
@@ -628,11 +708,27 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.Message", b =>
+                {
+                    b.HasOne("PrepPal_.Core.Connection", "Connection")
+                        .WithMany("Messages")
+                        .HasForeignKey("ConnectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Connection");
+                });
+
             modelBuilder.Entity("PrepPal_.Core.Cart", b =>
                 {
                     b.Navigation("Accesses");
 
                     b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.Connection", b =>
+                {
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("PrepPal_.Core.Domain.Entities.ApplicationUser", b =>

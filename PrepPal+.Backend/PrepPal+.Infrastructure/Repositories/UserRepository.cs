@@ -36,4 +36,13 @@ public class UserRepository : IUserRepository
         }
         return recipes;
     }
+
+    public async Task<ApplicationUser?> GetUserByUsernameAsync(string username)
+    {
+        return await _applicationDbContext.Users.FirstOrDefaultAsync(u => u.UserName == username);
+    }
+    public async Task<List<ApplicationUser>> FindUsersByUsername(string username) {
+        return await _applicationDbContext.Users.Where(u => u.UserName!.ToLower().Contains(username)).ToListAsync();
+    }
+
 }

@@ -10,5 +10,7 @@ public interface IUserRepository
 {
     Task<ApplicationUser> GetUserByRefreshToken(string refreshToken);
     Task<ApplicationUser?> GetUserById(Guid id);
+    Task<ApplicationUser?> GetUserByUsernameAsync(string username);
     Task<List<Recipe>?> GetLikedRecipes(Guid id);
+    Task<List<ApplicationUser>> FindUsersByUsername(string username);
 }

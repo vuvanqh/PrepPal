@@ -31,7 +31,7 @@ public class CartService : ICartService
 
         Guid recipeId = await _recipeService.EnsureRecipeExistsAsync(externalId);
 
-        await _cartRepo.AddToCartAsync(userId, cartId, recipeId);
+        await _cartRepo.AddToCartAsync(cartId, userId, recipeId);
     }
 
 
@@ -42,7 +42,10 @@ public class CartService : ICartService
             throw new UnauthorizedAccessException("No permission");
 
         Recipe? r = await _recipeRepo.GetRecipeAsync(externalId);
-        if (r == null) return;
+        if (r == null) {
+            Console.WriteLine("Null recipe");
+            return;
+        };
 
         await _cartRepo.RemoveFromCartAsync(userId, cartId, r.Id);
     }
@@ -84,13 +87,13 @@ public class CartService : ICartService
             throw new UnauthorizedAccessException("No permission");
 
         Cart? c = await _cartRepo.GetCartByIdAsync(userId, cartId);
-        return c?.ToCartResponse();
+        return c?.ToCartRecipeResponse();
     }
 
     public async Task<CartResponse?> GetCartContent(Guid userId, Guid cartId)
     {
-        Cart? c = await _cartRepo.GetCartByIdAsync(userId, cartId);
+        CartResponse? c = await _cartRepo.GetCartDetailsAsync(userId, cartId);
        
-        return c.ToCartResponse();
+        return c;
     }
 }

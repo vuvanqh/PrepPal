@@ -33,7 +33,7 @@ namespace PrepPal_.Backend.Controllers
             try
             {
                 ApplicationUser user = await _authenticationService.Register(registerRequest);
-                return Ok(user);
+                return Ok();
             }
             catch (IdentityOperationException ex)
             {
@@ -81,27 +81,34 @@ namespace PrepPal_.Backend.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Description = "Token expired")]
         public async Task<IActionResult> RefreshToken()
         {
-            string token  = Request.Cookies["refreshToken"]!;
+            string? token  = Request.Cookies["refreshToken"];
             _logger.LogInformation(token);
-            try
+            if (token != null)
             {
-                RefreshTokenResponse resp = await _authenticationService.RotateRefreshToken(token);
-
-                Response.Cookies.Append("refreshToken", resp.RefreshToken, new CookieOptions()
+                try
                 {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Lax,
-                    Expires = resp.ExpirationDate,
-                    Path = "/api/auth"
-                });
+                    RefreshTokenResponse resp = await _authenticationService.RotateRefreshToken(token);
 
-                return Ok(resp.AccessToken);
+                    Response.Cookies.Append("refreshToken", resp.RefreshToken, new CookieOptions()
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Lax,
+                        Expires = resp.ExpirationDate,
+                        Path = "/api/auth"
+                    });
+
+                    return Ok(resp.AccessToken);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return Unauthorized(ex.Message);
+                }
             }
-            catch(RefreshTokenException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
+  
+             return Unauthorized("Session Expired");
+            
         }
     }
 }

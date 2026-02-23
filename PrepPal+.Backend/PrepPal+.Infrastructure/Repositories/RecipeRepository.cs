@@ -27,7 +27,7 @@ public class RecipeRepository : IRecipeRepository
         await _applDbContext.SaveChangesAsync();
     }
 
-    public async Task<Recipe?> GetRecipeAsync(int externalId) => await _applDbContext.Recipes.FirstOrDefaultAsync(r => r.ExternalId == externalId);
+    public async Task<Recipe?> GetRecipeAsync(int externalId) => await _applDbContext.Recipes.Include(r => r.Category).FirstOrDefaultAsync(r => r.ExternalId == externalId);
 
     public async Task RemoveInteractionAsync(UserRecipeInteraction interaction) { }
 }

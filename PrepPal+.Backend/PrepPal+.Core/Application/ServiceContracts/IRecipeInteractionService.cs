@@ -8,5 +8,5 @@ namespace PrepPal_.Core.ServiceContracts;
 public interface IRecipeInteractionService
 {
     Task Interact(Guid userId, UserRecipeInteractionRequest request);
-        Task<List<LikedRecipeResponse>?> GetLikedRecipes(Guid userId);
+    Task<List<LikedRecipeResponse>?> GetLikedRecipes(Guid userId);
 }

@@ -19,6 +19,7 @@ public interface ICartRepository
     Task<List<Cart>?> GetOwnedCartsAsync(Guid userId);
 
     Task<List<CartRecipe>?> GetCartRecipes(Guid userId,Guid cartId);
+    Task<CartResponse?> GetCartDetailsAsync(Guid userId, Guid cartId);
 
     Task<bool?> HasPermission(Guid userId, Guid cartId, CartAccessType access);
 

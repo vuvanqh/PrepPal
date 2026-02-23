@@ -1,4 +1,5 @@
 ﻿using PrepPal_.Core.Application.DTO;
+using PrepPal_.Core.Application.DTO.Recipes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,13 +12,13 @@ public class CartResponse
     [Required] public Guid CartId { get; set; }
     [Required] public string OwnerUserName { get; set; } = null!;
     [Required] public List<CartAccessDTO> Members { get; set; } = new List<CartAccessDTO>();
-    [Required] public List<RecipeResponse> RecipeResponses { get; set; } = new List<RecipeResponse>();
+    [Required] public List<CartRecipeResponse> CartRecipes { get; set; } = new List<CartRecipeResponse>();
 
 }
 
 public class CartAccessDTO
 {
-    [Required] public string UserName { get; set; }
+    [Required] public string UserName { get; set; } = null!;
     [Required] public CartAccessType AccessType {  get; set; }
 }
 
@@ -35,7 +36,7 @@ public static class CartAccessExtention{
 
 public static class CartExtention
 {
-    public static CartResponse ToCartResponse(this Cart cart)
+    public static CartResponse ToCartRecipeResponse(this Cart cart)
     {
         List<CartAccessDTO>? accesses = cart.Accesses.Where(c => c.CartId == cart.Id).ToList().Select(c=>c.ToCartAccessDTO()).ToList();
         return new CartResponse()
@@ -43,7 +44,12 @@ public static class CartExtention
             CartId = cart.Id,
             OwnerUserName = cart.Owner.UserName!,
             Members = accesses,
-            RecipeResponses = cart.Recipes.Select(r=>r.Recipe.ToRecipeResponse()).ToList(),
+            CartRecipes = cart.Recipes.Select(r=> new CartRecipeResponse()
+            {
+                Recipe = r.Recipe.ToRecipeResponse(),
+                Quantity = r.Quantity
+            }
+            ).ToList(),
         };
     }
 }

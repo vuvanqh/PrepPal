@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PrepPal_.Backend;
+using PrepPal_.Backend.Hubs;
 using Serilog;
 
 
@@ -37,6 +38,9 @@ public class Program
 
 
         app.MapControllers();
+
+        app.MapHub<ChatHub>("/chat");
+        app.MapHub<NotificationHub>("/notification");
 
         app.Run();
     }

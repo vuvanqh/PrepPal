@@ -6,54 +6,57 @@ using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace PrepPal_.Backend.Controllers
+namespace PrepPal_.Backend.Controllers;
+
+[Route("api/recipe-interaction")]
+[ApiController]
+public class RecipeInteractionController : ControllerBase
 {
-    [Route("api/recipe-interaction")]
-    [ApiController]
-    public class RecipeInteractionController : ControllerBase
+    private readonly IRecipeService _recipeService;
+    private readonly IRecipeInteractionService _recipeInteractionService;
+    public RecipeInteractionController(IRecipeService recipeService, IRecipeInteractionService recipeInteractionService)
     {
-        private readonly IRecipeService _recipeService;
-        private readonly IRecipeInteractionService _recipeInteractionService;
-        public RecipeInteractionController(IRecipeService recipeService, IRecipeInteractionService recipeInteractionService)
+        _recipeService = recipeService;
+        _recipeInteractionService = recipeInteractionService;
+    }
+
+    [HttpGet("liked-recipes")]
+    public async Task<IActionResult> GetLikedRecipes()
+    {
+        var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (id == null)
+            return NotFound();
+
+        try
         {
-            _recipeService = recipeService;
-            _recipeInteractionService = recipeInteractionService;
+            List<LikedRecipeResponse>? recipes = await _recipeInteractionService.GetLikedRecipes(Guid.Parse(id));
+            return Ok(recipes);
         }
-
-        [HttpGet("liked-recipes")]
-        public async Task<IActionResult> GetLikedRecipes()
-        {
-            var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (id == null)
-                return NotFound();
-
-            try
+        catch (Exception e) {
+            return BadRequest(new
             {
-                List<LikedRecipeResponse>? recipes = await _recipeInteractionService.GetLikedRecipes(Guid.Parse(id));
-                return Ok(recipes);
-            }
-            catch (Exception e) {
-                return NotFound(e.Message);
-            }
+                Message = e.Message,
+                StackTrace = e.StackTrace
+            });
         }
+    }
 
-        [HttpPost("recipe-interaction")]
-        public async Task<IActionResult> RecipeInteraction(UserRecipeInteractionRequest request)
+    [HttpPost("recipe-interaction")]
+    public async Task<IActionResult> RecipeInteraction(UserRecipeInteractionRequest request)
+    {
+        try
         {
-            try
+            await _recipeInteractionService.Interact( Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!), request);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new
             {
-                await _recipeInteractionService.Interact( Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!), request);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    ex.Message,
-                    Inner = ex.InnerException?.Message,
-                    Type = ex.GetType().FullName
-                });
-            }
+                ex.Message,
+                Inner = ex.InnerException?.Message,
+                Type = ex.GetType().FullName
+            });
         }
     }
 }

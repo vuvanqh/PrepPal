@@ -26,6 +26,10 @@ public class ApplicationDbContext: IdentityDbContext<ApplicationUser, Applicatio
     public virtual DbSet<CartAccess> CartAccesses => Set<CartAccess>();
     public virtual DbSet<CartRecipe> CartRecipeMappings => Set<CartRecipe>();
 
+    //social
+    public virtual DbSet<Connection> Connections => Set<Connection>();
+    public virtual DbSet<Message> Messages => Set<Message>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

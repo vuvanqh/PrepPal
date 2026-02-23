@@ -8,5 +8,5 @@ namespace PrepPal_.Core;
 
 public class CartIdListResponse
 {
-    [Required] public List<Guid> CartIdList = new List<Guid>();
+    [Required] public List<Guid> CartIdList { get; set; } = new List<Guid>();
 }
