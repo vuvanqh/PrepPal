@@ -2,7 +2,7 @@ import { apiClient } from "./apiClient";
 
 export type modifyConnectinoRequest = {
     connectionId: string,
-    connectionAction: "accept" | "reject" | "remove" | "cancel"
+    action: "Accept" | "Reject" | "Remove" | "Cancel"
 }
 
 export type addConnectionRequest = {

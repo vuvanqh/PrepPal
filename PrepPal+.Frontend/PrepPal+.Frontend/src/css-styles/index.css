@@ -291,6 +291,64 @@ dialog[open] {
   animation: heroFade 600ms ease-out both;
 }
 
+.context-menu {
+  position: fixed;
+  min-width: 180px;
+
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+
+  border-radius: 10px;
+  padding: 0.35rem;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  z-index: 9999;
+  animation: context-pop 120ms ease-out;
+}
+
+.context-menu button {
+  width: 100%;
+  background: transparent;
+  border: none;
+
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+
+  color: #f4f4f5;
+  font-size: 0.8rem;
+  text-align: left;
+
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.context-menu.danger button {
+  color: #7f1d1d;
+}
+
+.context-menu.danger button:hover {
+  background: rgba(127, 29, 29, 0.25);
+  color: #fecaca;
+}
+
+.context-menu.danger button:active {
+  background: rgba(127, 29, 29, 0.35);
+}
+
+@keyframes context-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes heroFade {
   from {
     opacity: 0;

@@ -23,15 +23,19 @@ export function useConnections(){
         connections,
         acceptConnection: (connectionId: string) => mutate({
             connectionId,
-            connectionAction: "accept"
+            action: "Accept"
         }),
         rejectConneciton: (connectionId: string) => mutate({
             connectionId,
-            connectionAction: "reject"
+            action: "Reject"
         }),
         cancelConnection: (connectionId: string) => mutate({
             connectionId,
-            connectionAction: "cancel"
+            action: "Cancel"
+        }),
+        removeConnection: (connectionId: string) => mutate({
+            connectionId,
+            action: "Remove"
         }),
         invite
     }

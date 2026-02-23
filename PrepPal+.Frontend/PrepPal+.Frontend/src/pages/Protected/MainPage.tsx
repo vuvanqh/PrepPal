@@ -11,7 +11,6 @@ import { useCartContent, useOwnedCarts } from "../../hooks/useCartRecipe";
 import { useSignalR } from "../../hooks/useSignalR";
 import { startConnections } from "../../hubConnections";
 import ConversationHost from "../../components/ConversationHost";
-import { NavLink } from "react-router-dom";
 
 export default function MainPage(){
     const searchInput = useRef<HTMLInputElement>(null);
@@ -76,7 +75,7 @@ export default function MainPage(){
 
         
         <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)}/>
-        <ConversationHost/>
+        <ConversationHost sidebarOpen={isOpen}/>
        
         <Outlet/>  
     </>

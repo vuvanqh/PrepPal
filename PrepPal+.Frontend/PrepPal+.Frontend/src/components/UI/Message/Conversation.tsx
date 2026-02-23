@@ -1,10 +1,11 @@
 import useConversation from "../../../hooks/useConversation"
 import { type SubmitEvent, useState, useRef, useEffect } from "react";
 import MessageItem from "./MessageItem";
+import { useConnections } from "../../../hooks/useConnecitons";
 
-export default function Conversation({connectionId, username}:{connectionId: string, username:string}){
+export default function Conversation({connectionId, username, className=""}:{connectionId: string, username:string, className?:string}){
     const {sendMessage,conversation} = useConversation(connectionId);
-
+    const {connections} = useConnections();
     const [messageInput, setInput] = useState<string>("");
     const [minimized, setMinimized] = useState(false);
 
@@ -29,9 +30,9 @@ export default function Conversation({connectionId, username}:{connectionId: str
         sendMessage(messageInput)
         setInput("");
     }
-    return <div className={`chat-modal open ${minimized? "minimized":""}`}>
+    return <div className={`chat-modal open ${minimized? "minimized":""} ${className}`}>
         <div>
-            <div className="username-bubble">
+            <div className="username-bubble" onClick={() => {if(minimized) setMinimized(false)}}>
                 <span>{username}</span>
 
                 <button onClick={()=>setMinimized(!minimized)} className="minimize">{minimized?"+":"-"}</button>
@@ -52,7 +53,7 @@ export default function Conversation({connectionId, username}:{connectionId: str
                 <p className="content-center">No messages yet</p>
             </div>}
             <form className="input-box" onSubmit={onSubmit}>
-                    <input placeholder="message" onChange={(e)=>setInput(e.target.value)} value={messageInput}/>
+                    <input placeholder="message" onChange={(e)=>setInput(e.target.value)} value={messageInput} disabled={connections && !connections.find(c=>c.connectionId==connectionId)}/>
             </form>
             </>
             }
