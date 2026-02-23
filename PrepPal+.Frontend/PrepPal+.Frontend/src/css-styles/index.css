@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Lato:wght@400;700&display=swap');
 @import "tailwindcss";
-@import "./css-styles/carousel.css";
-@import "./css-styles/recipe-modal.css";
-@import "./css-styles/container.css";
-@import "./css-styles/recipe-preview.css";
-@import "./css-styles/search-recipe-container.css";
+@import "./styles/carousel.css";
+@import "./styles/recipe-modal.css";
+@import "./styles/container.css";
+@import "./styles/recipe-preview.css";
+@import "./styles/search-recipe-container.css";
+@import "./styles/sidebar.css";
+@import "./styles/cart.css";
+@import "./styles/conversation.css";
+@import "./styles/toast.css";
 
 html,body {
   font-family: "Quicksand", sans-serif;
@@ -119,24 +123,27 @@ dialog[open] {
   padding: 10px 10px 10px 10px;
   justify-content: space-between;
 }
+
 .navbar button {
   margin: 0 10px 0 10px;
   border-radius: 10px;
-  padding: 5px 20px 5px 20px;
+  padding: 5px 5px 5px 5px;
   text-align: center;
   justify-content: center;
   justify-self: center;
+}
+
+.button-border {
   border-color: #f5f5f4;
   border-style: solid;
   border-width: 2px;
 }
 
-.navbar-likes-button {
+#navbar-likes-button {
   top: 50%;
   z-index: 2;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 75px;
+  border-radius: 10px;
   display: flex;
   text-align: center;
   justify-content: center;

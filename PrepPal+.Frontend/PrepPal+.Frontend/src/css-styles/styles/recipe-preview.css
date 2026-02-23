@@ -65,11 +65,13 @@
   gap: 8px;
   padding: 10px 12px 12px;
   justify-content: center;
+  margin-top: auto;
 }
 
 .recipe-preview-actions button {
   width: 40px;
   height: 40px;
+  aspect-ratio: 1 / 1;
 
   display: flex;
   align-items: center;
@@ -114,8 +116,7 @@
 }
 
 .recipe-preview-compact .recipe-preview-actions button {
-  padding: 5px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .recipe-preview-grid {

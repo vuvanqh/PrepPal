@@ -2,14 +2,12 @@ import { Outlet } from "react-router-dom";
 import { ToastContainer, Bounce } from 'react-toastify';
 import { QueryClientProvider } from "@tanstack/react-query";
 import {queryClient} from "../api/authentication";
-import RecipeModalProvider from "../store/RecipeModalContext";
 import ModalContextProvider from "../store/ModalContext";
 import { ModalRoot } from "../components/Modals/ModalRoot";
 
 
 export default function AppLayoutPage(){
     return <QueryClientProvider client={queryClient}>
-        <RecipeModalProvider>
             <ModalContextProvider>
                 <ToastContainer
                     position="top-right"
@@ -27,6 +25,5 @@ export default function AppLayoutPage(){
                 <ModalRoot/>
                 <Outlet/>
             </ModalContextProvider>
-        </RecipeModalProvider>
     </QueryClientProvider>
 }

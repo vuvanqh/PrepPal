@@ -1,20 +1,22 @@
 import ContainerModal from "./ContainerModal";
-import LikedContent from "../RecipeUI/LikedContent";
-import Ingredients from "./Ingredients";
+import CartRecipeContent from "../Cart/CartRecipeContent";
+import Ingredients from "../Cart/Ingredients";
 import { useState } from "react";
+import { useCartContent } from "../../hooks/useCartRecipe";
 
 type CartModalProps = {
+    cartId: string
     close: ()=>void
 }
 
-export default function CartModal({ close}: CartModalProps ){
+export default function CartModal({cartId ,close}: CartModalProps ){
     const [ingredientsState, setState] = useState(true);
-
+    const {cartRecipes} = useCartContent(cartId);
     return <ContainerModal open label="Cart" close={close}>
-            <div className="cart-actions justify-center gap-6">
-                <button onClick={()=>setState(false)} disabled={!ingredientsState}>Recipes</button>
-                <button onClick={()=>setState(true)} disabled={ingredientsState}>Ingredients</button>
+            <div className="cart-toggle">
+                <button onClick={()=>setState(false)} className={!ingredientsState ? "active" : ""} disabled={!ingredientsState}>Recipes</button>
+                <button onClick={()=>setState(true)} className={ingredientsState ? "active" : ""} disabled={ingredientsState}>Ingredients</button>
             </div>
-            {ingredientsState?<Ingredients/>:<LikedContent/>}
+            {ingredientsState?<Ingredients cartRecipes={cartRecipes}/>:<CartRecipeContent cartRecipes={cartRecipes} cartId={cartId}/>}
     </ContainerModal>
 }

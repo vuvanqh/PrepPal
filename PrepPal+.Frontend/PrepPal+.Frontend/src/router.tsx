@@ -7,6 +7,7 @@ import AppLayoutPage from "./pages/AppLayoutPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MainPageContent from "./components/MainPageContent";
 import SearchPage from "./pages/Protected/SearchPage";
+import SearchUserPage from "./pages/Protected/SearchUsersPage";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
                     {
                         path: "search/:name",
                         element: <SearchPage/>
-                    }
+                    },
+                    {
+                        path:"connection-search/:username",
+                        element: <SearchUserPage/>
+                    },
+
                 ]
             }
         ]

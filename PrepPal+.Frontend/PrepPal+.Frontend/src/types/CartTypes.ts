@@ -1,14 +1,17 @@
 import type { meal } from "./RecipeTypes"
 
-
+export type cartRecipe = {
+    recipe: meal,
+    quantity: number
+}
 export type cartResponse = {
     cartId: string,
     ownerUserName: string,
     members: CartMembers[],
-    recipeResponses: meal[]
+    cartRecipes: cartRecipe[]
 }
 
 export type CartMembers = {
     userName: string,
-    accessType: "owner" | "editor" | "viewer"
+    accessType: "Owner" | "Editor" | "Viewer"
 }

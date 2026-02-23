@@ -1,8 +1,9 @@
-import type { meal } from "../types/RecipeTypes";
+import type { meal } from "../../types/RecipeTypes";
 import { useContext } from "react";
-import { ModalContext } from "../store/ModalContext";
-import useAuth from "../hooks/useAuth";
-import useLikes from "../hooks/useLikes";
+import { ModalContext } from "../../store/ModalContext";
+import useAuth from "../../hooks/useAuth";
+import useLikes from "../../hooks/useLikes";
+import { useCartContentMutations } from "../../hooks/useCartRecipe";
 type Variant = "carousel" | "compact";
 
 type RecipePreviewCardProps = {
@@ -10,14 +11,21 @@ type RecipePreviewCardProps = {
   variant?: Variant;
   showActions?: boolean;
   className?: string;
+  cartId?: string;
 };
 
-export default function RecipePreviewCard({meal, variant="carousel",showActions=false, className="", ...props}: RecipePreviewCardProps)
+export default function RecipePreviewCard({meal, variant="carousel",showActions=false, className="",cartId, ...props}: RecipePreviewCardProps)
 {
     const {open} = useContext(ModalContext);
     const {isAuthenticated} = useAuth();
     const {likedRecipes, toggleLike:useToggleLike} = useLikes();
     const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
+    const {addRecipe} = useCartContentMutations(cartId)
+    function addToCart(e:React.MouseEvent<HTMLButtonElement>){
+        e.stopPropagation();
+        addRecipe(meal);
+    }
+
     function openRecipe(){
         open({type: "recipe", meal});
     }
@@ -44,7 +52,7 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
         {showActions && isAuthenticated && (
             <div className="recipe-preview-actions">
             <button className="primary" onClick={(e)=>toggleLike(e)}>❤️</button>
-            <button className="secondary">🛒</button>
+            <button className="secondary" onClick={(e)=>addToCart(e)}>🛒</button>
             </div>
         )}
     </article>

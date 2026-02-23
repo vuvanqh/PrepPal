@@ -38,8 +38,7 @@ export default function Login(){
         };
 
         try{
-            const resp = await mutateAsync(data);
-            console.log(resp);
+            await mutateAsync(data);
             return {};
         }
         catch(err: any){

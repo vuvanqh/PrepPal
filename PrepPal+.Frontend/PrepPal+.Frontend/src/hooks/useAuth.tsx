@@ -3,11 +3,20 @@ import { getPersonalDetails } from "../api/accountApi"
 import { queryClient } from "../api/authentication";
 import { login as loginApi, type loginDTO } from "../api/authentication";
 import { useNavigate } from "react-router-dom";
+import { stopConnections } from "../hubConnections";
 
+
+type personalDetails = {
+    firstName: string,
+    lastName: string,
+    userName: string,
+    email: string,
+    phoneNumber: string
+} | undefined
 
 export default function useAuth(){
     const navigate = useNavigate();
-    const {data: userData = [], isPending} = useQuery({
+    const {data, isPending} = useQuery<personalDetails>({
         queryFn: getPersonalDetails,
         queryKey: ["personal-details"],
         enabled: !!localStorage.getItem("token"),
@@ -25,10 +34,11 @@ export default function useAuth(){
         navigate("/");
         queryClient.removeQueries(),
         localStorage.clear()
+        stopConnections();
     }
 
     return {
-        userData,
+        userData: data,
         isAuthenticated: !!localStorage.getItem("token"),
         logout,
         login,

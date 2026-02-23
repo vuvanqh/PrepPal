@@ -1,0 +1,238 @@
+.username-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.7rem 0.9rem;
+
+  background: rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.username-bubble .minimize {
+  background: transparent;
+  border: none;
+  color: inherit;
+
+  font-size: 1rem;
+  line-height: 1;
+
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.username-bubble .minimize:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.conversation-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+
+  padding: 0.9rem 0.75rem;
+  gap: 0.2rem;
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(0,0,0,0.12)
+  );
+}
+
+.chat-modal {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    overflow: hidden;
+
+    width: 320px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 200ms ease, 
+        transform 240ms cubic-bezier(0.16,1,0.3,1);
+
+    z-index: 1200;
+}
+
+.chat-modal > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-modal.open{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.chat-modal.minimized {
+  height: auto;
+}
+
+.chat-modal.minimized .conversation-body,
+.chat-modal.minimized .input-box {
+  display: none;
+}
+
+.chat-modal.minimized {
+  width: 240px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+
+.item-action:active {
+  transform: scale(1.15);
+}
+
+.input-box {
+  padding: 0.6rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: auto;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+
+  border-radius: 999px;
+  border: none;
+
+  background: rgba(255,255,255,0.12);
+  color: inherit;
+
+  font-size: 0.75rem;
+}
+
+.input-box input::placeholder {
+  opacity: 0.6;
+}
+
+.input-box input:focus {
+  outline: none;
+  background: rgba(255,255,255,0.18);
+}
+
+.sender-bubble,
+.receive-bubble {
+  padding: 0.7rem 0.8rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+
+  border-radius: 12px;
+  word-wrap: break-word;
+}
+
+.sender-bubble {
+  background: linear-gradient(
+    135deg,
+    rgba(96, 165, 250, 0.95),  
+    rgba(59, 130, 246, 0.95)   
+  );
+
+  color: #1c1917;
+  border-radius: 12px 12px 4px 12px;
+}
+
+.receive-bubble {
+  background: rgba(255,255,255,0.14);
+  color: #ebe7ef;
+
+  border-radius: 12px 12px 12px 4px;
+  backdrop-filter: blur(6px);
+}
+
+
+/* .message-bubble {
+  max-width: 78%;
+  padding: 0.6rem 0.8rem;
+
+  font-size: 0.75rem;
+  line-height: 1.45;
+
+  border-radius: 14px;
+  word-wrap: break-word;
+
+  position: relative;
+  animation: message-pop 140ms ease-out;
+} */
+
+.message-bubble {
+  display: flex;
+  flex-direction: column;
+  max-width: 78%;
+  gap: 0.2rem;
+
+  animation: message-pop 140ms ease-out;
+}
+
+.message-meta {
+  font-size: 0.7rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.message-bubble:has(.sender-bubble) {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.message-bubble:has(.receive-bubble) {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.message-bubble:has(.sender-bubble) .message-meta {
+  text-align: right;
+}
+
+.message-bubble:has(.receive-bubble) .message-meta {
+  text-align: left;
+}
+
+.conversation-body.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255,255,255,0.55);
+  font-size: 0.75rem;
+}
+
+.conversation-body.empty p {
+  opacity: 0.7;
+}
+
+
+
+@keyframes message-pop {
+  from {
+    transform: translateY(4px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}

@@ -3,6 +3,7 @@ import type { meal } from "../../types/RecipeTypes";
 import {useState } from "react";
 import useLikes from "../../hooks/useLikes";
 import useAuth from "../../hooks/useAuth";
+import { useOwnedCarts, useCartContentMutations } from "../../hooks/useCartRecipe";
 
 type RecipeModalProps = {
     meal: meal,
@@ -15,6 +16,9 @@ export default function RecipeModal({meal, open ,onClose}: RecipeModalProps){
     const [imageLoaded, setLoad] = useState(true);
     const {likedRecipes, toggleLike, isPending} = useLikes();
     const {isAuthenticated} = useAuth();
+    const {ownedCarts} = useOwnedCarts();
+    console.log(ownedCarts);
+    const {addRecipe} = useCartContentMutations(ownedCarts[0]);
 
     const liked = likedRecipes?.some(r => r.externalId === meal.externalId);
 
@@ -32,7 +36,7 @@ export default function RecipeModal({meal, open ,onClose}: RecipeModalProps){
             {isAuthenticated &&
             <div className="recipe-actions">
                 <button className="primary" type="button" onClick={()=>toggleLike({meal,type: "like",action:liked?"remove":"add"})} disabled={isPending}>❤️ {!liked?"Like":"Unlike"}</button>
-                <button className="secondary">🛒 Add to cart</button>
+                <button className="secondary" type="button" onClick={()=>addRecipe(meal)}>🛒 Add to cart</button>
             </div>}
 
             <div className="recipe-modal-body">

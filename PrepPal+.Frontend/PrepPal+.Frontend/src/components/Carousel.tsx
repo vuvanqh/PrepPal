@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type {meal} from "../types/RecipeTypes";
-import RecipePreviewCard from "./RecipePreviewCard";
+import RecipePreviewCard from "./RecipeUI/RecipePreviewCard";
 
 type CarouselProps = {
   items: meal[];
@@ -10,7 +10,7 @@ type CarouselProps = {
 };
     
 
-export default function Carousel({items, label="Our Favourite Recipes", itemsPerView=6, isPending}:CarouselProps){
+export default function Carousel({items = [], label="Our Favourite Recipes", itemsPerView=6, isPending}:CarouselProps){
     const [index,setIndex] = useState(0);
     const maxIndex = items.length - itemsPerView;
 

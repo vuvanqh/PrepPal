@@ -3,9 +3,7 @@ import type { ReactNode } from "react";
 
 
 export default function ErrorContainer({children}:{children: ReactNode}){
-    return <p>
-        <ul>
+    return <ul>
         {children}
     </ul>
-    </p>
 }

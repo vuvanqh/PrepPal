@@ -2,7 +2,7 @@ import useRecipe from "../../hooks/useSearchRecipe"
 import { useParams } from "react-router-dom";
 import Carousel from "../../components/Carousel";
 import useGetRandomRecipe from "../../hooks/useGetRandomRecipes";
-import RecipePreviewCard from "../../components/RecipePreviewCard";
+import RecipePreviewCard from "../../components/RecipeUI/RecipePreviewCard";
 import FoodImg from "../../assets/food.jpg"
 
 

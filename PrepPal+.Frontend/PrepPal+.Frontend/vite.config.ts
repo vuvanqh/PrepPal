@@ -13,6 +13,20 @@ export default defineConfig({
     https: {
       key: fs.readFileSync("localhost-key.pem"),
       cert: fs.readFileSync("localhost.pem"),
-  },
+    },
+    proxy:{
+      "/notification": {
+        target: "https://localhost:7101",
+        changeOrigin:true,
+        secure: false,
+        ws: true,
+      },
+      "/chat": {
+        target: "https://localhost:7101",
+        changeOrigin:true,
+        secure: false,
+        ws: true,
+      }
+    }
   }
 })

@@ -1,0 +1,89 @@
+.cart-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.cart-toggle button {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.cart-toggle button.active {
+  background: #111;
+  color: white;
+}
+
+.cart-toggle button:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+
+/* Remove default bullets */
+.container-modal-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Ingredient row */
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+
+  transition: background 0.2s ease;
+}
+
+/* Hover darken */
+.ingredient-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Ingredient name */
+.ingredient-name {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Right side container */
+.ingredient-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Quantity */
+.ingredient-quantity {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.ingredient-actions button {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #e5e5e5;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.ingredient-actions button:hover {
+  background: #d4d4d4;
+}

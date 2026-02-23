@@ -1,20 +1,8 @@
-import { apiFetch, url, HttpError } from "./util";
+import { apiClient } from "./apiClient";
 
 
+const account = "/account"
 
-const account = url + "/account"
 
+export const getPersonalDetails = async () => (await apiClient.get(account + "/my-info")).data;
 
-export async function getPersonalDetails(){
-    var response = await apiFetch(account + "/my-info");
-    
-    if(!response.ok)
-    {
-        const error = new HttpError((await response.json()).message || "User not found" , response.status);
-        error.code = response.status;
-        throw error;
-    }
-    var data = await response.json();
-    //console.log(data, "hey");
-    return data;
-}

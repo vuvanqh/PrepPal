@@ -1,46 +1,20 @@
-import { url, makeRequest } from "./util";
+import { apiClient } from "./apiClient";
+
+const cartUrl = "/cart";
 
 
-const cartUrl = url + "/cart";
+export const getCartContents = async(cartId:string) => (await apiClient.get(cartUrl + `/get-content/${cartId}`)).data;
+export const addToCart = async (cartId: string, externalId:number) => (await apiClient.post( cartUrl + "/add-recipe", {cartId, externalId})).data;
 
-
-export async function getCartContents(cartId:string){
-    return await makeRequest({urlSuffix:`/get-content/${cartId}`})
+export const removeFromCart = async (cartId: string, externalId:number) => {
+    console.log("removing recipe")
+    return (await apiClient.post( cartUrl + "/remove-recipe", {cartId, externalId})).data;
 }
 
-export async function addToCart(cartId: string, externalId:number){
-    return await makeRequest({
-        urlSuffix: cartUrl + "/add-recipe",
-        body: {cartId, externalId},
-        requestMethod:"POST"
-    }  );
-}
+export const getOwnedCarts = async () => (await apiClient.get( cartUrl +`/get-owned`)).data;
+export const getAccessibleCarts = async () => (await apiClient.get(cartUrl +`/get-accessible`)).data;
+export const getCart = async (cartId:string) => (await apiClient.get(cartUrl + `/get-cart/${cartId}`)).data;
+export const createCart = async () => (await apiClient.post(cartUrl+ `/create-cart`)).data;
+export const deleteCart = async (cartId:string) => (await apiClient.delete(cartUrl+ `/delete-cart/${cartId}`)).data
 
-export async function removeFromCart(cartId: string, externalId:number){
-    return await makeRequest({
-        urlSuffix: cartUrl + "/remove-recipe",
-        body: {cartId, externalId},
-        requestMethod:"POST"
-    }  );
-}
-
-export async function getOwnedCarts(){
-    return await makeRequest({urlSuffix: `/get-owned`})
-}
-
-export async function getAccessibleCarts(){
-    return await makeRequest({urlSuffix: `/get-accessible`})
-}
-
-export async function getCart(cartId:string) {
-    return await makeRequest({urlSuffix: `/get-cart/${cartId}`})
-}
-
-export async function createCart(){
-    return await makeRequest({urlSuffix: `/create-cart`})
-}
-
-export async function deleteCart(cartId:string){
-    return await makeRequest({urlSuffix: `/delete-cart/${cartId}`})
-}
 

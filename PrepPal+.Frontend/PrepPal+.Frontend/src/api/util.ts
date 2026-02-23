@@ -1,3 +1,5 @@
+//DEPRECATED
+
 export const url="https://localhost:7101/api"
 
 let refreshPromise: Promise<void> | null = null;
@@ -79,8 +81,10 @@ export async function makeRequest({urlSuffix ,body = null, requestMethod = "GET"
     {
         const error =new HttpError(`${errMessage} - ${(await response.json()).message}. Try again later`, response.status);
         error.code = response.status;
+        console.log(error);
         throw error;
     } 
-
+    if(requestMethod=="POST") return;
+    
     return await response.json();
 }

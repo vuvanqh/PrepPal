@@ -4,19 +4,40 @@ import { useNavigate } from "react-router-dom";
 import Welcome from "../../assets/welcome.png"
 import useAuth from "../../hooks/useAuth";
 import { ModalContext } from "../../store/ModalContext";
-import { useContext, useRef, useEffect, type SubmitEvent } from "react";
+import { useContext, useState, useRef, useEffect, type SubmitEvent } from "react";
 import useLikes from "../../hooks/useLikes";
+import Sidebar from "../../components/UI/Sidebar/Sidebar";
+import { useCartContent, useOwnedCarts } from "../../hooks/useCartRecipe";
+import { useSignalR } from "../../hooks/useSignalR";
+import { startConnections } from "../../hubConnections";
+import ConversationHost from "../../components/ConversationHost";
+import { NavLink } from "react-router-dom";
 
 export default function MainPage(){
+    const searchInput = useRef<HTMLInputElement>(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const {ownedCarts} = useOwnedCarts();
+    const {cartRecipes} = useCartContent(ownedCarts[0]);
+    
+    useSignalR();
     const navigate = useNavigate();
-    const {userData, logout, isPending, isAuthenticated} = useAuth();
+    const {userData, isPending, isAuthenticated} = useAuth();
     const {open} = useContext(ModalContext);
     const {likedRecipes} = useLikes();
-    const searchInput = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        if(!isAuthenticated && !isPending){
-            logout();
+        function handleEsc(e: KeyboardEvent) {
+            if (e.key === "Escape") {
+            setIsOpen(false);
+            }
+        }
+        document.addEventListener("keydown", handleEsc);
+        return () => document.removeEventListener("keydown", handleEsc);
+    }, []);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            startConnections();
         }
     }, [isAuthenticated, isPending])
 
@@ -38,7 +59,7 @@ export default function MainPage(){
     return <>
         <Navbar>
              <div>
-                <h1>Hey, {!isPending && userData["userName"]}</h1>
+                <h1>Hey, {userData?.userName}</h1>
                 <img src={Welcome}/>
                 <span className="ml-7 mr-2">Search</span>
                 <form onSubmit={(e) => searchSubmit(e)}>
@@ -48,10 +69,15 @@ export default function MainPage(){
             
             <div>
                 <button id="navbar-likes-button" type="button" onClick={openLikes}>❤️({likedRecipes.length??0})</button>
-                <button id="navbar-likes-button" type="button" onClick={openCart}>🛒</button>
-                <button onClick={logout}>Logout</button>
+                <button id="navbar-likes-button" type="button" onClick={openCart}>🛒({cartRecipes.length??0})</button>
+                <button className="" onClick={() => setIsOpen(true)}>☰</button>
             </div>
         </Navbar>
+
+        
+        <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)}/>
+        <ConversationHost/>
+       
         <Outlet/>  
     </>
 }

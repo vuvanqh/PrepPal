@@ -1,8 +1,12 @@
 .container-modal {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 1.75rem 2rem 2rem;
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #fafafa
+  );
 
+  border-radius: 18px;
+  padding: 1.75rem 1.2rem 2rem;
   max-width: 900px;
   width: 100%;
   max-height: 85vh;
@@ -10,7 +14,8 @@
   display: flex;
   flex-direction: column;
 
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+  overflow-x:hidden;
 }
 
 .container-modal-header {
@@ -20,8 +25,9 @@
 .container-modal-body {
   flex: 1;
   overflow-y: auto;
+  overflow-x:hidden;
 
-  padding: 0 4px;
+  padding: 1rem 0.1rem; 
   outline: none;
 }
 
@@ -30,7 +36,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding-top: 16px;
-  justify-items: center; 
+  justify-items: stretch;
 }
 
 .container-modal-title {

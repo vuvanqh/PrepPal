@@ -1,5 +1,5 @@
 import useLikes from "../../hooks/useLikes";
-import RecipePreviewCard from "../RecipePreviewCard";
+import RecipePreviewCard from "./RecipePreviewCard";
 
 export default function LikedContent({}){
     const {getPending, likedRecipes} = useLikes();

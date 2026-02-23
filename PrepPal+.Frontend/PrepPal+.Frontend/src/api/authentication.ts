@@ -1,5 +1,5 @@
 import {QueryClient} from "@tanstack/react-query";
-import { apiFetch, HttpError, url } from "./util";
+import { apiClient } from "./apiClient";
 export const queryClient = new QueryClient();
 
 export type registerDTO = {
@@ -17,43 +17,9 @@ export type loginDTO = {
 }
 
 
-const authUrl= url + "/auth"
+const authUrl= "/auth"
 
 
-export async function register(registerData: registerDTO){
-    const registerUrl = authUrl+"/register"
-    const response = await apiFetch(registerUrl,{
-        method: "POST",
-        body: JSON.stringify(registerData)
-    })
+export const register = async (registerData: registerDTO) => (await apiClient.post(authUrl+"/register",registerData)).data;
 
-    if(!response.ok)
-    {
-        const error = new HttpError('An error occured while registering.', response.status);
-        error.code = response.status;
-        error.info = await response.json();
-        throw error;
-    }
-
-    return await response.json();
-}
-
-export async function login(loginData: loginDTO){
-    const loginUrl = authUrl + '/login';
-    const response = await apiFetch(loginUrl, {
-        method: "POST",
-        body: JSON.stringify(loginData)
-    })
-
-    if(!response.ok)
-    {
-        const error =new HttpError('An error occured while logging in.', response.status);
-        error.code = response.status;
-        error.info = await response.json();
-        localStorage.clear();
-        throw error;
-    }   
-
-    const data = await response.json();
-    return data;
-}
+export const login = async (loginData: loginDTO) => (await apiClient.post(authUrl + '/login', loginData)).data;
