@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { addToCart, getCartContents, getOwnedCarts, removeFromCart } from "../api/cart-recipe";
 import { queryClient } from "../api/authentication";
 import type { accessibleCarts, cartResponse } from "../types/CartTypes";
-import { toastError, toastSuccess } from "../toastConfig";
+//import { toastError, toastSuccess } from "../toastConfig";
 import type { meal } from "../types/RecipeTypes";
 import useAuth from "./useAuth";
 import { clearCart as clearCartContents } from "../api/cart-recipe";
@@ -76,7 +76,7 @@ export function useCartContentMutations(){
         if (context?.prevCart) 
             queryClient.setQueryData(["cart-content", cartId], context.prevCart);
 
-        toastError("meh from useCart");
+        //toastError("meh from useCart");
     };
     
     const {mutate: addRecipe, isPending:addRecipePending} = useMutation({
@@ -105,7 +105,7 @@ export function useCartContentMutations(){
         }),
         onError: (_err, vars, context) => rollback( vars.cartId, context),
         onSettled: (_data, _err ,vars) => queryClient.invalidateQueries({queryKey:["cart-content",vars.cartId]}),
-        onSuccess: () => toastSuccess("yay from useCart")
+        //onSuccess: () => toastSuccess("yay from useCart")
     })
 
     const {mutate: clearCart} = useMutation({
@@ -141,7 +141,7 @@ export function useCartContentMutations(){
         }),
         onError: (_err, vars, context) => rollback(vars.cartId, context),
         onSettled: (_data, _err ,vars) => queryClient.invalidateQueries({queryKey:["cart-content",vars]}),
-        onSuccess: () => toastSuccess("yay from useCart")
+        //onSuccess: () => toastSuccess("yay from useCart")
     })
 
 

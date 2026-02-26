@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "../api/authentication";
 import { addInteraction, getLikedRecipes, type interactionType } from "../api/recipe-interaction";
 import type { meal } from "../types/RecipeTypes";
-import { toastSuccess, toastError } from "../toastConfig";
+import { toastError } from "../toastConfig";
 import useAuth from "./useAuth";
 
 type likeRespType = {
@@ -46,7 +46,7 @@ export default function useLikes(enabled=true): likeRespType{
             toastError("meh from useLikes");
         },
         onSettled: () => queryClient.invalidateQueries({queryKey:["auth","liked-recipes"]}),
-        onSuccess: () => toastSuccess("yay from useLikes")
+       // onSuccess: () => toastSuccess("yay from useLikes")
     })
 
     return {
