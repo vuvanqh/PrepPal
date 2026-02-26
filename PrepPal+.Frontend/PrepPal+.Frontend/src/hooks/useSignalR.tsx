@@ -7,10 +7,9 @@ import { useChat } from "../store/ConversationContext";
 
 export function useSignalR(){
     const {activeChat} = useChat();
-
     useChatHub((messageResponse, connectionId)=>{
         queryClient.setQueryData(["conversation",connectionId], (prev: conversationResponse | undefined) => {
-            if(connectionId==activeChat?.connectionId)
+            if(connectionId!=activeChat?.connectionId)
                 toastMessage(messageResponse.senderUsername,messageResponse.message);
             if(!prev)
                 return {

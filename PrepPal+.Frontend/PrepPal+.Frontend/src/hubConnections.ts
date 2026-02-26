@@ -22,9 +22,12 @@ export const chatConnection = new HubConnectionBuilder()
             .build();
 
 
-export function startConnections(){
-    if(notificationConnection.state==HubConnectionState.Disconnected)
+export async function startConnections(carts:string[]){
+    if(notificationConnection.state==HubConnectionState.Disconnected) {
         notificationConnection.start().catch(err => console.error("SignalR error notification: ",err));
+        await joinAllCartGroups(carts);
+        notificationConnection.onreconnected(async()=> await joinAllCartGroups(carts));
+    }
     if(chatConnection.state==HubConnectionState.Disconnected)
         chatConnection.start().catch(err => console.error("SignalR error chat: ",err));
 }
@@ -34,4 +37,9 @@ export function stopConnections(){
         notificationConnection.stop();
     if(chatConnection.state!=HubConnectionState.Disconnected)
         chatConnection.stop();
+}
+
+
+function joinAllCartGroups(carts: string[]){
+    carts.forEach(async (c) => await notificationConnection.invoke("JoinCart",c));
 }

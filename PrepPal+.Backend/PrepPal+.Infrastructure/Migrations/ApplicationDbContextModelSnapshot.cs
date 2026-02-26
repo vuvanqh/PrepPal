@@ -166,6 +166,41 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.ToTable("CartAccess", (string)null);
                 });
 
+            modelBuilder.Entity("PrepPal_.Core.CartInvitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessType")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ReceiverId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SenderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("CartInvitations");
+                });
+
             modelBuilder.Entity("PrepPal_.Core.CartRecipe", b =>
                 {
                     b.Property<Guid>("CartId")
@@ -600,6 +635,33 @@ namespace PrepPal_.Infrastructure.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PrepPal_.Core.CartInvitation", b =>
+                {
+                    b.HasOne("PrepPal_.Core.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PrepPal_.Core.Domain.Entities.ApplicationUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("PrepPal_.Core.CartRecipe", b =>

@@ -78,16 +78,16 @@ public class ConnectionService : IConnectionService
         return c.UserId1 == userId ? c.UserId2 : c.UserId1;
     }
 
-    public async Task ModifyConnection(Guid userId, Guid connectionId, ConnectionAction action)
+    public async Task ModifyConnection(Guid userId, Guid connectionId, ActionType action)
     {
         Connection c = await CheckConnectionExistance(userId, connectionId);
         await _dispatcher.Dispatch(c, userId, action);
 
-        if(action==ConnectionAction.Cancel || action == ConnectionAction.Remove || action == ConnectionAction.Reject)
+        if(action== ActionType.Cancel || action == ActionType.Remove || action == ActionType.Reject)
         {
             await _connectionRepo.DeleteConnectionAsync(c);
         }
-        else if(action == ConnectionAction.Accept)
+        else if(action == ActionType.Accept)
         {
             await _connectionRepo.UpdateConnectionAsync(c);
         }

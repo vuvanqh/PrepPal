@@ -9,7 +9,32 @@ export function useConnections(){
     });
 
     const {mutate} = useMutation({
-        mutationFn: (request: modifyConnectinoRequest) => modifyConnection(request)
+        mutationFn: async (request: modifyConnectinoRequest) => {
+            await modifyConnection(request);
+        },
+        onMutate: async (request: modifyConnectinoRequest) => {
+                    await queryClient.cancelQueries({queryKey: ["connections"]});
+        
+                    const prevLiked = queryClient.getQueryData<connectionResponse[]>([connections]);
+        
+                    queryClient.setQueryData<connectionResponse[]>([connections], (old = []) => {
+        
+                        if(request.action==="Reject")
+                            return old.filter(c=> c.connectionId!=request.connectionId && c.status=="Pending");
+                        if(request.action==="Remove")
+                            return old.filter(c=> c.connectionId!=request.connectionId && c.status=="Accepted");
+                        if(request.action==="Accept")
+                        return old;
+                    })
+                    
+                    return {prevLiked}
+                },
+                onError: (_err, _vars, context) =>{
+                    if(context?.prevLiked){
+                        queryClient.setQueryData<connectionResponse[]>([connections],context.prevLiked);
+                    }
+                },
+                onSettled: () => queryClient.invalidateQueries({queryKey:["connections"]}),
     });
 
     const {mutate:invite} = useMutation({

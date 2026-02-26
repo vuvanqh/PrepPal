@@ -8,4 +8,5 @@ public interface IRecipeInteractionRepository
     Task RemoveInteractionAsync(UserRecipeInteraction interaction);
     Task<bool> AnyAsync(UserRecipeInteraction interaction);
     Task<UserRecipeInteraction?> GetInteractionAsync(UserRecipeInteraction interaction);
+    Task<List<UserRecipeInteraction>> GetAllInteractions();
 }

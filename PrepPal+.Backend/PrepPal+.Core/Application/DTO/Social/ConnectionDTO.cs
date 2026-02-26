@@ -13,5 +13,5 @@ public record MakeConnectionRequest
 public record ConnectionActionRequest
 {
     [Required] public Guid ConnectionId { get; set; }
-    [Required] public ConnectionAction Action { get; set; }
+    [Required] public ActionType Action { get; set; }
 }

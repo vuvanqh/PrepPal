@@ -6,7 +6,7 @@ namespace PrepPal_.Core;
 
 public class CancelConnectionCommand: IConnectionCommand
 {
-    public ConnectionAction Action => ConnectionAction.Cancel;
+    public ActionType Action => ActionType.Cancel;
 
     public Task Execute(Connection c, Guid actorId)
     {

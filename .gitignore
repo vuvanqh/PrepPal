@@ -21,3 +21,8 @@ appsettings.Development.json
 appsettings.Local.json
 
 /PrepPal+.Backend/PrepPal+.UI/logs/*
+
+
+# ====== Python ======
+.venv/
+_pycache_

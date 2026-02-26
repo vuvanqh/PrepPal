@@ -1,10 +1,12 @@
 
+import { useGetRecommendedRecipes } from "../hooks/useGetRandomRecipes";
 import useGetRandomRecipe from "../hooks/useGetRandomRecipes";
 import Carousel from "./Carousel";
-
+import useAuth from "../hooks/useAuth";
 export default function MainPageContent(){
     const {recipes,isPending} = useGetRandomRecipe();
-
+    const {recommended, pending} = useGetRecommendedRecipes();
+    const {isAuthenticated} = useAuth();
     //console.log(data, isError, isPending, error);
 
     // useEffect(() => {
@@ -32,6 +34,7 @@ export default function MainPageContent(){
 
         <section id="learn-more">
             {content}
+            {isAuthenticated && <Carousel items={recommended} isPending={pending} label="Recommended for You"/>}
         </section>
     </>
 }

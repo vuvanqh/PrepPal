@@ -9,6 +9,7 @@ using PrepPal_.Core.Domain.RepositoryContracts;
 using PrepPal_.Infrastructure.DbContexts;
 using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using System.Text;
 
 namespace PrepPal_.Infrastructure.Repositories;
@@ -62,8 +63,16 @@ public class CartRepository : ICartRepository
         await _applicationDbContext.Carts.AddAsync(c);
         await GiveAccessAsync(userId, c.Id, CartAccessType.Owner);
         await _applicationDbContext.SaveChangesAsync();
+    }
 
-        
+    public async Task UpdateAccess(Guid userId, Guid cartId, CartAccessType access)
+    {
+        CartAccess? a = await _applicationDbContext.CartAccesses.FirstOrDefaultAsync(a => a.UserId ==  userId && a.CartId==cartId);
+        if (a == null) return;
+
+        a.AccessType = access;
+        _applicationDbContext.CartAccesses.Update(a);
+        await _applicationDbContext.SaveChangesAsync();
     }
 
     public async Task DeleteCart(Guid cartId, Guid userId)
@@ -93,7 +102,7 @@ public class CartRepository : ICartRepository
     public async Task<CartResponse?> GetCartDetailsAsync(Guid userId, Guid cartId)
     {
         return await _applicationDbContext.Carts
-            .Where(c => c.Id == cartId && c.OwnerId == userId)
+            .Where(c => c.Id == cartId && c.Accesses.Any(a=>a.UserId==userId))
             .Select(c => new CartResponse
             {
                 CartId = c.Id,
@@ -125,25 +134,25 @@ public class CartRepository : ICartRepository
             .FirstOrDefaultAsync();
     }
 
-    public async Task<List<CartRecipe>?> GetCartRecipes(Guid userId, Guid cartId)
+    public async Task<List<CartRecipe>> GetCartRecipes(Guid userId, Guid cartId)
     {
         Cart? c = await GetCartByIdAsync(userId, cartId);
-        return c?.Recipes.ToList();
+        return c?.Recipes.ToList()?? new List<CartRecipe>();
     }
 
-    public async Task<List<Cart>?> GetAccessibleCartsAsync(Guid userId)
+    public async Task<List<Cart>> GetAccessibleCartsAsync(Guid userId)
     {
-        List<CartAccess>? accesses =  await _applicationDbContext.CartAccesses.Where(c => c.UserId == userId).DistinctBy(c=>c.CartId).ToListAsync();
-        List<Cart>? carts = new List<Cart>();
+        List<CartAccess> accesses =  await _applicationDbContext.CartAccesses.AsSplitQuery().Where(c => c.UserId == userId && c.AccessType!=CartAccessType.Owner && c.AccessType!=CartAccessType.Revoked)
+                                                .GroupBy(c=>c.CartId).Select(c=>c.First()).ToListAsync();
 
-        foreach(var c in accesses)
-        {
-            carts.Add(c.Cart);
-        }
+        List<Guid> ids = accesses.Select(a => a.CartId).ToList();
+
+        List<Cart> carts = await _applicationDbContext.Carts.Include(c => c.Owner).Where(c => ids.Contains(c.Id)).ToListAsync();
+
         return carts;
     }
 
-    public async Task<List<Cart>?> GetOwnedCartsAsync(Guid userId)
+    public async Task<List<Cart>> GetOwnedCartsAsync(Guid userId)
     {
         //List<CartAccess>? accesses = await _applicationDbContext.CartAccesses.Where(c => c.UserId == userId && c.AccessType==CartAccessType.Owner)
         //                                                                     .GroupBy(c => c.CartId)
@@ -194,5 +203,14 @@ public class CartRepository : ICartRepository
     {
         CartAccessType? a = (await _applicationDbContext.CartAccesses.FirstOrDefaultAsync(ca => ca.CartId == cartId && ca.UserId==userId))?.AccessType;
         return a.HasValue && a.Value <= access;
+    }
+    public async Task ClearCart(Guid cartId)
+    {
+        Cart? c = await _applicationDbContext.Carts.FirstOrDefaultAsync(c => c.Id == cartId);
+        if (c == null) return;
+
+        c.Recipes.Clear();
+        _applicationDbContext.Carts.Update(c);
+        await _applicationDbContext.SaveChangesAsync();
     }
 }

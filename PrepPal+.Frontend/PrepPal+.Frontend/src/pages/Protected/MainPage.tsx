@@ -11,13 +11,15 @@ import { useCartContent, useOwnedCarts } from "../../hooks/useCartRecipe";
 import { useSignalR } from "../../hooks/useSignalR";
 import { startConnections } from "../../hubConnections";
 import ConversationHost from "../../components/ConversationHost";
+import { useAccessibleCarts } from "../../hooks/useCartRecipe";
 
 export default function MainPage(){
     const searchInput = useRef<HTMLInputElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const {ownedCarts} = useOwnedCarts();
-    const {cartRecipes} = useCartContent(ownedCarts[0]);
-    
+    const {cart, cartRecipes} = useCartContent(ownedCarts[0]);
+    const {accessibleCarts} = useAccessibleCarts();
+    const carts = [ownedCarts[0], ...(accessibleCarts.map(c=>c.cartId))];
     useSignalR();
     const navigate = useNavigate();
     const {userData, isPending, isAuthenticated} = useAuth();
@@ -36,7 +38,7 @@ export default function MainPage(){
 
     useEffect(() => {
         if (isAuthenticated) {
-            startConnections();
+            startConnections(carts);
         }
     }, [isAuthenticated, isPending])
 
@@ -44,7 +46,7 @@ export default function MainPage(){
         open({type: "likes"})
     }
     function openCart(){
-        open({type: "cart"})
+        if(cart) open({type: "cart", cartId: cart.cartId });
     }
     function searchSubmit(e: SubmitEvent<HTMLFormElement>){
         e.preventDefault();
@@ -76,7 +78,6 @@ export default function MainPage(){
         
         <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)}/>
         <ConversationHost sidebarOpen={isOpen}/>
-       
         <Outlet/>  
     </>
 }

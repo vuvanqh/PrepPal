@@ -16,13 +16,15 @@ public class RecipeInteractionService : IRecipeInteractionService
     private readonly IMealDbClient _mealDbClient;
     private readonly IUserRepository _userRepository;
     private readonly InteractionDispatcher _interactionDispatcher;
-    public RecipeInteractionService(IRecipeRepository recipeRepository, IMealDbClient mealDbClient, InteractionDispatcher interactionDispatcher, IRecipeService recipeService, IUserRepository userRepository)
+    private readonly IRecipeInteractionRepository _interactionRepository;
+    public RecipeInteractionService(IRecipeRepository recipeRepository, IMealDbClient mealDbClient, InteractionDispatcher interactionDispatcher, IRecipeService recipeService, IUserRepository userRepository, IRecipeInteractionRepository interactionRepository)
     {
         _userRepository = userRepository;
         _recipeRepository = recipeRepository;
         _mealDbClient = mealDbClient;
         _interactionDispatcher = interactionDispatcher;
         _recipeService = recipeService;
+        _interactionRepository = interactionRepository;
     }
 
     public async Task Interact(Guid userId, UserRecipeInteractionRequest request)
@@ -45,5 +47,22 @@ public class RecipeInteractionService : IRecipeInteractionService
     {
         List<Recipe>? recipes =  await _userRepository.GetLikedRecipes(userId);
         return recipes?.Select(r=>r.ToLikedRecipesResponse()).ToList();
+    }
+    public async Task<RecommendationRequest> GetRecommendationRequestData(Guid userId, InteractionType type)
+    {
+        List<Recipe> recipes = await _recipeRepository.GetAllRecipes();
+        List<UserRecipeInteraction> interactions = (await _interactionRepository.GetAllInteractions()).Where(i => i.Type == type && i.UserId==userId).ToList();
+
+        return new RecommendationRequest()
+        {
+            recipes = recipes.Select(r => new RecommendationRecipeReq()
+            {
+                recipeId = r.Id,
+                category = r.Category.CategoryName,
+                area = r.Area,
+                ingredients = r.RecipeIngredients.Select(i => i.IngredientId.ToString()).ToList(),
+            }).ToList(),
+            likes = interactions.Select(i => i.RecipeId).ToList()
+        };
     }
 }

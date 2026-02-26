@@ -6,7 +6,7 @@ namespace PrepPal_.Core;
 
 public class RemoveConnectionCommand : IConnectionCommand
 {
-    public ConnectionAction Action => ConnectionAction.Remove;
+    public ActionType Action => ActionType.Remove;
 
     public Task Execute(Connection c, Guid actorId)
     {

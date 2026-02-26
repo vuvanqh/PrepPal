@@ -2,55 +2,12 @@ import {useState, useRef, type SubmitEvent} from 'react';
 import Profile from "../../../assets/account.png";
 import useAuth from '../../../hooks/useAuth';
 import FriendItem from './FriendItem';
-import CartItem from './CartItem';
 import { useNavigate } from "react-router-dom";
 import FriendRequestItem from './FriendRequestItem';
 import { useConnections } from '../../../hooks/useConnecitons';
+import { CartInvitationList } from './CartInvitationList';
+import { CartItemList } from './CartItemList';
 
-type cart = {
-    ownerUser: string,
-    cartId: string,
-}
-
-// const dummyFriendData:friendData[] = [{
-//     userName: "Taehyun",
-//     firstName: "Taehyun",
-//     lastName: "Kang",
-//     connectionId: "asfasfsazxvzx",
-//     requestedByUsername: "Taehyun",
-//     status: "Accepted"
-// },{
-//     userName: "Soobin",
-//     firstName: "Soobin",
-//     lastName: "Choi",
-//     connectionId: "asfasfsazxvzx",
-//     requestedByUsername: "Taehyun",
-//     status: "Accepted"
-// },{
-//     userName: "Yeonjun",
-//     firstName: "Yeonjun",
-//     lastName: "Choi",
-//     connectionId: "zxvxzsag",
-//     requestedByUsername: "Yeonjun",
-//     status: "Accepted"
-// },{
-//     userName: "Kai",
-//     firstName: "Hueningkai",
-//     lastName: "Kamal",
-//     connectionId: "safzvxzba",
-//     requestedByUsername: "Kai",
-//     status: "Accepted"
-// }];
-const dummyCartData:cart[] = [{
-    ownerUser:"Taehyun",
-    cartId: "aasglgaslmlc"
-},{
-    ownerUser:"Kai",
-    cartId: "fsavxzvzxva"
-},{
-    ownerUser:"Soobin",
-    cartId: "vxzfasfsaasf"
-}];
 
 export default function Sidebar({isOpen, onClose}: {isOpen:boolean, onClose:()=>void}){
     const {userData, logout} = useAuth();
@@ -75,10 +32,9 @@ export default function Sidebar({isOpen, onClose}: {isOpen:boolean, onClose:()=>
         setFriends(state);
         setSearch("");
     }
-    const filteredCarts = dummyCartData.filter(c => c.ownerUser.toLowerCase().includes(cartFilter));
-    
+
     const FriendComp = viewRequests? FriendRequestItem: FriendItem;
-    const CartComp = viewRequests? null: CartItem; 
+    const CartComp = viewRequests? CartInvitationList: CartItemList; 
     console.log(connections);
     const conn = viewRequests? connections?.filter(c=>c.status=="Pending" &&c.requestedByUsername!=userData?.userName):connections?.filter(c=>c.status=="Accepted");
     return  <>
@@ -110,11 +66,11 @@ export default function Sidebar({isOpen, onClose}: {isOpen:boolean, onClose:()=>
                         <ul>
                             
                         {isFriends?
-                            conn?.length==0 && conn?
+                            conn && conn.length==0?
                             <p>{viewRequests?"No requests":"No connections yet"}</p>:
                             conn?.map(connection => (<FriendComp connection={connection} key={connection.userName}/>))
                             :
-                            CartComp&&filteredCarts.map(cart => <CartComp cart={cart} key={cart.cartId}/>)}
+                            <CartComp filter={cartFilter}/>}
                         </ul>
                     </div>
                 

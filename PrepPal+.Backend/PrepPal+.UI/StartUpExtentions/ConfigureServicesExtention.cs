@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using PrepPal_.Core;
 using PrepPal_.Core.Application.Services;
 using PrepPal_.Core.ClientContracts;
+using PrepPal_.Core.Domain;
 using PrepPal_.Core.Domain.Entities;
 using PrepPal_.Core.Domain.RepositoryContracts;
 using PrepPal_.Core.ServiceContracts;
@@ -78,6 +78,7 @@ public static class ConfigureServicesExtention
         services.AddScoped<IRecipeInteractionService, RecipeInteractionService>();
         services.AddScoped<IConnectionService, ConnectionService>();
         services.AddScoped<IMessageService, MessageService>();
+        services.AddTransient<CartInvitationPolicy>();
 
 
         services.AddSingleton<IUserIdProvider, NameIdentifierUserIdProvider>();
@@ -109,11 +110,16 @@ public static class ConfigureServicesExtention
         services.AddScoped<ICartRepository, CartRepository>();
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<IConnectionRepository, ConnectionRepository>();
+        services.AddScoped<ICartInvitationRepository, CartInvitationRepository>();
 
         //dbContext
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(config.GetConnectionString("Default"));
+            options.UseSqlServer(config.GetConnectionString("Default"), sqlOptions =>
+            {
+                sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+            });
+            
         });
 
         //identity

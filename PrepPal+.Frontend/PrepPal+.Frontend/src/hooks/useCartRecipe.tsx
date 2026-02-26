@@ -1,23 +1,40 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { addToCart, getCartContents, getOwnedCarts, removeFromCart } from "../api/cart-recipe";
 import { queryClient } from "../api/authentication";
-import type { cartResponse } from "../types/CartTypes";
+import type { accessibleCarts, cartResponse } from "../types/CartTypes";
 import { toastError, toastSuccess } from "../toastConfig";
 import type { meal } from "../types/RecipeTypes";
 import useAuth from "./useAuth";
+import { clearCart as clearCartContents } from "../api/cart-recipe";
+import { getAccessibleCarts } from "../api/cart-recipe";
 
+type cartIdResponse = {
+    cartIdList:string[]
+}
 export function useOwnedCarts(){
     const {isAuthenticated} = useAuth();
-    const {data, isPending} = useQuery({
+    const {data, isPending} = useQuery<cartIdResponse>({
         queryKey: ["owned-carts"],
         queryFn: getOwnedCarts,
         enabled: isAuthenticated
     })
     return{
-        ownedCarts: data?.cartIdList??[],
+        ownedCarts: data?.cartIdList ?? [],
         isPending,
     }
 }
+
+export function useAccessibleCarts(){
+    const {data} = useQuery<accessibleCarts>({
+        queryKey: ["cart", "accessible"],
+        queryFn: getAccessibleCarts
+    })
+
+    return {
+        accessibleCarts: data?.carts?? []
+    }
+}
+
 
 export function useCartContent(cartId: string){
     const {isAuthenticated} = useAuth();
@@ -28,6 +45,7 @@ export function useCartContent(cartId: string){
     })
 
     return {
+        cart: data,
         cartOwner: data?.ownerUserName,
         cartId: data?.cartId,
         members: data?.members??[],
@@ -37,16 +55,9 @@ export function useCartContent(cartId: string){
 }
 
 
-export function useCartContentMutations(cartId?:string){
-    if(!cartId){
-        return{
-            addRecipe: () => {},
-            removeRecipe: () => {}
-        }
-    }
-    const queryKey = ["cart-content", cartId];
-
-    const optimisticUpdate = async (updater: (prev: cartResponse) => cartResponse) => {
+export function useCartContentMutations(){
+    const optimisticUpdate = async (cartId: string, updater: (prev: cartResponse) => cartResponse) => {
+        const queryKey = ["cart-content", cartId];
         await queryClient.cancelQueries({ queryKey });
 
         const prevCart =
@@ -61,16 +72,16 @@ export function useCartContentMutations(cartId?:string){
         return { prevCart };
     };
 
-    const rollback = (context?: { prevCart?: cartResponse }) => {
+    const rollback = (cartId: string, context?: { prevCart?: cartResponse }) => {
         if (context?.prevCart) 
-            queryClient.setQueryData(queryKey, context.prevCart);
+            queryClient.setQueryData(["cart-content", cartId], context.prevCart);
 
         toastError("meh from useCart");
     };
     
     const {mutate: addRecipe, isPending:addRecipePending} = useMutation({
-        mutationFn: (recipe:meal) => addToCart(cartId,recipe.externalId),
-        onMutate: async (recipe:meal) => optimisticUpdate((prevCart) => {
+        mutationFn: ({cartId, recipe}:{cartId:string, recipe:meal}) => addToCart(cartId,recipe.externalId),
+        onMutate: async ({cartId, recipe}:{cartId:string, recipe:meal}) => optimisticUpdate(cartId, (prevCart) => {
             const recipeIndex = prevCart.cartRecipes.findIndex(r => r.recipe.externalId === recipe.externalId);
             let updatedRecipe;
             let updatedRecipes = [...prevCart.cartRecipes];
@@ -92,14 +103,23 @@ export function useCartContentMutations(cartId?:string){
                 cartRecipes: updatedRecipes
             };
         }),
-        onError: (_err, _vars, context) => rollback(context),
-        onSettled: () => queryClient.invalidateQueries({queryKey:["cart-content",cartId]}),
+        onError: (_err, vars, context) => rollback( vars.cartId, context),
+        onSettled: (_data, _err ,vars) => queryClient.invalidateQueries({queryKey:["cart-content",vars.cartId]}),
         onSuccess: () => toastSuccess("yay from useCart")
     })
 
+    const {mutate: clearCart} = useMutation({
+        mutationFn: (cartId: string) => clearCartContents(cartId),
+        onMutate: async (cartId: string) => optimisticUpdate(cartId, (prevCart) => {
+            return {...prevCart, cartRecipes:[]};
+        }),
+        onError: (_err, vars, context) => rollback(vars,context),
+        onSettled: (_data, _err ,vars) => queryClient.invalidateQueries({queryKey:["cart-content",vars]}),
+    })
+
     const {mutate: removeRecipe, isPending:removeRecipePending} = useMutation({
-        mutationFn: (recipe:meal) => removeFromCart(cartId,recipe.externalId),
-        onMutate: async (recipe:meal) => optimisticUpdate((prevCart) => {
+        mutationFn: ({cartId, recipe}:{cartId:string, recipe:meal}) => removeFromCart(cartId,recipe.externalId),
+        onMutate: async ({cartId, recipe}:{cartId:string, recipe:meal}) => optimisticUpdate(cartId, (prevCart) => {
             const recipeIndex = prevCart.cartRecipes.findIndex(r => r.recipe.externalId === recipe.externalId);
             let updatedRecipes = [...prevCart.cartRecipes];
 
@@ -119,8 +139,8 @@ export function useCartContentMutations(cartId?:string){
                 cartRecipes: updatedRecipes
             };
         }),
-        onError: (_err, _vars, context) => rollback(context),
-        onSettled: () => queryClient.invalidateQueries({queryKey:["cart-content",cartId]}),
+        onError: (_err, vars, context) => rollback(vars.cartId, context),
+        onSettled: (_data, _err ,vars) => queryClient.invalidateQueries({queryKey:["cart-content",vars]}),
         onSuccess: () => toastSuccess("yay from useCart")
     })
 
@@ -129,6 +149,7 @@ export function useCartContentMutations(cartId?:string){
         addRecipe,
         addRecipePending,
         removeRecipe,
-        removeRecipePending
+        removeRecipePending,
+        clearCart
     }
 }

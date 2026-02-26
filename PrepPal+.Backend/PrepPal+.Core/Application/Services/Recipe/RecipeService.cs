@@ -74,7 +74,22 @@ public class RecipeService : IRecipeService
 
         return r.Id;
     }
+        
+    public async Task<RecipeResponse> GetRecipeById(Guid id)
+    {
+        Recipe? r = await _recipeRepository.GetRecipeById(id);
+        if (r == null) throw new ArgumentException("recipe does not exist");
 
+        return r.ToRecipeResponse();
+    }
+
+    public async Task<List<RecipeResponse>> FillResponseList(List<RecipeResponse> list)
+    {
+        List<Recipe> r  = await _recipeRepository.GetAllRecipes();
+        List<RecipeResponse> resp = r.Where(r => !list.Contains(r.ToRecipeResponse())).Select(r=>r.ToRecipeResponse()).ToList();
+        list.AddRange(resp);
+        return list;
+    }
 
     private string NormalizeBasic(string input)
     {

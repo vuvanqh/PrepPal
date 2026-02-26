@@ -16,9 +16,7 @@ export default function AppLayoutPage(){
                     newestOnTop
                     closeOnClick
                     rtl={false}
-                    pauseOnFocusLoss
                     draggable
-                    pauseOnHover
                     theme="colored"
                     transition={Bounce}
                     />

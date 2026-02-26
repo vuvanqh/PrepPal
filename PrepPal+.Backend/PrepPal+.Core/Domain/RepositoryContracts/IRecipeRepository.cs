@@ -10,4 +10,6 @@ public interface IRecipeRepository
     Task<bool> RecipeExists(int externalId);
     Task AddRecipeAsync(Recipe recipe);
     Task<Recipe?> GetRecipeAsync(int externalId);
+    Task<List<Recipe>> GetAllRecipes();
+    Task<Recipe?> GetRecipeById(Guid id);
 }

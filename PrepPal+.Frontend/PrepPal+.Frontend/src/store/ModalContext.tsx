@@ -2,7 +2,7 @@ import { createContext, useReducer, type ReactNode } from "react";
 import type { meal } from "../types/RecipeTypes";
 export type ModalType = 
     | { type: "likes" }
-    | { type: "cart" }
+    | { type: "cart", cartId: string }
     | { type: "recipe"; meal: meal };
 
 type ModalState = {

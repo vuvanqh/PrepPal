@@ -11,4 +11,6 @@ public interface IRecipeService
     Task<List<RecipeResponse>> Get10RandomRecipes();
     Task<List<RecipeResponse>?> SearchRecipesByName(string name);
     Task<Guid> EnsureRecipeExistsAsync(int externalId);
+    Task<RecipeResponse> GetRecipeById(Guid id);
+    Task<List<RecipeResponse>> FillResponseList(List<RecipeResponse> list);
 }

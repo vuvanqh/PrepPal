@@ -56,7 +56,7 @@ public class ConnectionController : ControllerBase
 
         await _connectionService.ModifyConnection(Guid.Parse(id), request.ConnectionId, request.Action);
 
-        if (request.Action == ConnectionAction.Accept)
+        if (request.Action == ActionType.Accept)
         {
             Guid receiverId = await _connectionService.GetReceiverId(Guid.Parse(id), request.ConnectionId);
 

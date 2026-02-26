@@ -6,7 +6,7 @@ namespace PrepPal_.Core;
 
 public class RejectConnectionCommand: IConnectionCommand
 {
-    public ConnectionAction Action => ConnectionAction.Reject;
+    public ActionType Action => ActionType.Reject;
 
     public Task Execute(Connection c, Guid actorId)
     {

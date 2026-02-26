@@ -30,4 +30,16 @@ public class RecipeRepository : IRecipeRepository
     public async Task<Recipe?> GetRecipeAsync(int externalId) => await _applDbContext.Recipes.Include(r => r.Category).FirstOrDefaultAsync(r => r.ExternalId == externalId);
 
     public async Task RemoveInteractionAsync(UserRecipeInteraction interaction) { }
+    public async Task<List<Recipe>> GetAllRecipes() => await _applDbContext.Recipes
+        .Include(r=>r.Category)
+        .Include(r=>r.RecipeIngredients)
+            .ThenInclude(i => i.Ingredient)
+        .AsSplitQuery()
+        .ToListAsync();
+    public async Task<Recipe?> GetRecipeById(Guid id) => await _applDbContext.Recipes
+        .Include(r=>r.Category)
+        .Include(r => r.RecipeIngredients)
+            .ThenInclude(i=>i.Ingredient)
+        .AsSplitQuery()
+        .FirstOrDefaultAsync(r => r.Id == id);
 }

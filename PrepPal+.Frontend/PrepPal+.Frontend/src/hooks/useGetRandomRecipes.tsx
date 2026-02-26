@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRandomRecipes } from "../api/recipeApi";
+import { getRecommendaitons } from "../api/cart-recipe";
+import type { meal } from "../types/RecipeTypes";
+import useAuth from "./useAuth";
 
 export default function useGetRandomRecipe(){
     const {data, isPending} = useQuery({
@@ -13,4 +16,18 @@ export default function useGetRandomRecipe(){
         isPending
     }
     
+}
+
+export function useGetRecommendedRecipes(){
+    const {isAuthenticated} = useAuth();
+    const {data, isPending} = useQuery<meal[]>({
+        queryKey: ["recipe", "recommendations"],
+        queryFn: getRecommendaitons,
+        enabled: isAuthenticated
+    });
+
+    return {
+        recommended: data??[],
+        pending: isPending
+    };
 }

@@ -37,6 +37,7 @@ public class RecipeInteractionRepository : IRecipeInteractionRepository
 
     public async Task<UserRecipeInteraction?> GetInteractionAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions.FirstOrDefaultAsync(i => i == interaction);
 
-    public async Task<bool> AnyAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions.AnyAsync(i => i==interaction);
-    
+    public async Task<bool> AnyAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions.AnyAsync(i => i == interaction);
+    public async Task<List<UserRecipeInteraction>> GetAllInteractions() => await _applicationDbContext.UserRecipeInteractions.Include(i=>i.Recipe).ToListAsync();
+
 }

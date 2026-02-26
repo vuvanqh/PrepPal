@@ -9,5 +9,6 @@ public enum CartAccessType
 {
     [EnumMember(Value = "owner")]  Owner,
     [EnumMember(Value = "editor")]  Editor,
-    [EnumMember(Value = "view")]  Viewer
+    [EnumMember(Value = "view")]  Viewer,
+    [EnumMember(Value = "revoked")] Revoked
 }

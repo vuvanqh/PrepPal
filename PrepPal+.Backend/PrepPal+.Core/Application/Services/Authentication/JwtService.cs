@@ -28,7 +28,8 @@ public class JwtService : IJwtService
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), //subject = user identity
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), //unique token id
            // new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64), //issued at
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()!) //unique value of a user
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()!), //unique value of a user
+            new Claim(ClaimTypes.Name, user.UserName!)
         };
 
         SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)); //security key

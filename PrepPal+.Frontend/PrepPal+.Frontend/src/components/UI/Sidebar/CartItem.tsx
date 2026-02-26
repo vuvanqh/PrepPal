@@ -1,19 +1,19 @@
-type cartData = {
-    ownerUser: string,
-    cartId: string,
-}
-export default function CartItem({cart}: {cart:cartData}){
+import type { accessibleCart } from "../../../types/CartTypes"
+import { ModalContext } from "../../../store/ModalContext"
+import { useContext } from "react";
+
+export default function CartItem({cart}: {cart:accessibleCart}){
+    const {open} = useContext(ModalContext);
+
+    function openCart() {
+        open({type: "cart", cartId: cart.cartId})
+    }
+
     return <li className="sidebar-item">
         <div className="item-row">
-            <p className="item-main">{cart.ownerUser}'s Cart</p>
-            <button className="item-action">🛒</button>
+            <p className="item-main">{cart.ownerUserName}'s Cart</p>
+            <button className="item-action" onClick={openCart}>🛒</button>
         </div>
     </li>
 }
 
-{/* <li role="button">
-    <div> - display flex the content below is on the same line
-        <p>{cart.ownerUser}'s Cart</p> -left aligned
-        <button>🛒(5)</button> - right aliged 
-    </div>
-</li> */}

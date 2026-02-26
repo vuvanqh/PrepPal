@@ -6,7 +6,7 @@ namespace PrepPal_.Core;
 
 public class AcceptConnectionCommand: IConnectionCommand
 {
-    public ConnectionAction Action => ConnectionAction.Accept;
+    public ActionType Action => ActionType.Accept;
 
     public Task Execute(Connection c, Guid actorId)
     {

@@ -10,6 +10,7 @@ export const toastConfig = { //remove later
     progress: undefined,
     theme: "colored",
     transition: Bounce,
+    limit: 3,
 } as ToastOptions;
 
 export function toastSuccess(message:string){
@@ -35,7 +36,8 @@ export function toastMessage(username: string, message: string) {
       draggable: false,
       theme: "dark",
       transition: Zoom,
-    }
+      limit: 3,
+    } as ToastOptions
   );
 }
 
@@ -57,6 +59,7 @@ export function toastFriendRequest(username: string) {
       draggable: false,
       theme: "colored",
       transition: Zoom,
+      limit: 3,
     } as ToastOptions
   );
 }

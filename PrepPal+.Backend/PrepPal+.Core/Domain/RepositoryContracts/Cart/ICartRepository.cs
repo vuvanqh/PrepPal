@@ -10,19 +10,23 @@ public interface ICartRepository
 {
     Task CreateCart(Guid userId);
     Task DeleteCart(Guid cartId, Guid userId);
+    Task ClearCart(Guid cartId);
 
     Task AddToCartAsync(Guid cartId, Guid userId, Guid recipeId);
     Task RemoveFromCartAsync(Guid cartId, Guid userId, Guid recipeId);
 
     Task<Cart?> GetCartByIdAsync(Guid userId, Guid cartId);
-    Task<List<Cart>?> GetAccessibleCartsAsync(Guid userId);
-    Task<List<Cart>?> GetOwnedCartsAsync(Guid userId);
+    Task<List<Cart>> GetAccessibleCartsAsync(Guid userId);
+    Task<List<Cart>> GetOwnedCartsAsync(Guid userId);
 
-    Task<List<CartRecipe>?> GetCartRecipes(Guid userId,Guid cartId);
+    Task<List<CartRecipe>> GetCartRecipes(Guid userId,Guid cartId);
     Task<CartResponse?> GetCartDetailsAsync(Guid userId, Guid cartId);
 
     Task<bool?> HasPermission(Guid userId, Guid cartId, CartAccessType access);
 
     Task GiveAccessAsync(Guid userId, Guid cartId, CartAccessType access);
     Task RemoveAccessAsync(Guid userId, Guid cartId, CartAccessType access);
+
+    Task UpdateAccess(Guid userId, Guid cartId, CartAccessType access);
+
 }

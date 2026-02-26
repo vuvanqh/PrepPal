@@ -3,7 +3,7 @@ import CartModal from "./CartModal";
 import { useContext } from "react";
 import { ModalContext } from "../../store/ModalContext";
 import LikesModal from "./LikesModal";
-import { useOwnedCarts } from "../../hooks/useCartRecipe";
+
 // const MODAL_REGISTRY = {
 //   recipe: RecipeModal,
 //   likes: ContainerModal,
@@ -15,7 +15,6 @@ import { useOwnedCarts } from "../../hooks/useCartRecipe";
 
 export function ModalRoot() {
   const { state, close } = useContext(ModalContext);
-  const {ownedCarts} = useOwnedCarts();
  // console.log(getPending, likedRecipes);
   const current = state.stack.at(-1);
   if(!current) return null;
@@ -24,6 +23,6 @@ export function ModalRoot() {
   switch(current.type){
     case "likes": return <LikesModal close={close}/>
     case "recipe": return  <RecipeModal open meal={current.meal} onClose={close}/>
-    case "cart": return  ownedCarts.length==0?<></>:<CartModal close={close} cartId={ownedCarts[0]}/>
+    case "cart": return  <CartModal close={close} cartId={current.cartId}/>
   };
 }

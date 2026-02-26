@@ -14,18 +14,18 @@ type RecipePreviewCardProps = {
 export default function CartRecipePreviewCard({cartId,quantity, meal, className="", ...props}: RecipePreviewCardProps)
 {
     const {open} = useContext(ModalContext);
-    const {addRecipe:add, removeRecipe:remove} = useCartContentMutations(cartId);
+    const {addRecipe:add, removeRecipe:remove} = useCartContentMutations();
     function openRecipe(){
         open({type: "recipe", meal});
     }
 
     function removeRecipe(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation();
-        remove(meal);
+        remove({cartId, recipe: meal});
     }
     function addRecipe(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation();
-        add(meal);
+        add({cartId, recipe: meal});
     }
 
     return <article className={`recipe-preview recipe-preview-compact ${className}`} role="button" onClick={openRecipe} {...props}>        

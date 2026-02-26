@@ -20,10 +20,12 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
     const {isAuthenticated} = useAuth();
     const {likedRecipes, toggleLike:useToggleLike} = useLikes();
     const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
-    const {addRecipe} = useCartContentMutations(cartId)
+    const {addRecipe} = useCartContentMutations()
     function addToCart(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation();
-        addRecipe(meal);
+        if(!cartId) return;
+        
+        addRecipe({cartId, recipe:meal});
     }
 
     function openRecipe(){

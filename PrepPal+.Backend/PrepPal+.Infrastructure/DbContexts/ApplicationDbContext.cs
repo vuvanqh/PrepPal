@@ -29,6 +29,7 @@ public class ApplicationDbContext: IdentityDbContext<ApplicationUser, Applicatio
     //social
     public virtual DbSet<Connection> Connections => Set<Connection>();
     public virtual DbSet<Message> Messages => Set<Message>();
+    public virtual DbSet<CartInvitation> CartInvitations => Set<CartInvitation>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
