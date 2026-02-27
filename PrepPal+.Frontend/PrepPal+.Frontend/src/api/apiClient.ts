@@ -1,15 +1,17 @@
 import axios from "axios";
 import { stopConnections } from "../hubConnections";
 
+const apiUrl = import.meta.env.VITE_API_BASE_URL + "/api";
+
 export let refreshPromise: Promise<string> | null = null;
 
 export const apiClient = axios.create({
-    baseURL: "https://localhost:7101/api",
+    baseURL: apiUrl,
     withCredentials: true
 });
 
 const refreshClient = axios.create({
-    baseURL: "https://localhost:7101/api",
+    baseURL: apiUrl,
     withCredentials: true
 });
 

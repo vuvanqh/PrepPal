@@ -21,15 +21,17 @@ public class CartController : ControllerBase
     private readonly IRecipeInteractionService _interactionService;
     private readonly IRecipeService _recipeService;
     private readonly IHubContext<NotificationHub, INotificationClient> _hub;
+    private readonly IConfiguration _config;
 
     public CartController(ICartService cartService, IHubContext<NotificationHub, INotificationClient> hub, 
-        IUserRepository userRepo, IRecipeInteractionService interactionService, IRecipeService recipeService)
+        IUserRepository userRepo, IRecipeInteractionService interactionService, IRecipeService recipeService, IConfiguration configuration)
     {
         _cartService = cartService;
         _hub = hub;
         _userRepo = userRepo;
         _interactionService = interactionService;
         _recipeService = recipeService;
+        _config = configuration;
     }
 
 
@@ -221,7 +223,7 @@ public class CartController : ControllerBase
         RecommendationRequest request = await _interactionService.GetRecommendationRequestData(Guid.Parse(id), InteractionType.Like);
         var client = new HttpClient();
 
-        var resp = await client.PostAsJsonAsync<RecommendationRequest>(new Uri("http://127.0.0.1:8000/recommend"), request);
+        var resp = await client.PostAsJsonAsync<RecommendationRequest>(new Uri(_config["RecommendationService:BaseUrl"]!), request);
 
         if (!resp.IsSuccessStatusCode)
             return StatusCode(502, "Recommendation service failed");

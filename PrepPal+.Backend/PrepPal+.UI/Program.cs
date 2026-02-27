@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PrepPal_.Backend;
 using PrepPal_.Backend.Hubs;
+using PrepPal_.Infrastructure.DbContexts;
 using Serilog;
 
 
@@ -28,8 +29,18 @@ public class Program
 
         var app = builder.Build();
 
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            db.Database.Migrate();
+        }
+
+        app.UseForwardedHeaders();
+
         app.UseSerilogRequestLogging();
-        app.UseHttpsRedirection();
+
+        if(app.Environment.IsDevelopment())
+            app.UseHttpsRedirection();
 
         app.UseCors("AllowFrontend");
 

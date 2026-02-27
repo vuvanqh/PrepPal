@@ -1,0 +1,49 @@
+services:
+  #db
+  db: 
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: prepal-db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ${SA_PASSWORD}
+    volumes:
+      - mssql-data:/var/opt/mssql
+    expose:
+      - "1433"
+
+  #backend
+  backend:
+    build: ./PrepPal+.Backend
+    container_name: preppal-backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Default: "Server=db;Database=PrepPal;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+      AllowedOrigins__0: "http://localhost:3000"
+      Jwt__Audience: "http://localhost:3000"
+      Jwt__Issuer: "http://localhost:8080"
+      Jwt__Key: "exemplaryKey_afaosfiajo8ug983j0cm0oxdjq2owkzihlmkjb79ockjdyk9c0m"
+      RecommendationService__BaseUrl: "http://recommender:8000"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  
+  recommender:
+    build: ./RecommendationSystem
+    container_name: preppal-recommender
+    expose:
+      - "8000"
+
+  frontend:
+    build:
+      context: ./PrepPal+.Frontend/PrepPal+.Frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8080
+    container_name: preppal-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mssql-data:

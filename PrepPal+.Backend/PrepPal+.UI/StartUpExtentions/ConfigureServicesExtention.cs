@@ -34,6 +34,13 @@ public static class ConfigureServicesExtention
             options.LowercaseUrls = true;
         });
 
+        services.Configure<ForwardedHeadersOptions>(options =>
+        {
+            options.ForwardedHeaders =
+                Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor |
+                Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
+        });
+
         //cors
         services.AddCors(options =>
         {
