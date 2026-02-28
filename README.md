@@ -168,3 +168,11 @@ This project explores:
 - Full-stack application deployment using Docker  
 
 It serves both as a collaborative productivity tool and as an architectural learning platform.
+
+## Future Improvements
+
+- Add unit and integration tests for backend services and API endpoints  
+- Introduce CI pipeline (GitHub Actions) for automated testing and build validation  
+- Improve production deployment setup with reverse proxy and HTTPS  
+- Add caching layer for performance optimization  
+- Enhance monitoring and logging for production environments  
