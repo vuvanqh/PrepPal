@@ -146,8 +146,8 @@ This will start:
 ### Access the Application
 
 - Frontend: http://localhost:3000  
-- Backend API: http://localhost:7101  
-- Recommendation service: http://localhost:8000  
+- Backend API: http://localhost:8080  
+- Recommendation service: http://recommender:8000  
 
 ### Stop the Services
 
