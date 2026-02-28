@@ -16,5 +16,5 @@ export const getAccessibleCarts = async () => (await apiClient.get(cartUrl +`/ge
 export const getCart = async (cartId:string) => (await apiClient.get(cartUrl + `/get-cart/${cartId}`)).data;
 export const createCart = async () => (await apiClient.post(cartUrl+ `/create-cart`)).data;
 export const deleteCart = async (cartId:string) => (await apiClient.delete(cartUrl+ `/delete-cart/${cartId}`)).data
-export const clearCart = async (cartId: string) => (await apiClient.put(cartId + `/clear/${cartId}`)).data;
+export const clearCart = async (cartId: string) => (await apiClient.put(cartUrl + `/clear/${cartId}`)).data;
 export const getRecommendaitons = async () => (await apiClient.get(cartUrl + '/get-recommendations')).data;

@@ -16,7 +16,7 @@ public class RecipeInteractionRepository : IRecipeInteractionRepository
         _applicationDbContext = applicationDbContext;
     }
 
-      public async Task AddInteractionAsync(UserRecipeInteraction interaction)
+     public async Task AddInteractionAsync(UserRecipeInteraction interaction)
     {
         UserRecipeInteraction? itr = await GetInteractionAsync(interaction);
         if (itr!=null)
@@ -28,16 +28,25 @@ public class RecipeInteractionRepository : IRecipeInteractionRepository
     public async Task RemoveInteractionAsync(UserRecipeInteraction interaction)
     {
         UserRecipeInteraction? itr = await GetInteractionAsync(interaction);
-        if (itr!=null)
+        if (itr==null)
             return;
 
-        _applicationDbContext.UserRecipeInteractions.Remove(interaction);
+        _applicationDbContext.UserRecipeInteractions.Remove(itr);
         await _applicationDbContext.SaveChangesAsync();
     }
 
-    public async Task<UserRecipeInteraction?> GetInteractionAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions.FirstOrDefaultAsync(i => i == interaction);
+    public async Task<UserRecipeInteraction?> GetInteractionAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions
+                                                                                                                                    .FirstOrDefaultAsync(i =>
+                                                                                                                                        i.UserId == interaction.UserId &&
+                                                                                                                                        i.ExternalRecipeId == interaction.ExternalRecipeId &&
+                                                                                                                                        i.Type == interaction.Type
+                                                                                                                                    );
 
-    public async Task<bool> AnyAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions.AnyAsync(i => i == interaction);
+    public async Task<bool> AnyAsync(UserRecipeInteraction interaction) => await _applicationDbContext.UserRecipeInteractions.AnyAsync(i =>
+                                                                                                                                        i.UserId == interaction.UserId &&
+                                                                                                                                        i.ExternalRecipeId == interaction.ExternalRecipeId &&
+                                                                                                                                        i.Type == interaction.Type
+                                                                                                                                    );
     public async Task<List<UserRecipeInteraction>> GetAllInteractions() => await _applicationDbContext.UserRecipeInteractions.Include(i=>i.Recipe).ToListAsync();
 
 }

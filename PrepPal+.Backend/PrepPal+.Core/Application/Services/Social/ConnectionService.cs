@@ -78,9 +78,11 @@ public class ConnectionService : IConnectionService
         return c.UserId1 == userId ? c.UserId2 : c.UserId1;
     }
 
-    public async Task ModifyConnection(Guid userId, Guid connectionId, ActionType action)
+    public async Task<Guid> ModifyConnection(Guid userId, Guid connectionId, ActionType action)
     {
         Connection c = await CheckConnectionExistance(userId, connectionId);
+        Guid notifyId = c.UserId2==userId? c.UserId1: c.UserId2;
+
         await _dispatcher.Dispatch(c, userId, action);
 
         if(action== ActionType.Cancel || action == ActionType.Remove || action == ActionType.Reject)
@@ -91,6 +93,7 @@ public class ConnectionService : IConnectionService
         {
             await _connectionRepo.UpdateConnectionAsync(c);
         }
+        return notifyId;
     }
     public async Task<List<UserReposnse>> SearchByUser(string search)
     {

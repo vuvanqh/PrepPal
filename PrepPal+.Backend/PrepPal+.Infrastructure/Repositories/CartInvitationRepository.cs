@@ -52,6 +52,7 @@ public class CartInvitationRepository : ICartInvitationRepository
         CartInvitation? i = await _applicationDbContext.CartInvitations.FirstOrDefaultAsync(c => c.Id == invitationId);
         if (i == null) return;
         i.Status = status;
+        await _applicationDbContext.SaveChangesAsync();
     }
 
     public async Task<CartInvitation?> GetInvitationById(Guid id) => await _applicationDbContext.CartInvitations.FirstOrDefaultAsync(i => i.Id == id);

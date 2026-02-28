@@ -206,11 +206,13 @@ public class CartRepository : ICartRepository
     }
     public async Task ClearCart(Guid cartId)
     {
-        Cart? c = await _applicationDbContext.Carts.FirstOrDefaultAsync(c => c.Id == cartId);
-        if (c == null) return;
+        Cart? c = await _applicationDbContext.Carts.FirstOrDefaultAsync(cart => cart.Id==cartId);
+        if (c != null)
+            c.Recipes.Clear();
 
-        c.Recipes.Clear();
-        _applicationDbContext.Carts.Update(c);
+        await _applicationDbContext.CartRecipeMappings.Where(c => c.CartId == cartId).ExecuteDeleteAsync();
         await _applicationDbContext.SaveChangesAsync();
     }
 }
+
+//_applicationDbContext.CartRecipeMappings.RemoveRange(_applicationDbContext.CartRecipeMappings.Where(c => c.CartId == cartId));

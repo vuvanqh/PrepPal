@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { ModalContext } from "../../store/ModalContext";
 import useAuth from "../../hooks/useAuth";
 import useLikes from "../../hooks/useLikes";
-import { useCartContentMutations } from "../../hooks/useCartRecipe";
+import { useCartSelector } from "../../hooks/useCartSelector";
+import CartSelectorPortal from "../UI/CartSelectorPortal";
+
 type Variant = "carousel" | "compact";
 
 type RecipePreviewCardProps = {
@@ -20,13 +22,7 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
     const {isAuthenticated} = useAuth();
     const {likedRecipes, toggleLike:useToggleLike} = useLikes();
     const liked = likedRecipes.some(r=>r.externalId===meal.externalId);
-    const {addRecipe} = useCartContentMutations()
-    function addToCart(e:React.MouseEvent<HTMLButtonElement>){
-        e.stopPropagation();
-        if(!cartId) return;
-        
-        addRecipe({cartId, recipe:meal});
-    }
+    const { menu, openMenu, addToCart, allCarts, menuRef } = useCartSelector(meal);
 
     function openRecipe(){
         open({type: "recipe", meal});
@@ -35,6 +31,7 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
     function toggleLike(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation();
         useToggleLike({meal, type: "like",action:liked?"remove":"add"});
+        console.log({meal, type: "like",action:liked?"remove":"add"});
     }
 
     return <article className={`recipe-preview recipe-preview-${variant} ${className}`} role="button" onClick={openRecipe} {...props}>        
@@ -54,8 +51,9 @@ export default function RecipePreviewCard({meal, variant="carousel",showActions=
         {showActions && isAuthenticated && (
             <div className="recipe-preview-actions">
             <button className="primary" onClick={(e)=>toggleLike(e)}>❤️</button>
-            <button className="secondary" onClick={(e)=>addToCart(e)}>🛒</button>
+            <button className="secondary" onClick={(e)=>{e.stopPropagation(); openMenu(e)}}>🛒</button>
             </div>
         )}
+         {menu && <CartSelectorPortal menu={menu} menuRef={menuRef} carts={allCarts.carts} onSelect={addToCart}/>}
     </article>
 }

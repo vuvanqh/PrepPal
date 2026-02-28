@@ -25,9 +25,11 @@ export function useOwnedCarts(){
 }
 
 export function useAccessibleCarts(){
+    const {isAuthenticated} = useAuth();
     const {data} = useQuery<accessibleCarts>({
         queryKey: ["cart", "accessible"],
-        queryFn: getAccessibleCarts
+        queryFn: getAccessibleCarts,
+        enabled: isAuthenticated
     })
 
     return {

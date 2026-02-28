@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.AspNetCore.SignalR;
@@ -146,6 +147,7 @@ public class CartController : ControllerBase
         try
         {
             await _cartService.ClearCart(Guid.Parse(id), cartId);
+            await _hub.Clients.Group(cartId.ToString()).UpdateCart(cartId);
         }
         catch (Exception ex)
         {
@@ -179,10 +181,14 @@ public class CartController : ControllerBase
             return Unauthorized("sesison expired");
 
         await _cartService.ModifyInvitationStatus(Guid.Parse(id), request);
-        
-        if(request.Action==ActionType.Accept)
-            await _hub.Clients.Group(request.CartId.ToString()).NotifyCartInvitationAccepted(User.Identity!.Name!); //invoke group addition in frontend
 
+        if (request.Action == ActionType.Accept)
+        {
+            await _hub.Clients.Group(request.CartId.ToString()).NotifyCartInvitationAccepted(User.Identity!.Name!); //invoke group addition in frontend 
+        }
+        if (request.Action == ActionType.Reject)
+        {
+        }
         return Ok("Success");
     }
 
@@ -222,8 +228,9 @@ public class CartController : ControllerBase
 
         RecommendationRequest request = await _interactionService.GetRecommendationRequestData(Guid.Parse(id), InteractionType.Like);
         var client = new HttpClient();
-
-        var resp = await client.PostAsJsonAsync<RecommendationRequest>(new Uri(_config["RecommendationService:BaseUrl"]!), request);
+        var url = $"{new Uri(_config["RecommendationService:BaseUrl"]!)}recommend";
+        Console.WriteLine(url);
+        var resp = await client.PostAsJsonAsync<RecommendationRequest>(url, request);
 
         if (!resp.IsSuccessStatusCode)
             return StatusCode(502, "Recommendation service failed");

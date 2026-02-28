@@ -2,6 +2,7 @@ import type { meal } from "./RecipeTypes"
 
 export type accessType = "Owner" | "Editor" | "Viewer"
 export type actionType = "accept" | "reject" | "remove" | "block" | "edit"
+export type status = "Pending" | "Accepted" | "Rejected"
 
 export type cartRecipe = {
     recipe: meal,
@@ -23,7 +24,7 @@ export type cartMembers = {
 export type cartInvitationRequest = {
     cartId: string,
     userName: string,
-    access: accessType,
+    access: accessType
 }
 
 export type modifyCartInvitation = {
@@ -41,7 +42,8 @@ export type modifyCartAccess = {
 export type cartInvitationResponse = {
     cartId: string,
     invitationId: string,
-    ownerUserName: string
+    ownerUserName: string,
+    status: status
 }
 
 export type accessibleCarts = {

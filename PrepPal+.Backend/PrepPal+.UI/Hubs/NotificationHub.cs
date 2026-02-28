@@ -17,14 +17,18 @@ public interface INotificationClient
 
     Task RemoveFromCart(Guid cartId);
     Task UpdateCart(Guid cartId);
+
+    Task UpdateConnections();
 }
 
 public class NotificationHub : Hub<INotificationClient>
 {
     private readonly ICartRepository _cartRepo;
-    public NotificationHub(ICartRepository cartRepository)
+    private readonly IConnectionRepository _connectionRepo;
+    public NotificationHub(ICartRepository cartRepository, IConnectionRepository connectionRepo)
     {
         _cartRepo = cartRepository;
+        _connectionRepo = connectionRepo;
     }
 
     public async Task JoinCart(Guid cartId)

@@ -53,15 +53,17 @@ public class ConnectionController : ControllerBase
         var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (id == null)
             return Unauthorized("unauthorized access");
-
-        await _connectionService.ModifyConnection(Guid.Parse(id), request.ConnectionId, request.Action);
+        
+        Guid notifyId = await _connectionService.ModifyConnection(Guid.Parse(id), request.ConnectionId, request.Action);
 
         if (request.Action == ActionType.Accept)
         {
-            Guid receiverId = await _connectionService.GetReceiverId(Guid.Parse(id), request.ConnectionId);
-
             //switch to events later
-            await _hubContext.Clients.User(receiverId.ToString()).NotifyConnectionAccepted(User.Identity?.Name!);
+            await _hubContext.Clients.User(notifyId.ToString()).NotifyConnectionAccepted(User.Identity?.Name!);
+        }
+        if (request.Action == ActionType.Remove)
+        {
+            await _hubContext.Clients.User(notifyId.ToString()).UpdateConnections();
         }
 
         return Ok();

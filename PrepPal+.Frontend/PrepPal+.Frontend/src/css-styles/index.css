@@ -102,14 +102,13 @@ dialog[open] {
     box-shadow 300ms ease;
 }
 
+.navbar h1 {
+  padding-left: 0;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
 
 .navbar-hidden {
   transform: translateY(-100%);
-}
-
-.navbar h1 {
-  padding-left: 2rem;
-  font-size: 3rem
 }
 
 .navbar img {
@@ -123,6 +122,27 @@ dialog[open] {
   align-items: center;
   padding: 10px 10px 10px 10px;
   justify-content: space-between;
+}
+
+.navbar-home-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-home-link h1 {
+  margin: 0;
+  padding-left: 2rem;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.navbar-home-link img {
+  height: clamp(2.5rem, 6vw, 5rem);
+  width: auto;
+  object-fit: contain;
 }
 
 .navbar button {
@@ -454,5 +474,36 @@ dialog[open] {
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .navbar-home-link h1 {
+    font-size: 1.3rem;
+  }
+
+  .navbar img {
+    height: 3rem;
+  }
+
+  .navbar input {
+    width: 140px;
+  }
+
+  #navbar-likes-button {
+    width: 60px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .navbar-home-link h1 {
+    display: none; /* hide text on very small screens */
+  }
+
+  .navbar input {
+    width: 100px;
   }
 }

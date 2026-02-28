@@ -182,7 +182,8 @@ public class CartService : ICartService
         {
             InvitationId = i.Id,
             CartId = i.CartId,
-            OwnerUserName = i.Cart.Owner.UserName!
+            OwnerUserName = i.Cart.Owner.UserName!,
+            Status = Status.Pending,
         }).ToList();
     }
 

@@ -23,11 +23,11 @@ type ingredientDTO = {
 function aggregateIngredients(recipes:cartRecipe[]){
     let ingredients:ingredientDTO[] = []
     console.log(recipes)
-    recipes?.forEach((recipe) => {
-        recipe.recipe.ingredients?.forEach((ingredient) => {
+    recipes?.forEach((cartRecipe) => {
+        cartRecipe.recipe.ingredients?.forEach((ingredient) => {
             var idx = ingredients?.findIndex(i=>i.name == ingredient.ingredientName)
             if(idx!=-1)
-                ingredients[idx].quantity++;
+                ingredients[idx].quantity+=cartRecipe.quantity;
             else 
                 ingredients.push({
                     name: ingredient.ingredientName,
@@ -56,13 +56,7 @@ export default function Ingredients({cartRecipes}:{cartRecipes: cartRecipe[]}){
         </ul>
     </div>
 }
-{/* <div> - one after another each item should kinda darken a bit on hover
-        <ul>
-            {dummyIngredients.map(i => (
-                <IngredientItem ingredient={i} key={i.name}/>
-            ))}
-        </ul>
-    </div> */}
+
 
 export function IngredientItem({ingredient}:{ingredient:ingredientDTO}){
     return <li className="ingredient-item">
@@ -75,13 +69,4 @@ export function IngredientItem({ingredient}:{ingredient:ingredientDTO}){
     </li>
 }
 
-
-{/* <div> - flex 
-    <p>{ingredient.name}</p> right left clour - grayish textstone +-500
-    <div> right aligned
-        <p>{ingredient.quantity} x {ingredient.measure}</p> same colour as ingredient name
-        <button>+</button> -buttons of text col black with a bit darker background (not black -darker than white) and round
-        <button>-</button>
-    </div>
-</div> */}
 

@@ -1,5 +1,5 @@
 import Navbar from "../../components/UI/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Welcome from "../../assets/welcome.png"
 import useAuth from "../../hooks/useAuth";
@@ -20,6 +20,7 @@ export default function MainPage(){
     const {cart, cartRecipes} = useCartContent(ownedCarts[0]);
     const {accessibleCarts} = useAccessibleCarts();
     const carts = [ownedCarts[0], ...(accessibleCarts.map(c=>c.cartId))];
+    console.log(`Carts: ${carts}`);
     useSignalR();
     const navigate = useNavigate();
     const {userData, isPending, isAuthenticated} = useAuth();
@@ -60,8 +61,10 @@ export default function MainPage(){
     return <>
         <Navbar>
              <div>
-                <h1>Hey, {userData?.userName}</h1>
-                <img src={Welcome}/>
+                <Link to="/main" className="navbar-home-link">
+                    <h1>Hey, {userData?.userName}</h1>
+                    <img src={Welcome}/>
+                </Link>
                 <span className="ml-7 mr-2">Search</span>
                 <form onSubmit={(e) => searchSubmit(e)}>
                     <input ref={searchInput} className="bg-stone-200 rounded-2xl px-2 text-stone-500" placeholder={"Find Recipes..."}/>
@@ -70,7 +73,7 @@ export default function MainPage(){
             
             <div>
                 <button id="navbar-likes-button" type="button" onClick={openLikes}>❤️({likedRecipes.length??0})</button>
-                <button id="navbar-likes-button" type="button" onClick={openCart}>🛒({cartRecipes.length??0})</button>
+                <button id="navbar-likes-button" type="button" onClick={openCart}>🛒({cartRecipes?.reduce((total, item) => total + item.quantity, 0) ?? 0})</button>
                 <button className="" onClick={() => setIsOpen(true)}>☰</button>
             </div>
         </Navbar>

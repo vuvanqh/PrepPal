@@ -17,14 +17,14 @@ public class RecipeService : IRecipeService
     private readonly IRecipeRepository _recipeRepository;
     private readonly IRecipeCategoryRepository _recipeCategoryRepository;
     private readonly IIngredientRepository _ingredientRepository;
-
-    public RecipeService(IMealDbClient mealDbClient, IRecipeRepository recipeRepository, IRecipeCategoryRepository recipeCategoryRepository, IIngredientRepository ingredientRepository)
+    private readonly IUnitOfWork _unitOfWork;
+    public RecipeService(IMealDbClient mealDbClient, IRecipeRepository recipeRepository, IRecipeCategoryRepository recipeCategoryRepository, IIngredientRepository ingredientRepository, IUnitOfWork unitOfWork)
     {
         _mealDbClient = mealDbClient;
         _recipeRepository = recipeRepository;
         _recipeCategoryRepository = recipeCategoryRepository;
         _ingredientRepository = ingredientRepository;
-        
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<List<RecipeResponse>> Get10RandomRecipes()
@@ -65,10 +65,10 @@ public class RecipeService : IRecipeService
         {
             foreach(var i in ingredients)
             {
-                string normalizedName = NormalizeBasic(i.IngredientName); 
+                string normalizedName = NormalizeBasic(i.IngredientName);
                 await _ingredientRepository.AddIngredientAsync(normalizedName, i.IngredientName);
-                Guid ingredientId = (await _ingredientRepository.GetIngredientByName(normalizedName))!.Id;
-                await _ingredientRepository.AddIngredientRepoMapping(r.Id, ingredientId , i.IngredientMeasure);
+                Guid id = (await _ingredientRepository.GetIngredientByName(normalizedName))!.Id;
+                await _ingredientRepository.AddIngredientRepoMapping(r.Id, id, i.IngredientMeasure);
             }
         }
 

@@ -11,12 +11,14 @@ export default function useNotificationHub( ){
         //connection
         notificationConnection.on("ReceiveConnectionRequestNotification",onReceiveConnectionRequest);
         notificationConnection.on("NotifyConnectionAccepted",onConnectionAccepted);
+        notificationConnection.on("UpdateConnections", onUpdateConnections);
 
         //cart
         notificationConnection.on("ReceiveCartInvitationNotification",onReceiveCartInvitationNotification);
         notificationConnection.on("NotifyCartInvitationAccepted",onNotifyCartInvitationAccepted);
         notificationConnection.on("RemoveFromCart",onRemoveFromCart);
         notificationConnection.on("UpdateCart", onUpdateCart);
+
 
         return () => {
             notificationConnection.off("ReceiveConnectionRequestNotification",onReceiveConnectionRequest);
@@ -25,6 +27,7 @@ export default function useNotificationHub( ){
             notificationConnection.off("NotifyCartInvitationAccepted",onNotifyCartInvitationAccepted);
             notificationConnection.off("RemoveFromCart",onRemoveFromCart);
             notificationConnection.off("UpdateCart", onUpdateCart);
+            notificationConnection.off("UpdateConnections", onUpdateConnections);
         }
     }, []);
 
@@ -38,6 +41,7 @@ const onReceiveConnectionRequest = (username: string) => {
 
 const onConnectionAccepted= (username: string) => {
     toastSuccess(`${username} has accepted your conneciton request`);
+    queryClient.invalidateQueries({queryKey:["connections"]});
 }
 
 const onRemoveFromCart = (cartId: string) => {
@@ -55,4 +59,8 @@ const onNotifyCartInvitationAccepted = (username: string) => {
 
 const onUpdateCart = (cartId: string) => {
     queryClient.invalidateQueries({queryKey: ["cart-content", cartId]});
+}
+
+const onUpdateConnections = () => {
+    queryClient.invalidateQueries({queryKey:["connections"]});
 }

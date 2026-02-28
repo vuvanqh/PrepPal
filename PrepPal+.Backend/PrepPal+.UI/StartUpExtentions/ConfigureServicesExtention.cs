@@ -87,6 +87,8 @@ public static class ConfigureServicesExtention
         services.AddScoped<IMessageService, MessageService>();
         services.AddTransient<CartInvitationPolicy>();
 
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
         services.AddSingleton<IUserIdProvider, NameIdentifierUserIdProvider>();
         //Dispatchers
@@ -125,6 +127,11 @@ public static class ConfigureServicesExtention
             options.UseSqlServer(config.GetConnectionString("Default"), sqlOptions =>
             {
                 sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+
+                sqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(5),
+                    errorNumbersToAdd: null);
             });
             
         });

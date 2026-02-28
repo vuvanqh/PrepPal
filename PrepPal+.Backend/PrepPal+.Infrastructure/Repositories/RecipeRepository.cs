@@ -29,7 +29,19 @@ public class RecipeRepository : IRecipeRepository
 
     public async Task<Recipe?> GetRecipeAsync(int externalId) => await _applDbContext.Recipes.Include(r => r.Category).FirstOrDefaultAsync(r => r.ExternalId == externalId);
 
-    public async Task RemoveInteractionAsync(UserRecipeInteraction interaction) { }
+    public async Task RemoveInteractionAsync(UserRecipeInteraction interaction) 
+    {
+        var existing = await _applDbContext.UserRecipeInteractions
+            .FirstOrDefaultAsync(i =>
+                i.UserId == interaction.UserId &&
+                i.RecipeId == interaction.RecipeId &&
+                i.Type == interaction.Type);
+
+        if (existing == null) return;
+
+        _applDbContext.UserRecipeInteractions.Remove(existing);
+        await _applDbContext.SaveChangesAsync();
+    }
     public async Task<List<Recipe>> GetAllRecipes() => await _applDbContext.Recipes
         .Include(r=>r.Category)
         .Include(r=>r.RecipeIngredients)

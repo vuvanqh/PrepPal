@@ -13,7 +13,5 @@ Dockerfile*
 Thumbs.db
 .env
 .env.*
-appsettings.Development.json
-appsettings.Local.json
 
 /PrepPal+.Backend/PrepPal+.UI/logs/*

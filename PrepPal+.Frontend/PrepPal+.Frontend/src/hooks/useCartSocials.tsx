@@ -3,6 +3,7 @@ import { getPendingInvitations, modifyInvitaiton, sendCartInvitation } from "../
 import type { accessType, actionType, cartInvitationResponse } from "../types/CartTypes";
 import { queryClient } from "../api/authentication";
 import { useOwnedCarts } from "./useCartRecipe";
+import { joinCart } from "../hubConnections";
 
 export function useCartInvitation(){
     const {data: invitations} = useQuery<cartInvitationResponse[]>({
@@ -30,7 +31,10 @@ export function useCartInvitationActions(cartId: string, invitationId: string){
 
     return {
         decline: () => mutate("reject"),
-        accept: () => mutate("accept"),
+        accept: () =>{  
+            mutate("accept");
+            joinCart(cartId);
+        },
     }
 }
 

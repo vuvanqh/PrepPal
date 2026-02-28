@@ -2,7 +2,7 @@ import {HubConnectionBuilder, HubConnectionState} from "@microsoft/signalr";
 import { refreshPromise } from "./api/apiClient";
 
 export const notificationConnection = new HubConnectionBuilder()
-            .withUrl("https://localhost:7101/notification",{accessTokenFactory: ()=> localStorage.getItem("token")!})
+            .withUrl(`${import.meta.env.VITE_API_BASE_URL}/notification`,{accessTokenFactory: ()=> localStorage.getItem("token")!})
             .withAutomaticReconnect({
                 nextRetryDelayInMilliseconds: () => {
                     if (!refreshPromise) return null;
@@ -12,7 +12,7 @@ export const notificationConnection = new HubConnectionBuilder()
             .build();
 
 export const chatConnection = new HubConnectionBuilder()
-            .withUrl("https://localhost:7101/chat",{accessTokenFactory: ()=>localStorage.getItem("token")!})
+            .withUrl(`${import.meta.env.VITE_API_BASE_URL}/chat`,{accessTokenFactory: ()=>localStorage.getItem("token")!})
             .withAutomaticReconnect({
                 nextRetryDelayInMilliseconds: () => {
                     if (!refreshPromise) return null;
@@ -43,3 +43,6 @@ export function stopConnections(){
 function joinAllCartGroups(carts: string[]){
     carts.forEach(async (c) => await notificationConnection.invoke("JoinCart",c));
 }
+
+
+export const joinCart = async (cartId: string) => await notificationConnection.invoke("JoinCart", cartId);

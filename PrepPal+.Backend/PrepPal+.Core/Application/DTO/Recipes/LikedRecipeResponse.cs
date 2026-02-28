@@ -14,6 +14,7 @@ public class LikedRecipeResponse
     [Required] public string Area {  get; set; } = null!;
     [Required] public string Instructions { get; set; } = null!;
     [Required] public string ImageUrl { get; set; } = null!;
+    [Required] public List<IngredientDTO> Ingredients { get; set; } = new List<IngredientDTO>();
 }
 
 public static class RecipeExtention
@@ -27,7 +28,12 @@ public static class RecipeExtention
             Category = recipe.Category!.CategoryName,
             Area = recipe.Area,
             Instructions = recipe.Instructions,
-            ImageUrl = recipe.ImageUrl
+            ImageUrl = recipe.ImageUrl,
+            Ingredients = recipe.RecipeIngredients.Where(i => i.RecipeId == recipe.Id).Select(i => new IngredientDTO()
+            {
+                IngredientMeasure = i.Measurement,
+                IngredientName = i.Ingredient.Name
+            }).ToList()
         };
     }
 }
